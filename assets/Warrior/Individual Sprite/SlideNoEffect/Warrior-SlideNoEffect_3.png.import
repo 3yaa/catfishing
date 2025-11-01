@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://buydafgcxlcre"
-path="res://.godot/imported/knight.png-b33800fb7ddfd7bcabc4517f1e9e68e8.ctex"
+uid="uid://c3vsel817rrwd"
+path="res://.godot/imported/Warrior-SlideNoEffect_3.png-5ca448d25ada91ea176772619ade86e4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/knight.png"
-dest_files=["res://.godot/imported/knight.png-b33800fb7ddfd7bcabc4517f1e9e68e8.ctex"]
+source_file="res://assets/Warrior/Individual Sprite/SlideNoEffect/Warrior-SlideNoEffect_3.png"
+dest_files=["res://.godot/imported/Warrior-SlideNoEffect_3.png-5ca448d25ada91ea176772619ade86e4.ctex"]
 
 [params]
 
