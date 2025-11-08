@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwjnjn45by5b2"]
+
+[ext_resource type="Script" uid="uid://dddhcc8d6v41r" path="res://scripts/ui.gd" id="1_nt7q6"]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_nt7q6")
+
+[node name="FishCounter" type="HBoxContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="FishIcon" type="TextureRect" parent="FishCounter"]
+layout_mode = 2
+stretch_mode = 5
+
+[node name="FishScore" type="Label" parent="FishCounter"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "0"
