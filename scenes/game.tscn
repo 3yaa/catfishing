@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://dlaaqsui6rtpr"]
+[gd_scene load_steps=12 format=4 uid="uid://dlaaqsui6rtpr"]
 
 [ext_resource type="PackedScene" uid="uid://2pd4wty6nwsi" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://c4nlmna60i861" path="res://scripts/player.gd" id="2_yqjtg"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bsj23fju2j7vg" path="res://scripts/lock_camera.gd" id="4_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://c6ckhw3uwaeti" path="res://assets/platforms/world_tileset.png" id="5_iywne"]
 [ext_resource type="PackedScene" uid="uid://cwjnjn45by5b2" path="res://scenes/ui.tscn" id="6_p57ef"]
+[ext_resource type="Script" uid="uid://b2wgiegidtvun" path="res://scripts/clock.gd" id="7_u5sy4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iywne"]
 texture = ExtResource("5_iywne")
@@ -199,3 +200,6 @@ script = ExtResource("4_lbhrr")
 target = NodePath("../Player")
 
 [node name="UI" parent="." instance=ExtResource("6_p57ef")]
+
+[node name="clock" type="Node2D" parent="."]
+script = ExtResource("7_u5sy4")
