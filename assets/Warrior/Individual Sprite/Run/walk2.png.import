@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5ra1qui2p6bb"
-path="res://.godot/imported/Warrior_Run_1.png-9fb033cbe28b63a8cde2091661e38c91.ctex"
+uid="uid://tdlxcr3jkquc"
+path="res://.godot/imported/walk2.png-d4752b895744f18e4216db11ba65272b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Warrior/Individual Sprite/Run/Warrior_Run_1.png"
-dest_files=["res://.godot/imported/Warrior_Run_1.png-9fb033cbe28b63a8cde2091661e38c91.ctex"]
+source_file="res://assets/Warrior/Individual Sprite/Run/walk2.png"
+dest_files=["res://.godot/imported/walk2.png-d4752b895744f18e4216db11ba65272b.ctex"]
 
 [params]
 

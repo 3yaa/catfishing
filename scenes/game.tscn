@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c6ckhw3uwaeti" path="res://assets/platforms/world_tileset.png" id="5_iywne"]
 [ext_resource type="PackedScene" uid="uid://cwjnjn45by5b2" path="res://scenes/ui.tscn" id="6_p57ef"]
 [ext_resource type="Script" uid="uid://b2wgiegidtvun" path="res://scripts/clock.gd" id="7_u5sy4"]
-[ext_resource type="Script" uid="uid://bbqbc4aoy1sn8" path="res://scripts/ocean_area.gd" id="8_gee14"]
+[ext_resource type="Script" path="res://scripts/ocean_area.gd" id="8_gee14"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iywne"]
 texture = ExtResource("5_iywne")
