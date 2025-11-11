@@ -1,30 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://2pd4wty6nwsi"]
+[gd_scene load_steps=23 format=3 uid="uid://2pd4wty6nwsi"]
 
 [ext_resource type="Texture2D" uid="uid://hl6nx2rcsep1" path="res://assets/Warrior/SpriteSheet/Warrior_Sheet-Effect.png" id="1_3vyb7"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
-atlas = ExtResource("1_3vyb7")
-region = Rect2(0, 0, 69, 46)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
-atlas = ExtResource("1_3vyb7")
-region = Rect2(69, 0, 69, 46)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
-atlas = ExtResource("1_3vyb7")
-region = Rect2(138, 0, 69, 46)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qlg0r"]
-atlas = ExtResource("1_3vyb7")
-region = Rect2(207, 0, 69, 46)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tuyoq"]
-atlas = ExtResource("1_3vyb7")
-region = Rect2(276, 0, 69, 46)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fjrip"]
-atlas = ExtResource("1_3vyb7")
-region = Rect2(345, 0, 69, 46)
+[ext_resource type="Texture2D" uid="uid://dg5t307dqvda6" path="res://assets/Warrior/Individual Sprite/idle/idle1.png" id="1_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://nh4aatvhppbx" path="res://assets/Warrior/Individual Sprite/idle/idle2.png" id="2_fjrip"]
+[ext_resource type="Texture2D" uid="uid://c4dfiikhlyqkk" path="res://assets/Warrior/Individual Sprite/idle/idle3.png" id="3_smehm"]
+[ext_resource type="Texture2D" uid="uid://dp4gm1j1kqij5" path="res://assets/Warrior/Individual Sprite/idle/idle4.png" id="4_ur7pv"]
+[ext_resource type="Texture2D" uid="uid://bniavjbn6l4ms" path="res://assets/Warrior/Individual Sprite/idle/idle5.png" id="5_y4r1p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jej6c"]
 atlas = ExtResource("1_3vyb7")
@@ -86,26 +67,23 @@ region = Rect2(0, 88, 69, 44)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_g2els")
+"texture": ExtResource("1_tuyoq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qhqgy")
+"texture": ExtResource("2_fjrip")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dqkch")
+"texture": ExtResource("3_smehm")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qlg0r")
+"texture": ExtResource("4_ur7pv")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tuyoq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fjrip")
+"texture": ExtResource("5_y4r1p")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 10.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -168,8 +146,7 @@ size = Vector2(10.75, 23.75)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -2)
 sprite_frames = SubResource("SpriteFrames_fjrip")
-animation = &"jump"
-frame_progress = 0.46517178
+animation = &"idle"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
 
