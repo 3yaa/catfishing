@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://dlaaqsui6rtpr"]
+[gd_scene load_steps=14 format=4 uid="uid://dlaaqsui6rtpr"]
 
 [ext_resource type="PackedScene" uid="uid://2pd4wty6nwsi" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://c4nlmna60i861" path="res://scripts/player.gd" id="2_yqjtg"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c6ckhw3uwaeti" path="res://assets/platforms/world_tileset.png" id="5_iywne"]
 [ext_resource type="PackedScene" uid="uid://cwjnjn45by5b2" path="res://scenes/ui.tscn" id="6_p57ef"]
 [ext_resource type="Script" uid="uid://b2wgiegidtvun" path="res://scripts/clock.gd" id="7_u5sy4"]
+[ext_resource type="Script" uid="uid://bbqbc4aoy1sn8" path="res://scripts/ocean_area.gd" id="8_gee14"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iywne"]
 texture = ExtResource("5_iywne")
@@ -174,6 +175,9 @@ texture = ExtResource("5_iywne")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_p57ef")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u5sy4"]
+size = Vector2(352, 178)
+
 [node name="Game" type="Node2D"]
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
@@ -208,3 +212,12 @@ target = NodePath("../Player")
 
 [node name="clock" type="Node2D" parent="."]
 script = ExtResource("7_u5sy4")
+
+[node name="OceanArea" type="Area2D" parent="."]
+position = Vector2(650, 326)
+script = ExtResource("8_gee14")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OceanArea"]
+position = Vector2(166, -79)
+shape = SubResource("RectangleShape2D_u5sy4")

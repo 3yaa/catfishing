@@ -1,6 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://2pd4wty6nwsi"]
+[gd_scene load_steps=28 format=3 uid="uid://2pd4wty6nwsi"]
 
 [ext_resource type="Texture2D" uid="uid://hl6nx2rcsep1" path="res://assets/Warrior/SpriteSheet/Warrior_Sheet-Effect.png" id="1_3vyb7"]
+[ext_resource type="Texture2D" uid="uid://cnenld7ismvc0" path="res://assets/Warrior/Individual Sprite/Slide/Warrior-Slide_1.png" id="2_dqkch"]
+[ext_resource type="Texture2D" uid="uid://c2kb3ybbbejgd" path="res://assets/Warrior/Individual Sprite/Slide/Warrior-Slide_2.png" id="3_qlg0r"]
+[ext_resource type="Texture2D" uid="uid://cv4mloqf1pykw" path="res://assets/Warrior/Individual Sprite/Slide/Warrior-Slide_4.png" id="3_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://demcglw0djkgk" path="res://assets/Warrior/Individual Sprite/Slide/Warrior-Slide_3.png" id="4_tuyoq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
 atlas = ExtResource("1_3vyb7")
@@ -109,6 +113,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("3_tuyoq")
+}],
+"loop": true,
+"name": &"idle_ocean",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_jej6c")
 }, {
 "duration": 1.0,
@@ -158,6 +170,20 @@ animations = [{
 "loop": true,
 "name": &"run",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_dqkch")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qlg0r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_tuyoq")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
@@ -168,8 +194,7 @@ size = Vector2(10.75, 23.75)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -2)
 sprite_frames = SubResource("SpriteFrames_fjrip")
-animation = &"jump"
-frame_progress = 0.46517178
+animation = &"idle_ocean"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
 
