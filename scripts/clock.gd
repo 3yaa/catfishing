@@ -4,16 +4,16 @@ extends Node2D
 
 signal cycle # emitted when day/night cycle should change
 
+var timer: SceneTreeTimer = null
 
-var time:int = 0
 var day:bool = true
 var daytime:float = 10.0
 
 
 func _ready():
-	time = 0
 	day = true
 	cycle.connect(_switch)
+	_start_cycle()
 	
 
 # idea is to call this function from the main script:
@@ -22,13 +22,22 @@ func _start_cycle():
 	print("daytime: {}", daytime)
 	print("Cycle start")
 	
-	await get_tree().create_timer(daytime).timeout
+	timer = get_tree().create_timer(daytime)
+	await timer.timeout
 	
 	print("Cycle end")
 	emit_signal("cycle")
+	
+	_start_cycle()
 	
 	
 func _switch():
 	print("Changing to day/night")
 	day = !day
-	# signal to change the background perhaps
+	
+
+func get_remaining_time():
+	if timer:
+		return timer.time_left
+	else:
+		return 0.0
