@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://g6sbaco45ie1"]
+
+[ext_resource type="Script" uid="uid://ddwfxbxcqlq7" path="res://scripts/minigame_ui.gd" id="1_5cflc"]
+
+[node name="MinigameUI" type="CanvasLayer"]
+script = ExtResource("1_5cflc")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HitButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="StandButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0

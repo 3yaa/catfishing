@@ -11,7 +11,7 @@ var cur_game_num: int = 1
 # 
 signal caught_fish
 signal lost_fish
-signal cur_game_finished(player_score: int)
+signal cur_game_finished(score: int, total_score: int)
 
 func _ready():
 	new_game()
@@ -36,7 +36,7 @@ func finish_game():
 		cur_game_score = int(current_game.get_score() * _get_payout_multiplier())
 	
 	player_score += cur_game_score
-	cur_game_finished.emit(player_score)
+	cur_game_finished.emit(cur_game_score, player_score)
 
 	# await get_tree().create_timer(1.0).timeout
 	new_game()

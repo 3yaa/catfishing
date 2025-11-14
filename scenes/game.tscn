@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://dlaaqsui6rtpr"]
+[gd_scene load_steps=17 format=4 uid="uid://dlaaqsui6rtpr"]
 
 [ext_resource type="Script" uid="uid://cuyhki8mlbgr0" path="res://scripts/main_game.gd" id="1_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://2pd4wty6nwsi" path="res://scenes/player.tscn" id="1_uwrxv"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://cwjnjn45by5b2" path="res://scenes/ui.tscn" id="6_p57ef"]
 [ext_resource type="Script" uid="uid://b2wgiegidtvun" path="res://scripts/clock.gd" id="7_u5sy4"]
 [ext_resource type="Script" uid="uid://bbqbc4aoy1sn8" path="res://scripts/ocean_area.gd" id="8_gee14"]
+[ext_resource type="Script" uid="uid://w8tkfa0u1tsp" path="res://scripts/minigame_manager.gd" id="10_kvpfn"]
+[ext_resource type="PackedScene" uid="uid://g6sbaco45ie1" path="res://scenes/minigame_ui.tscn" id="11_dinhu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iywne"]
 texture = ExtResource("5_iywne")
@@ -225,13 +227,6 @@ position = Vector2(166, -79)
 shape = SubResource("RectangleShape2D_u5sy4")
 
 [node name="MinigameManager" type="Node" parent="."]
+script = ExtResource("10_kvpfn")
 
-[node name="HitButton" type="Button" parent="MinigameManager"]
-offset_right = 8.0
-offset_bottom = 8.0
-
-[node name="StandButton" type="Button" parent="MinigameManager"]
-offset_right = 8.0
-offset_bottom = 8.0
-
-[node name="MinigameUI" type="CanvasLayer" parent="MinigameManager"]
+[node name="MinigameUI" parent="." instance=ExtResource("11_dinhu")]
