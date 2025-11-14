@@ -210,7 +210,7 @@ zoom = Vector2(2, 2)
 script = ExtResource("4_lbhrr")
 target = NodePath("../Player")
 
-[node name="UI" parent="." instance=ExtResource("6_p57ef")]
+[node name="WorldUI" parent="." instance=ExtResource("6_p57ef")]
 
 [node name="Clock" type="Node2D" parent="."]
 script = ExtResource("7_u5sy4")
@@ -223,3 +223,15 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OceanArea"]
 position = Vector2(166, -79)
 shape = SubResource("RectangleShape2D_u5sy4")
+
+[node name="MinigameManager" type="Node" parent="."]
+
+[node name="HitButton" type="Button" parent="MinigameManager"]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="StandButton" type="Button" parent="MinigameManager"]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="MinigameUI" type="CanvasLayer" parent="MinigameManager"]
