@@ -3,8 +3,8 @@ extends CanvasLayer
 @onready var fish_score = $FishCounter/FishScore
 
 @onready var clock = $"../Clock"
-@onready var clock_phase = $TimeOfDay/Phase
-@onready var clock_time = $TimeOfDay/Time
+@onready var ui_clock_phase = $TimeOfDay/Phase
+@onready var ui_clock_time = $TimeOfDay/Time
 
 var fish_count: int = 0
 
@@ -31,11 +31,11 @@ func caught_fish() -> void:
 	
 func update_clock_display() -> void:
 	if clock.day:
-		clock_phase.text = "Day"
+		ui_clock_phase.text = "Day"
 	else:
-		clock_phase.text = "Night"
+		ui_clock_phase.text = "Night"
 		
-	clock_time.text = str(int(clock.get_remaining_time()))
+	ui_clock_time.text = str(int(clock.get_remaining_time()))
 		
 		
 	

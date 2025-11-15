@@ -19,7 +19,7 @@ func _ready():
 # idea is to call this function from the main script:
 # main script should await the signal "cycle" before calling again
 func _start_cycle():
-	print("daytime: {}", daytime)
+	print("daytime: ", daytime)
 	print("Cycle start")
 	
 	timer = get_tree().create_timer(daytime)

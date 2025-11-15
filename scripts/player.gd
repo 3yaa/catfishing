@@ -11,6 +11,8 @@ var speed = SPEED_LAND
 signal fish_caught
 
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var clock = $"../Clock"
+
 
 func _ready():
 	var ui = get_node("/root/Game/UI")

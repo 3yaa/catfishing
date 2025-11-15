@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://dlaaqsui6rtpr"]
+[gd_scene load_steps=16 format=4 uid="uid://dlaaqsui6rtpr"]
 
 [ext_resource type="Script" uid="uid://cuyhki8mlbgr0" path="res://scripts/main_game.gd" id="1_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://2pd4wty6nwsi" path="res://scenes/player.tscn" id="1_uwrxv"]
@@ -179,6 +179,9 @@ sources/0 = SubResource("TileSetAtlasSource_p57ef")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u5sy4"]
 size = Vector2(352, 178)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0tnpc"]
+size = Vector2(20, 142)
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_0tnpc")
 
@@ -223,3 +226,9 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OceanArea"]
 position = Vector2(166, -79)
 shape = SubResource("RectangleShape2D_u5sy4")
+
+[node name="NightBarrier" type="StaticBody2D" parent="OceanArea"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OceanArea/NightBarrier"]
+position = Vector2(0, -61)
+shape = SubResource("RectangleShape2D_0tnpc")
