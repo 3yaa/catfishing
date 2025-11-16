@@ -27,7 +27,10 @@ func update_fish_display() -> void:
 
 # call when caught fish
 func caught_fish() -> void:
+	# player.is_fishing = false
+	# set up this connection later
 	_add_fish()
+	print("give a man to fish, he eats for one day. Teach a man to fish, he eats forever")
 	
 func update_clock_display() -> void:
 	if clock.day:

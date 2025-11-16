@@ -8,4 +8,4 @@ var fish_hand: Array[Card] = []
 var game_state: GameState = GameState.DEALING
 
 func _init():
-		
+	
