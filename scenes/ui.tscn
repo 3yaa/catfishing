@@ -32,3 +32,18 @@ text = "Initial"
 
 [node name="Time" type="Label" parent="TimeOfDay"]
 layout_mode = 2
+
+[node name="WarningBox" type="BoxContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.47800002
+anchor_top = 0.002
+anchor_right = 0.47800002
+anchor_bottom = 0.002
+offset_left = 0.34399414
+offset_top = -0.296
+offset_right = 40.343994
+offset_bottom = 39.704
+alignment = 1
+
+[node name="Warning" type="Label" parent="WarningBox"]
+layout_mode = 2
