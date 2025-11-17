@@ -7,8 +7,10 @@ const JUMP_VELOCITY = -250.0
 
 var is_in_ocean = false
 var speed = SPEED_LAND
+var spawn_position = Vector2()
 
 signal fish_caught
+signal is_late			# Triggered when stay too late in ocean and got teleport back
 
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var clock = $"../Clock"
@@ -18,12 +20,16 @@ func _ready():
 	var ui = get_node("/root/Game/UI")
 	fish_caught.connect(ui.caught_fish)
 	
+	spawn_position = global_position
+	
 	
 func _process(delta: float) -> void:
 	if is_in_ocean:
 		speed = SPEED_OCEAN
 	else:
 		speed = SPEED_LAND
+		
+	handle_late_in_ocean()
 	
 
 func _physics_process(delta: float) -> void:
@@ -67,5 +73,11 @@ func enter_ocean():
 func exit_ocean():
 	print("Exit ocean")
 	is_in_ocean = false
+	
+
+func handle_late_in_ocean():
+	if is_in_ocean and not clock.day and clock.get_remaining_time() < 3.0:
+		global_position = spawn_position
+		is_late.emit()
 	
 	
