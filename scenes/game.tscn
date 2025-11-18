@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://dlaaqsui6rtpr"]
+[gd_scene load_steps=18 format=4 uid="uid://dlaaqsui6rtpr"]
 
 [ext_resource type="Script" uid="uid://cuyhki8mlbgr0" path="res://scripts/main_game.gd" id="1_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://2pd4wty6nwsi" path="res://scenes/player.tscn" id="1_uwrxv"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://cwjnjn45by5b2" path="res://scenes/ui.tscn" id="6_p57ef"]
 [ext_resource type="Script" uid="uid://b2wgiegidtvun" path="res://scripts/clock.gd" id="7_u5sy4"]
 [ext_resource type="Script" uid="uid://bbqbc4aoy1sn8" path="res://scripts/ocean_area.gd" id="8_gee14"]
+[ext_resource type="PackedScene" uid="uid://ww7lhtqnbr0b" path="res://scenes/npc.tscn" id="10_vtaks"]
+[ext_resource type="Script" uid="uid://bgm5r0wluufyu" path="res://scripts/npc/npc_fish_shop.gd" id="11_kvpfn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iywne"]
 texture = ExtResource("5_iywne")
@@ -177,7 +179,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_p57ef")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u5sy4"]
-size = Vector2(352, 178)
+size = Vector2(464, 178)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0tnpc"]
 size = Vector2(20, 142)
@@ -204,7 +206,7 @@ position = Vector2(351, 280)
 script = ExtResource("2_yqjtg")
 
 [node name="TileMap_Foreground" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAnABQAAAAAAAAAAAAmABQAAAAAAAAAAAAlABQAAAAAAAAAAAAkABQAAAAAAAAAAAAjABQAAAAAAAAAAAAiABQAAAAAAAAAAAAhABQAAAAAAAAAAAAgABQAAAAAAAAAAAAfABQAAAAAAAAAAAAeABQAAAAAAAAAAAAdABQAAAAAAAAAAAAcABQAAAAAAAAAAAAbABQAAAAAAAAAAAAaABQAAAAAAAAAAAAZABQAAAAAAAAAAAAYABQAAAAAAAAAAAAXABQAAAAAAAAAAAAWABQAAAAAAAAAAAAVABQAAAAAAAAAAAARABUAAAAEAAoAAAAQABUAAAAEAAoAAAAPABUAAAAEAAoAAAAfABMAAAADAAgAAAAfABIAAAADAAcAAAAfABAAAAACAAQAAAAoABQAAAAEAAkAAAApABQAAAAEAAkAAAAqABQAAAAEAAkAAAArABQAAAAEAAkAAAAsABQAAAAEAAkAAAAtABQAAAAEAAkAAAAuABQAAAAEAAkAAAAvABQAAAAEAAkAAAAwABQAAAAEAAkAAAAxABQAAAAEAAkAAAAyABQAAAAEAAkAAAAzABQAAAAEAAkAAAA0ABQAAAAEAAkAAAA1ABQAAAAEAAkAAAA2ABQAAAAEAAkAAAA3ABQAAAAEAAkAAAA4ABQAAAAEAAkAAAA5ABQAAAAEAAkAAAA6ABQAAAAEAAkAAAA7ABQAAAAEAAkAAAA8ABQAAAAEAAkAAAA9ABQAAAAEAAkAAAA=")
+tile_map_data = PackedByteArray("AAAnABQAAAAAAAAAAAAmABQAAAAAAAAAAAAlABQAAAAAAAAAAAAkABQAAAAAAAAAAAAjABQAAAAAAAAAAAAiABQAAAAAAAAAAAAhABQAAAAAAAAAAAAgABQAAAAAAAAAAAAfABQAAAAAAAAAAAAeABQAAAAAAAAAAAAdABQAAAAAAAAAAAAcABQAAAAAAAAAAAAbABQAAAAAAAAAAAAaABQAAAAAAAAAAAAZABQAAAAAAAAAAAAYABQAAAAAAAAAAAAXABQAAAAAAAAAAAAWABQAAAAAAAAAAAAVABQAAAAAAAAAAAARABUAAAAEAAoAAAAQABUAAAAEAAoAAAAPABUAAAAEAAoAAAAfABMAAAADAAgAAAAfABIAAAADAAcAAAAfABAAAAACAAQAAAAoABQAAAAEAAkAAAApABQAAAAEAAkAAAAqABQAAAAEAAkAAAArABQAAAAEAAkAAAAsABQAAAAEAAkAAAAtABQAAAAEAAkAAAAuABQAAAAEAAkAAAAvABQAAAAEAAkAAAAwABQAAAAEAAkAAAAxABQAAAAEAAkAAAAyABQAAAAEAAkAAAAzABQAAAAEAAkAAAA0ABQAAAAEAAkAAAA1ABQAAAAEAAkAAAA2ABQAAAAEAAkAAAA3ABQAAAAEAAkAAAA4ABQAAAAEAAkAAAA5ABQAAAAEAAkAAAA6ABQAAAAEAAkAAAA7ABQAAAAEAAkAAAA8ABQAAAAEAAkAAAA9ABQAAAAEAAkAAAA+ABQAAAAEAAkAAAA/ABQAAAAEAAkAAABAABQAAAAEAAkAAABBABQAAAAEAAkAAABCABQAAAAEAAkAAABDABQAAAAEAAkAAABEABQAAAAEAAkAAAA=")
 tile_set = SubResource("TileSet_u5sy4")
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
@@ -224,7 +226,7 @@ script = ExtResource("8_gee14")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OceanArea"]
-position = Vector2(166, -79)
+position = Vector2(222, -79)
 shape = SubResource("RectangleShape2D_u5sy4")
 
 [node name="NightBarrier" type="StaticBody2D" parent="OceanArea"]
@@ -232,3 +234,7 @@ shape = SubResource("RectangleShape2D_u5sy4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OceanArea/NightBarrier"]
 position = Vector2(0, -61)
 shape = SubResource("RectangleShape2D_0tnpc")
+
+[node name="Npc" parent="." instance=ExtResource("10_vtaks")]
+position = Vector2(1080, 295)
+script = ExtResource("11_kvpfn")

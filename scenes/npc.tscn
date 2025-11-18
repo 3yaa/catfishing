@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://ww7lhtqnbr0b"]
+
+[ext_resource type="Texture2D" uid="uid://dg5t307dqvda6" path="res://assets/Warrior/Individual Sprite/idle/idle1.png" id="1_abqhh"]
+[ext_resource type="Texture2D" uid="uid://nh4aatvhppbx" path="res://assets/Warrior/Individual Sprite/idle/idle2.png" id="2_rv78h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7n8xq"]
+size = Vector2(34, 49)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4wlns"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_abqhh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_rv78h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Npc" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0.5)
+shape = SubResource("RectangleShape2D_7n8xq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+sprite_frames = SubResource("SpriteFrames_4wlns")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]

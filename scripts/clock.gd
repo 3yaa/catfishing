@@ -7,7 +7,7 @@ signal cycle # emitted when day/night cycle should change
 var timer: SceneTreeTimer = null
 
 var day:bool = true
-var daytime:float = 10.0
+var daytime:float = 30.0
 
 
 func _ready():

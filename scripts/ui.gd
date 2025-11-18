@@ -8,6 +8,7 @@ extends CanvasLayer
 @onready var ui_clock_phase = $TimeOfDay/Phase
 @onready var ui_clock_time = $TimeOfDay/Time
 @onready var ui_warning = $WarningBox/Warning
+@onready var ui_dialogue = $DialogueBox/Dialogue
 
 var fish_count: int = 0
 
@@ -48,6 +49,10 @@ func update_warning_display() -> void:
 		ui_warning.text = "You can't enter the ocean at night"
 	else:
 		ui_warning.text = ""
+		
+func update_dialogue_display(text: String) -> void:
+	ui_dialogue.text = text
+	
 		
 		
 	
