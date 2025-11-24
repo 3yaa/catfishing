@@ -25,6 +25,6 @@ func _on_body_exited(body: Player):
 
 # Turn on barrier at night when player on island
 func update_barrier():
-	var enabled = not clock.day and not player.is_in_ocean
+	var enabled = not clock.is_day and not player.is_in_ocean
 	var collision_shape = night_barrier.get_node_or_null("CollisionShape2D")
 	collision_shape.disabled = not enabled

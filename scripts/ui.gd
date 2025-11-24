@@ -35,7 +35,7 @@ func caught_fish() -> void:
 	_add_fish()
 	
 func update_clock_display() -> void:
-	if clock.day:
+	if clock.is_day:
 		ui_clock_phase.text = "Day"
 	else:
 		ui_clock_phase.text = "Night"
@@ -43,9 +43,9 @@ func update_clock_display() -> void:
 	ui_clock_time.text = str(int(clock.get_remaining_time()))
 	
 func update_warning_display() -> void:
-	if player.is_in_ocean and not clock.day:
+	if player.is_in_ocean and not clock.is_day:
 		ui_warning.text = "It's getting late..."
-	elif not player.is_in_ocean and not clock.day:
+	elif not player.is_in_ocean and not clock.is_day:
 		ui_warning.text = "You can't enter the ocean at night"
 	else:
 		ui_warning.text = ""
