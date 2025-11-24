@@ -76,7 +76,7 @@ func exit_ocean():
 	
 
 func handle_late_in_ocean():
-	if is_in_ocean and not clock.day and clock.get_remaining_time() < 3.0:
+	if is_in_ocean and not clock.day and clock.get_remaining_time() < 15.0:
 		global_position = spawn_position
 		is_late.emit()
 	

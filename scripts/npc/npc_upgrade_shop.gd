@@ -1,8 +1,8 @@
-class_name NPCFishShop
+class_name NPCUpgradeShop
 extends NPC
 
-const position_ocean = Vector2(920, 295)
-const position_island = Vector2(500, 295)
+const position_ocean = Vector2(1200, 295)
+const position_island = Vector2(350, 295)
 
 
 func _ready() -> void:
@@ -18,8 +18,8 @@ func _process(delta: float) -> void:
 func rescue():
 	rescued = true
 	global_position = position_island
-	
+
 
 # Overwrite prompt
 func get_interact_prompt():
-	return "Press E to sell fish"
+	return "Press E to buy upgrades"
