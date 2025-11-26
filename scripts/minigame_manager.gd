@@ -18,14 +18,13 @@ func _ready():
 
 func new_game():
 	# -- won
-	if player_score >= score_to_catch:
-		caught_fish.emit()
-		return
-	# -- lost
-	if cur_game_num >= max_game_num:
-		lost_fish.emit()
-		return
-	
+	# if player_score >= score_to_catch:
+	# 	caught_fish.emit()
+	# 	return
+	# # -- lost
+	# if cur_game_num >= max_game_num:
+	# 	lost_fish.emit()
+	# 	return
 	# new hand
 	cur_game_num += 1
 	current_game = Blackjack.new()

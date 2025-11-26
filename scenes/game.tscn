@@ -9,8 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://cwjnjn45by5b2" path="res://scenes/ui.tscn" id="6_p57ef"]
 [ext_resource type="Script" uid="uid://b2wgiegidtvun" path="res://scripts/clock.gd" id="7_u5sy4"]
 [ext_resource type="Script" uid="uid://bbqbc4aoy1sn8" path="res://scripts/ocean_area.gd" id="8_gee14"]
-[ext_resource type="Script" uid="uid://w8tkfa0u1tsp" path="res://scripts/minigame_manager.gd" id="10_kvpfn"]
-[ext_resource type="PackedScene" uid="uid://g6sbaco45ie1" path="res://scenes/minigame_ui.tscn" id="11_dinhu"]
+[ext_resource type="PackedScene" uid="uid://dtipbmymq13e1" path="res://scenes/minigame.tscn" id="10_dinhu"]
+[ext_resource type="PackedScene" uid="uid://hehbnnem2stc" path="res://scenes/card_display.tscn" id="13_trtic"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iywne"]
 texture = ExtResource("5_iywne")
@@ -226,7 +226,15 @@ metadata/_edit_group_ = true
 position = Vector2(166, -79)
 shape = SubResource("RectangleShape2D_u5sy4")
 
-[node name="MinigameManager" type="Node" parent="."]
-script = ExtResource("10_kvpfn")
+[node name="Minigame" parent="." instance=ExtResource("10_dinhu")]
+offset_left = 528.0
+offset_top = 200.0
+offset_right = 568.0
+offset_bottom = 240.0
 
-[node name="MinigameUI" parent="." instance=ExtResource("11_dinhu")]
+[node name="CardDisplay" parent="." instance=ExtResource("13_trtic")]
+visible = false
+offset_left = 413.0
+offset_top = 207.0
+offset_right = 453.0
+offset_bottom = 257.0

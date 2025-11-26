@@ -13,7 +13,7 @@ signal fish_caught
 @onready var animated_sprite = $AnimatedSprite2D
 
 func _ready():
-	var ui = get_node("/root/Game/UI")
+	var ui = get_node("/root/Game/WorldUI")
 	fish_caught.connect(ui.caught_fish)
 	
 	
