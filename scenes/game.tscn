@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://dlaaqsui6rtpr"]
+[gd_scene load_steps=24 format=4 uid="uid://dlaaqsui6rtpr"]
 
 [ext_resource type="Script" uid="uid://cuyhki8mlbgr0" path="res://scripts/main_game.gd" id="1_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://2pd4wty6nwsi" path="res://scenes/player.tscn" id="1_uwrxv"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://ww7lhtqnbr0b" path="res://scenes/npc.tscn" id="10_vtaks"]
 [ext_resource type="Script" uid="uid://bgm5r0wluufyu" path="res://scripts/npc/npc_fish_shop.gd" id="11_kvpfn"]
 [ext_resource type="Script" uid="uid://ck6cij3c1aw2a" path="res://scripts/npc/npc_upgrade_shop.gd" id="12_dinhu"]
+[ext_resource type="Texture2D" uid="uid://cycyli5lvcoau" path="res://assets/platforms/land.png" id="13_kvuet"]
+[ext_resource type="Texture2D" uid="uid://m56y0ud1o30k" path="res://assets/platforms/water.png" id="14_trtic"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iywne"]
 texture = ExtResource("5_iywne")
@@ -185,6 +187,16 @@ size = Vector2(896, 178)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0tnpc"]
 size = Vector2(20, 142)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trtic"]
+size = Vector2(375, 64)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_trtic"]
+a = Vector2(246, -14)
+b = Vector2(315, 33)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ir15t"]
+size = Vector2(2905.75, 64)
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_0tnpc")
 
@@ -199,6 +211,7 @@ scale = Vector2(0.4, 0.4)
 texture = ExtResource("3_lnu2h")
 
 [node name="TileMap_Background" type="TileMapLayer" parent="."]
+visible = false
 tile_map_data = PackedByteArray("AAAdABMAAAAFAAUAAAAdABIAAAAFAAQAAAAdABEAAAAFAAMAAAAfABIAAAACAAQAAAAjABIAAAACAAQAAAAMABMAAAAHAAMAAAAMABIAAAAHAAMAAAAMABEAAAAHAAMAAAAMABAAAAAHAAMAAAAMAA8AAAAHAAMAAAAQABMAAAAHAAMAAAAQABIAAAAHAAMAAAAQABEAAAAHAAMAAAAQABAAAAAHAAMAAAAQAA8AAAAHAAMAAAANAA8AAAAHAAMAAAAOAA8AAAAHAAMAAAAPAA8AAAAHAAMAAAAMAA4AAAAHAAUAAAAQAA4AAAAHAAUAAAA=")
 tile_set = SubResource("TileSet_p57ef")
 
@@ -207,6 +220,7 @@ position = Vector2(242, 275)
 script = ExtResource("2_yqjtg")
 
 [node name="TileMap_Foreground" type="TileMapLayer" parent="."]
+visible = false
 tile_map_data = PackedByteArray("AAAnABQAAAAAAAAAAAAmABQAAAAAAAAAAAAlABQAAAAAAAAAAAAkABQAAAAAAAAAAAAjABQAAAAAAAAAAAAiABQAAAAAAAAAAAAhABQAAAAAAAAAAAAgABQAAAAAAAAAAAAfABQAAAAAAAAAAAAeABQAAAAAAAAAAAAdABQAAAAAAAAAAAAcABQAAAAAAAAAAAAbABQAAAAAAAAAAAAaABQAAAAAAAAAAAAZABQAAAAAAAAAAAAYABQAAAAAAAAAAAAXABQAAAAAAAAAAAAWABQAAAAAAAAAAAAVABQAAAAAAAAAAAAfABMAAAADAAgAAAAfABIAAAADAAcAAAAfABAAAAACAAQAAAAoABQAAAAEAAkAAAApABQAAAAEAAkAAAAqABQAAAAEAAkAAAArABQAAAAEAAkAAAAsABQAAAAEAAkAAAAtABQAAAAEAAkAAAAuABQAAAAEAAkAAAAvABQAAAAEAAkAAAAwABQAAAAEAAkAAAAxABQAAAAEAAkAAAAyABQAAAAEAAkAAAAzABQAAAAEAAkAAAA0ABQAAAAEAAkAAAA1ABQAAAAEAAkAAAA2ABQAAAAEAAkAAAA3ABQAAAAEAAkAAAA4ABQAAAAEAAkAAAA5ABQAAAAEAAkAAAA6ABQAAAAEAAkAAAA7ABQAAAAEAAkAAAA8ABQAAAAEAAkAAAA9ABQAAAAEAAkAAAA+ABQAAAAEAAkAAAA/ABQAAAAEAAkAAABAABQAAAAEAAkAAABBABQAAAAEAAkAAABCABQAAAAEAAkAAABDABQAAAAEAAkAAABEABQAAAAEAAkAAAAUABQAAAAAAAAAAAATABQAAAAAAAAAAAASABQAAAAAAAAAAAARABQAAAAAAAAAAAAQABQAAAAAAAAAAAAPABQAAAAAAAAAAAAOABQAAAAAAAAAAAANABQAAAAAAAAAAAAMABQAAAAAAAAAAABFABQAAAAEAAkAAABGABQAAAAEAAkAAABHABQAAAAEAAkAAABIABQAAAAEAAkAAABJABQAAAAEAAkAAABKABQAAAAEAAkAAABLABQAAAAEAAkAAABMABQAAAAEAAkAAABNABQAAAAEAAkAAABOABQAAAAEAAkAAABPABQAAAAEAAkAAABQABQAAAAEAAkAAABRABQAAAAEAAkAAABSABQAAAAEAAkAAABTABQAAAAEAAkAAABUABQAAAAEAAkAAABVABQAAAAEAAkAAABWABQAAAAEAAkAAABXABQAAAAEAAkAAABYABQAAAAEAAkAAABZABQAAAAEAAkAAABaABQAAAAEAAkAAABbABQAAAAEAAkAAABcABQAAAAEAAkAAABdABQAAAAEAAkAAABeABQAAAAEAAkAAABfABQAAAAEAAkAAAA=")
 tile_set = SubResource("TileSet_u5sy4")
 
@@ -222,7 +236,7 @@ target = NodePath("../Player")
 script = ExtResource("7_u5sy4")
 
 [node name="OceanArea" type="Area2D" parent="."]
-position = Vector2(650, 326)
+position = Vector2(498, 477)
 script = ExtResource("8_gee14")
 metadata/_edit_group_ = true
 
@@ -237,9 +251,44 @@ position = Vector2(0, -61)
 shape = SubResource("RectangleShape2D_0tnpc")
 
 [node name="Npc1" parent="." instance=ExtResource("10_vtaks")]
-position = Vector2(1080, 295)
+position = Vector2(829, 293)
 script = ExtResource("11_kvpfn")
 
 [node name="Npc2" parent="." instance=ExtResource("10_vtaks")]
-position = Vector2(1080, 295)
+position = Vector2(682, 221)
 script = ExtResource("12_dinhu")
+
+[node name="Sand" type="StaticBody2D" parent="."]
+position = Vector2(200, 312)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sand"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sand"]
+position = Vector2(66.5, 37)
+shape = SubResource("RectangleShape2D_trtic")
+
+[node name="Land" type="Sprite2D" parent="Sand"]
+position = Vector2(96.99998, 22.999989)
+rotation = 1.5707964
+scale = Vector2(0.36854723, 0.42066467)
+texture = ExtResource("13_kvuet")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Sand"]
+position = Vector2(10, 16)
+shape = SubResource("SegmentShape2D_trtic")
+
+[node name="ocean" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="ocean"]
+position = Vector2(678.00006, 340)
+scale = Vector2(0.722, 0.778)
+texture = ExtResource("14_trtic")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ocean"]
+position = Vector2(1928, 415)
+shape = SubResource("RectangleShape2D_ir15t")
+
+[node name="Sprite2D2" type="Sprite2D" parent="ocean"]
+position = Vector2(998.00006, 340.00003)
+scale = Vector2(0.722, 0.778)
+texture = ExtResource("14_trtic")

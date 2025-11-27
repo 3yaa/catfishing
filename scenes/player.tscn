@@ -109,6 +109,7 @@ size = Vector2(65, 42.6875)
 [node name="Player" type="CharacterBody2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 4
 position = Vector2(0, 2.000001)
 scale = Vector2(0.146658, 0.15779321)
 sprite_frames = SubResource("SpriteFrames_fjrip")
