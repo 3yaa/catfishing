@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c6ckhw3uwaeti" path="res://assets/platforms/world_tileset.png" id="5_iywne"]
 [ext_resource type="PackedScene" uid="uid://cwjnjn45by5b2" path="res://scenes/ui.tscn" id="6_p57ef"]
 [ext_resource type="Script" uid="uid://b2wgiegidtvun" path="res://scripts/clock.gd" id="7_u5sy4"]
-[ext_resource type="PackedScene" path="res://scenes/ocean_area.tscn" id="9_dinhu"]
+[ext_resource type="PackedScene" uid="uid://btx5m1k8bm1n8" path="res://scenes/ocean_area.tscn" id="9_dinhu"]
 [ext_resource type="Script" uid="uid://2yl1hfh0q3jn" path="res://scripts/fish_logic.gd" id="9_vtaks"]
 [ext_resource type="PackedScene" uid="uid://dtipbmymq13e1" path="res://scenes/minigame.tscn" id="10_dinhu"]
 [ext_resource type="PackedScene" uid="uid://hehbnnem2stc" path="res://scenes/card_display.tscn" id="13_trtic"]
@@ -216,6 +216,7 @@ target = NodePath("../Player")
 script = ExtResource("7_u5sy4")
 
 [node name="OceanArea" parent="." instance=ExtResource("9_dinhu")]
+position = Vector2(651, 327)
 
 [node name="Fish Logic" type="Node2D" parent="."]
 script = ExtResource("9_vtaks")
