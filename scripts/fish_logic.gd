@@ -2,6 +2,7 @@ class_name FishLogic
 extends Node2D
 
 @onready var player = get_node("/root/Game/Player")
+@onready var tutorial = get_node("/root/Game/Tutorial_Manager")
 var any_fish = false
 
 # size params
@@ -36,7 +37,7 @@ class Fish:
 		return "Fish(size=%s, rarity=%s, value=%s)" % [size, rarity_name, value]
 
 func _process(_delta):
-	if player.is_fishing:
+	if player.is_fishing and not tutorial.tutorial_ongoing:
 		fishing_timer -= _delta
 		if fishing_timer <= 0:
 			fishing_timer = fishing_cooldown

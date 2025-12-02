@@ -10,9 +10,28 @@ extends CanvasLayer
 @onready var ui_warning = $WarningBox/Warning
 @onready var ui_dialogue = $DialogueBox/Dialogue
 
+# this is for handling opening sequence + cutscene 
+var allow_input:bool = false
 var fish_count: int = 0
 
+@onready var cutscene = get_parent().get_node("Cutscene_Manager")
+@onready var tutorial = get_parent().get_node("Tutorial_Manager")
+
+signal cutscene_start
+signal tutorial_start
+
 func _ready() -> void:
+	await get_tree().process_frame
+	# Cutscene will play on ready:
+	emit_signal("cutscene_start")
+	await cutscene.cutscene_end
+	# then tutorial
+	emit_signal("tutorial_start")
+	await tutorial.tutorial_end
+	print("start main")
+	# then normal game proceed
+	allow_input = true
+	# await tutorial end and whatnot
 	await get_tree().process_frame
 		
 	update_fish_display()
@@ -20,8 +39,9 @@ func _ready() -> void:
 	
 
 func _process(delta: float) -> void:
-	update_clock_display()
-	update_warning_display()
+	if not tutorial.tutorial_ongoing:
+		update_clock_display()
+		update_warning_display()
 	
 func _add_fish() -> void:
 	fish_count += 1

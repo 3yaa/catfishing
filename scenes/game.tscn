@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://dlaaqsui6rtpr"]
+[gd_scene load_steps=19 format=4 uid="uid://dlaaqsui6rtpr"]
 
 [ext_resource type="Script" uid="uid://cuyhki8mlbgr0" path="res://scripts/main_game.gd" id="1_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://2pd4wty6nwsi" path="res://scenes/player.tscn" id="1_uwrxv"]
@@ -11,7 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://btx5m1k8bm1n8" path="res://scenes/ocean_area.tscn" id="9_dinhu"]
 [ext_resource type="Script" uid="uid://2yl1hfh0q3jn" path="res://scripts/fish_logic.gd" id="9_vtaks"]
 [ext_resource type="PackedScene" uid="uid://dtipbmymq13e1" path="res://scenes/minigame.tscn" id="10_dinhu"]
+[ext_resource type="Script" uid="uid://cgq63vliv3xal" path="res://scripts/tutorial_manager.gd" id="13_kvuet"]
 [ext_resource type="PackedScene" uid="uid://hehbnnem2stc" path="res://scenes/card_display.tscn" id="13_trtic"]
+[ext_resource type="Script" uid="uid://b5cpnl0hwso6k" path="res://scripts/cutscene_manager.gd" id="14_trtic"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iywne"]
 texture = ExtResource("5_iywne")
@@ -233,3 +235,13 @@ offset_left = 413.0
 offset_top = 207.0
 offset_right = 453.0
 offset_bottom = 257.0
+
+[node name="Tutorial_Manager" type="Node2D" parent="."]
+script = ExtResource("13_kvuet")
+
+[node name="Label" type="Label" parent="Tutorial_Manager"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Cutscene_Manager" type="Node2D" parent="."]
+script = ExtResource("14_trtic")
