@@ -30,3 +30,4 @@ func hit():
 
 func stand():
 	is_standing = true
+	

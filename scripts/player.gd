@@ -6,6 +6,7 @@ const SPEED_OCEAN = 75.0
 const JUMP_VELOCITY = -250.0
 
 var is_in_ocean = false
+var is_fishing = false
 var speed = SPEED_LAND
 var spawn_position = Vector2()
 
@@ -26,6 +27,8 @@ func _ready():
 func _process(delta: float) -> void:
 	if is_in_ocean:
 		speed = SPEED_OCEAN
+		# if "fishing button" pressed:
+		is_fishing = true
 	else:
 		speed = SPEED_LAND
 		
@@ -44,7 +47,7 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis("ui_left", "ui_right")
 	if direction:
-		fish_caught.emit()
+		#fish_caught.emit()
 		velocity.x = direction * speed
 		animated_sprite.flip_h = direction < 0
 		if is_in_ocean:

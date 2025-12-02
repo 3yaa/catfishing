@@ -220,6 +220,9 @@ target = NodePath("../Player")
 [node name="Clock" type="Node2D" parent="."]
 script = ExtResource("7_u5sy4")
 
+[node name="Fish Logic" type="Node2D" parent="."]
+script = ExtResource("9_vtaks")
+
 [node name="OceanArea" type="Area2D" parent="."]
 position = Vector2(650, 326)
 script = ExtResource("8_gee14")
