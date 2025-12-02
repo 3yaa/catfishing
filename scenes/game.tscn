@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://bbqbc4aoy1sn8" path="res://scripts/ocean_area.gd" id="8_gee14"]
 [ext_resource type="PackedScene" uid="uid://dtipbmymq13e1" path="res://scenes/minigame.tscn" id="10_dinhu"]
 [ext_resource type="PackedScene" uid="uid://hehbnnem2stc" path="res://scenes/card_display.tscn" id="13_trtic"]
+[ext_resource type="Script" path="res://scripts/fish_logic.gd" id="9_vtaks"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iywne"]
 texture = ExtResource("5_iywne")
