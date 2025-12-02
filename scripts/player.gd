@@ -17,7 +17,7 @@ signal is_late			# Triggered when stay too late in ocean and got teleport back
 
 
 func _ready():
-	var ui = get_node("/root/Game/UI")
+	var ui = get_node("/root/Game/WorldUI")
 	fish_caught.connect(ui.caught_fish)
 	
 	spawn_position = global_position

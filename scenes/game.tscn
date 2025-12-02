@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://dlaaqsui6rtpr"]
+[gd_scene load_steps=17 format=4 uid="uid://dlaaqsui6rtpr"]
 
 [ext_resource type="Script" uid="uid://cuyhki8mlbgr0" path="res://scripts/main_game.gd" id="1_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://2pd4wty6nwsi" path="res://scenes/player.tscn" id="1_uwrxv"]
@@ -9,9 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://cwjnjn45by5b2" path="res://scenes/ui.tscn" id="6_p57ef"]
 [ext_resource type="Script" uid="uid://b2wgiegidtvun" path="res://scripts/clock.gd" id="7_u5sy4"]
 [ext_resource type="Script" uid="uid://bbqbc4aoy1sn8" path="res://scripts/ocean_area.gd" id="8_gee14"]
-[ext_resource type="PackedScene" uid="uid://ww7lhtqnbr0b" path="res://scenes/npc.tscn" id="10_vtaks"]
-[ext_resource type="Script" uid="uid://bgm5r0wluufyu" path="res://scripts/npc/npc_fish_shop.gd" id="11_kvpfn"]
-[ext_resource type="Script" uid="uid://ck6cij3c1aw2a" path="res://scripts/npc/npc_upgrade_shop.gd" id="12_dinhu"]
+[ext_resource type="PackedScene" uid="uid://dtipbmymq13e1" path="res://scenes/minigame.tscn" id="10_dinhu"]
+[ext_resource type="PackedScene" uid="uid://hehbnnem2stc" path="res://scenes/card_display.tscn" id="13_trtic"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iywne"]
 texture = ExtResource("5_iywne")
@@ -216,7 +215,7 @@ zoom = Vector2(2, 2)
 script = ExtResource("4_lbhrr")
 target = NodePath("../Player")
 
-[node name="UI" parent="." instance=ExtResource("6_p57ef")]
+[node name="WorldUI" parent="." instance=ExtResource("6_p57ef")]
 
 [node name="Clock" type="Node2D" parent="."]
 script = ExtResource("7_u5sy4")
@@ -230,16 +229,15 @@ metadata/_edit_group_ = true
 position = Vector2(438, -79)
 shape = SubResource("RectangleShape2D_u5sy4")
 
-[node name="NightBarrier" type="StaticBody2D" parent="OceanArea"]
+[node name="Minigame" parent="." instance=ExtResource("10_dinhu")]
+offset_left = 528.0
+offset_top = 200.0
+offset_right = 568.0
+offset_bottom = 240.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="OceanArea/NightBarrier"]
-position = Vector2(0, -61)
-shape = SubResource("RectangleShape2D_0tnpc")
-
-[node name="Npc1" parent="." instance=ExtResource("10_vtaks")]
-position = Vector2(1080, 295)
-script = ExtResource("11_kvpfn")
-
-[node name="Npc2" parent="." instance=ExtResource("10_vtaks")]
-position = Vector2(1080, 295)
-script = ExtResource("12_dinhu")
+[node name="CardDisplay" parent="." instance=ExtResource("13_trtic")]
+visible = false
+offset_left = 413.0
+offset_top = 207.0
+offset_right = 453.0
+offset_bottom = 257.0
