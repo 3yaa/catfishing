@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://btx5m1k8bm1n8"]
+
+[ext_resource type="Script" uid="uid://bbqbc4aoy1sn8" path="res://scripts/ocean_area.gd" id="1_c5wi0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u5sy4"]
+size = Vector2(896, 178)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0tnpc"]
+size = Vector2(20, 142)
+
+[node name="OceanArea" type="Area2D"]
+script = ExtResource("1_c5wi0")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(438, -79)
+shape = SubResource("RectangleShape2D_u5sy4")
+
+[node name="NightBarrier" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NightBarrier"]
+position = Vector2(0, -61)
+shape = SubResource("RectangleShape2D_0tnpc")
