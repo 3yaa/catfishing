@@ -61,3 +61,17 @@ offset_bottom = 39.895996
 
 [node name="Dialogue" type="Label" parent="DialogueBox"]
 layout_mode = 2
+
+[node name="Money" type="HBoxContainer" parent="."]
+offset_left = 1058.0
+offset_top = 43.0
+offset_right = 1152.0
+offset_bottom = 83.0
+
+[node name="MoneyIcon" type="Label" parent="Money"]
+layout_mode = 2
+text = "Money"
+
+[node name="MoneyCount" type="Label" parent="Money"]
+layout_mode = 2
+text = "0.0"

@@ -11,6 +11,7 @@ extends CanvasLayer
 @onready var ui_clock_time = $TimeOfDay/Time
 @onready var ui_warning = $WarningBox/Warning
 @onready var ui_dialogue = $DialogueBox/Dialogue
+@onready var ui_money = $Money/MoneyCount
 
 # this is for handling opening sequence + cutscene 
 var allow_input:bool = false
@@ -49,6 +50,7 @@ func _process(delta: float) -> void:
 	if not tutorial.tutorial_ongoing:
 		update_clock_display()
 		update_warning_display()
+		update_money_display()
 	
 func _add_fish() -> void:
 	fish_count += 1
@@ -63,6 +65,9 @@ func caught_fish() -> void:
 	# set up this connection later
 	_add_fish()
 	print("caught fish")
+	
+func update_money_display():
+	ui_money.text = str(player.money)
 	
 func update_clock_display() -> void:
 	if clock.is_day:

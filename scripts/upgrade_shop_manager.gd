@@ -25,7 +25,7 @@ func _ready() -> void:
 	
 
 func enable_shop():
-	update_ui()
+	update_shop_ui()
 	show()
 	
 
@@ -33,7 +33,7 @@ func disable_shop():
 	hide()
 	
 
-func update_ui():
+func update_shop_ui():
 	reel_skill_level.text = str(player.reel_skill)
 	luck_level.text = str(player.luck)
 	salesman_level.text = str(player.salesman)
@@ -43,7 +43,7 @@ func buy_reel_skill():
 	if player.money >= PRICE:
 		player.money -= PRICE
 		player.reel_skill += 10.0
-		update_ui()
+		update_shop_ui()
 	else:
 		print("Not enough money")
 		
@@ -52,7 +52,7 @@ func buy_luck():
 	if player.money >= PRICE:
 		player.money -= PRICE
 		player.luck += 10.0
-		update_ui()
+		update_shop_ui()
 	else:
 		print("Not enough money")	
 		
@@ -61,6 +61,6 @@ func buy_salesman():
 	if player.money >= PRICE:
 		player.money -= PRICE
 		player.salesman += 1.0
-		update_ui()
+		update_shop_ui()
 	else:
 		print("Not enough money")

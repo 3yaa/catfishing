@@ -261,13 +261,9 @@ script = ExtResource("14_trtic")
 [node name="Theme" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="Theme"]
-anchors_preset = -1
-anchor_top = 0.002
-anchor_right = 1.3610001
-anchor_bottom = 0.59900004
-offset_top = -0.296
-offset_right = 0.12792969
-offset_bottom = -0.15203857
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
