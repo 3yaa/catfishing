@@ -256,13 +256,26 @@ offset_bottom = 23.0
 [node name="Cutscene_Manager" type="Node2D" parent="."]
 script = ExtResource("14_trtic")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Theme" type="CanvasLayer" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="ColorRect" type="ColorRect" parent="Theme"]
+anchors_preset = -1
+anchor_top = 0.002
+anchor_right = 1.3610001
+anchor_bottom = 0.59900004
+offset_top = -0.296
+offset_right = 0.12792969
+offset_bottom = -0.15203857
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+color = Color(1, 1, 1, 0.003921569)
 script = ExtResource("18_ssvqc")
+metadata/_edit_group_ = true
+
+[node name="Control" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
