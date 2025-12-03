@@ -9,6 +9,7 @@ var any_fish = false
 var size_min:float = 1.0
 var size_max:float = 20.0
 
+var fish_inventory: Array[Fish] = []
 
 var current_fish:Fish = null
 enum Rarity {
@@ -35,6 +36,13 @@ class Fish:
 		var rarity_names = ["COMMON", "RARE", "SUPER_RARE"]
 		var rarity_name = rarity_names[fish_rarity]
 		return "Fish(size=%s, rarity=%s, value=%s)" % [size, rarity_name, value]
+		
+		
+func _ready():
+	var fish1 = make_fish()
+	var fish2 = make_fish()
+	fish_inventory.append(fish1)
+	fish_inventory.append(fish2)
 
 func _process(_delta):
 	if player.is_fishing and not tutorial.tutorial_ongoing:

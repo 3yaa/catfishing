@@ -1,6 +1,8 @@
 class_name NPCFishShop
 extends NPC
 
+@onready var shop = $"../FishShop"
+
 const position_ocean = Vector2(920, 295)
 const position_island = Vector2(500, 295)
 
@@ -13,6 +15,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if has_player and not rescued and Input.is_action_just_pressed("interact"):
 		rescue()
+	elif has_player and rescued and Input.is_action_just_pressed("interact"):
+		shop.enable_shop()
 	
 	
 func rescue():

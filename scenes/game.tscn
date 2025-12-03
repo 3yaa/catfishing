@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://dlaaqsui6rtpr"]
+[gd_scene load_steps=27 format=4 uid="uid://dlaaqsui6rtpr"]
 
 [ext_resource type="Script" uid="uid://cuyhki8mlbgr0" path="res://scripts/main_game.gd" id="1_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://2pd4wty6nwsi" path="res://scenes/player.tscn" id="1_uwrxv"]
@@ -20,6 +20,8 @@
 [ext_resource type="Script" uid="uid://tpeieqxngm6i" path="res://scripts/day_night_theme.gd" id="18_ssvqc"]
 [ext_resource type="PackedScene" uid="uid://d3l7ri6i8tb41" path="res://scenes/upgrade_shop.tscn" id="19_264po"]
 [ext_resource type="Script" uid="uid://7b26u7o8k0wu" path="res://scripts/upgrade_shop_manager.gd" id="20_1kice"]
+[ext_resource type="PackedScene" uid="uid://bnclqcapf7vnm" path="res://scenes/fish_shop.tscn" id="21_5newe"]
+[ext_resource type="Script" uid="uid://c44vs5batsyer" path="res://scripts/fish_shop_manager.gd" id="22_37s47"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iywne"]
 texture = ExtResource("5_iywne")
@@ -232,7 +234,7 @@ script = ExtResource("7_u5sy4")
 [node name="OceanArea" parent="." instance=ExtResource("9_dinhu")]
 position = Vector2(651, 327)
 
-[node name="Fish Logic" type="Node2D" parent="."]
+[node name="FishLogic" type="Node2D" parent="."]
 script = ExtResource("9_vtaks")
 
 [node name="Minigame" parent="." instance=ExtResource("10_dinhu")]
@@ -277,3 +279,10 @@ offset_top = 111.0
 offset_right = 568.0
 offset_bottom = 286.0
 script = ExtResource("20_1kice")
+
+[node name="FishShop" parent="." instance=ExtResource("21_5newe")]
+offset_left = 242.0
+offset_top = 112.0
+offset_right = 551.0
+offset_bottom = 297.0
+script = ExtResource("22_37s47")
