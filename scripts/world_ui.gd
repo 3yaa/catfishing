@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+@export var dev_mode:bool = true
+
 @onready var fish_score = $FishCounter/FishScore
 
 @onready var clock = $"../Clock"
@@ -22,12 +24,17 @@ signal tutorial_start
 
 func _ready() -> void:
 	await get_tree().process_frame
-	# Cutscene will play on ready:
-	emit_signal("cutscene_start")
-	await cutscene.cutscene_end
-	# then tutorial
-	emit_signal("tutorial_start")
-	await tutorial.tutorial_end
+	
+	if dev_mode:
+		tutorial.tutorial_ongoing = false
+	else:
+		# Cutscene will play on ready:
+		emit_signal("cutscene_start")
+		await cutscene.cutscene_end
+		# then tutorial
+		emit_signal("tutorial_start")
+		await tutorial.tutorial_end
+		
 	print("start main")
 	# then normal game proceed
 	allow_input = true
@@ -36,8 +43,6 @@ func _ready() -> void:
 		
 	update_fish_display()
 	update_clock_display()
-	
-	#tutorial.tutorial_ongoing = false 
 	
 
 func _process(delta: float) -> void:
