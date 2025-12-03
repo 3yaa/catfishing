@@ -37,6 +37,8 @@ func _ready() -> void:
 	update_fish_display()
 	update_clock_display()
 	
+	#tutorial.tutorial_ongoing = false 
+	
 
 func _process(delta: float) -> void:
 	if not tutorial.tutorial_ongoing:
