@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://dlaaqsui6rtpr"]
+[gd_scene load_steps=25 format=4 uid="uid://dlaaqsui6rtpr"]
 
 [ext_resource type="Script" uid="uid://cuyhki8mlbgr0" path="res://scripts/main_game.gd" id="1_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://2pd4wty6nwsi" path="res://scenes/player.tscn" id="1_uwrxv"]
@@ -18,6 +18,8 @@
 [ext_resource type="Script" uid="uid://bgm5r0wluufyu" path="res://scripts/npc/npc_fish_shop.gd" id="16_ssvqc"]
 [ext_resource type="Script" uid="uid://ck6cij3c1aw2a" path="res://scripts/npc/npc_upgrade_shop.gd" id="17_264po"]
 [ext_resource type="Script" uid="uid://tpeieqxngm6i" path="res://scripts/day_night_theme.gd" id="18_ssvqc"]
+[ext_resource type="PackedScene" uid="uid://d3l7ri6i8tb41" path="res://scenes/upgrade_shop.tscn" id="19_264po"]
+[ext_resource type="Script" uid="uid://7b26u7o8k0wu" path="res://scripts/upgrade_shop_manager.gd" id="20_1kice"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iywne"]
 texture = ExtResource("5_iywne")
@@ -273,9 +275,9 @@ color = Color(1, 1, 1, 0.003921569)
 script = ExtResource("18_ssvqc")
 metadata/_edit_group_ = true
 
-[node name="Control" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="UpgradeShop" parent="." instance=ExtResource("19_264po")]
+offset_left = 220.0
+offset_top = 111.0
+offset_right = 568.0
+offset_bottom = 286.0
+script = ExtResource("20_1kice")

@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://d3l7ri6i8tb41"]
+
+[node name="UpgradeShop" type="Panel"]
+offset_right = 366.0
+offset_bottom = 175.0
+
+[node name="ReelSkill" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Reel Skill"
+
+[node name="ReelSkillLevel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 175.0
+offset_top = 1.0
+offset_right = 215.0
+offset_bottom = 24.0
+text = "0"
+
+[node name="ReelSkillBuy" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 288.0
+offset_top = 2.0
+offset_right = 312.0
+offset_bottom = 26.0
+
+[node name="Luck" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.025
+offset_left = 1.0
+offset_top = 60.0
+offset_right = 40.0
+offset_bottom = 83.0
+text = "Luck"
+
+[node name="LuckLevel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 175.0
+offset_top = 60.0
+offset_right = 215.0
+offset_bottom = 83.0
+text = "0"
+
+[node name="LuckBuy" type="Button" parent="."]
+layout_mode = 0
+offset_left = 289.0
+offset_top = 60.0
+offset_right = 314.0
+offset_bottom = 83.0
+
+[node name="Salesman" type="Label" parent="."]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 122.0
+offset_right = 39.0
+offset_bottom = 145.0
+text = "Salesman"
+
+[node name="SalesmanLevel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 177.0
+offset_top = 122.0
+offset_right = 217.0
+offset_bottom = 145.0
+text = "0"
+
+[node name="SalesmanBuy" type="Button" parent="."]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 121.0
+offset_right = 315.0
+offset_bottom = 145.0
+
+[node name="Close" type="Button" parent="."]
+layout_mode = 0
+offset_left = 346.0
+offset_top = 1.0
+offset_right = 366.0
+offset_bottom = 20.0
+text = "X"
