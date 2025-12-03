@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cuyhki8mlbgr0" path="res://scripts/main_game.gd" id="1_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://2pd4wty6nwsi" path="res://scenes/player.tscn" id="1_uwrxv"]
+[ext_resource type="Texture2D" uid="uid://bom0hcsi6mb6s" path="res://assets/Mondstadt Background Wallpaper/sky.jpeg" id="2_trtic"]
 [ext_resource type="Script" uid="uid://c4nlmna60i861" path="res://scripts/player.gd" id="2_yqjtg"]
-[ext_resource type="Texture2D" uid="uid://b5ldlbg5mbdb8" path="res://assets/Mondstadt Background Wallpaper/windrise-background.png" id="3_lnu2h"]
 [ext_resource type="Script" uid="uid://bsj23fju2j7vg" path="res://scripts/lock_camera.gd" id="4_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://c6ckhw3uwaeti" path="res://assets/platforms/world_tileset.png" id="5_iywne"]
 [ext_resource type="PackedScene" uid="uid://cwjnjn45by5b2" path="res://scenes/ui.tscn" id="6_p57ef"]
@@ -201,14 +201,14 @@ size = Vector2(2905.75, 64)
 script = ExtResource("1_0tnpc")
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
-visible = false
 scroll_scale = Vector2(0.4, 0.4)
 scroll_offset = Vector2(400, 249)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
-position = Vector2(-44, 50)
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("3_lnu2h")
+position = Vector2(656.01056, 136.06345)
+rotation = 1.5707964
+scale = Vector2(0.6602757, 1.0878037)
+texture = ExtResource("2_trtic")
 
 [node name="TileMap_Background" type="TileMapLayer" parent="."]
 visible = false
@@ -225,7 +225,7 @@ tile_map_data = PackedByteArray("AAAnABQAAAAAAAAAAAAmABQAAAAAAAAAAAAlABQAAAAAAAA
 tile_set = SubResource("TileSet_u5sy4")
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
-position = Vector2(362, 192)
+position = Vector2(369, 204)
 zoom = Vector2(2, 2)
 script = ExtResource("4_lbhrr")
 target = NodePath("../Player")
@@ -236,7 +236,7 @@ target = NodePath("../Player")
 script = ExtResource("7_u5sy4")
 
 [node name="OceanArea" type="Area2D" parent="."]
-position = Vector2(498, 477)
+position = Vector2(526, 405)
 script = ExtResource("8_gee14")
 metadata/_edit_group_ = true
 
@@ -251,11 +251,11 @@ position = Vector2(0, -61)
 shape = SubResource("RectangleShape2D_0tnpc")
 
 [node name="Npc1" parent="." instance=ExtResource("10_vtaks")]
-position = Vector2(829, 293)
+position = Vector2(1142, 289)
 script = ExtResource("11_kvpfn")
 
 [node name="Npc2" parent="." instance=ExtResource("10_vtaks")]
-position = Vector2(682, 221)
+position = Vector2(1304, 300)
 script = ExtResource("12_dinhu")
 
 [node name="Sand" type="StaticBody2D" parent="."]
@@ -277,18 +277,29 @@ texture = ExtResource("13_kvuet")
 position = Vector2(10, 16)
 shape = SubResource("SegmentShape2D_trtic")
 
+[node name="Land2" type="Sprite2D" parent="Sand"]
+position = Vector2(96.99998, 22.999989)
+rotation = 1.5707964
+scale = Vector2(0.36854723, 0.42066467)
+texture = ExtResource("13_kvuet")
+
 [node name="ocean" type="StaticBody2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="ocean"]
-position = Vector2(678.00006, 340)
-scale = Vector2(0.722, 0.778)
+position = Vector2(677.00006, 341)
+scale = Vector2(0.71849996, 0.7835001)
 texture = ExtResource("14_trtic")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ocean"]
-position = Vector2(1928, 415)
+position = Vector2(1941, 166)
 shape = SubResource("RectangleShape2D_ir15t")
 
 [node name="Sprite2D2" type="Sprite2D" parent="ocean"]
-position = Vector2(998.00006, 340.00003)
+position = Vector2(998, 341)
+scale = Vector2(0.722, 0.778)
+texture = ExtResource("14_trtic")
+
+[node name="Sprite2D3" type="Sprite2D" parent="ocean"]
+position = Vector2(1315.0001, 340)
 scale = Vector2(0.722, 0.778)
 texture = ExtResource("14_trtic")

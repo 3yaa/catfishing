@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ww7lhtqnbr0b"]
+[gd_scene load_steps=7 format=3 uid="uid://ww7lhtqnbr0b"]
 
-[ext_resource type="Texture2D" uid="uid://dg5t307dqvda6" path="res://assets/Warrior/Individual Sprite/idle/idle1.png" id="1_abqhh"]
-[ext_resource type="Texture2D" uid="uid://nh4aatvhppbx" path="res://assets/Warrior/Individual Sprite/idle/idle2.png" id="2_rv78h"]
+[ext_resource type="Texture2D" uid="uid://dhw7ns50apdbe" path="res://assets/Npc Assests/Jerry/JerryIdle1.png" id="1_abqhh"]
+[ext_resource type="Texture2D" uid="uid://b468wbnt4m3gr" path="res://assets/Npc Assests/Jerry/JerryIdle2.png" id="2_rv78h"]
+[ext_resource type="Texture2D" uid="uid://4rrgg3equwrl" path="res://assets/Npc Assests/Jerry/JerryDrowning1.png" id="3_7n8xq"]
+[ext_resource type="Texture2D" uid="uid://cpm3ffcn5r2ku" path="res://assets/Npc Assests/Jerry/JerryDrowning2.png" id="4_4wlns"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7n8xq"]
 size = Vector2(34, 49)
@@ -18,6 +20,17 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_7n8xq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4wlns")
+}],
+"loop": true,
+"name": &"drowning",
+"speed": 1.0
 }]
 
 [node name="Npc" type="Area2D"]
@@ -29,5 +42,6 @@ shape = SubResource("RectangleShape2D_7n8xq")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_4wlns")
+animation = &"drowning"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
