@@ -13,6 +13,8 @@ signal f_pressed
 @onready var player = get_node("/root/Game/Player")
 @onready var camera = get_node("/root/Game/Camera2D")
 @onready var clock = get_node("/root/Game/Clock")
+@onready var npc1 = get_node("/root/Game/Npc1")
+@onready var npc2 = get_node("/root/Game/Npc2")
 
 var temporary_binding = false
 var tutorial_ongoing = true
@@ -24,7 +26,7 @@ func _ready():
 func _physics_process(_delta):
 	if $Label.visible:
 		# $Label.position = Vector2(player.position.x - $Label.size.x / 2, player.position.y - $Label.size.y * 8)
-		$Label.position = camera.position
+		$Label.position = Vector2(camera.position.x - $Label.size.x / 2, camera.position.y - $Label.size.y * 4)
 	
 func _input(event):
 	if not temporary_binding:
@@ -86,19 +88,49 @@ func _movement_guide():
 	player.animated_sprite.play("idle")
 	await self.e_pressed
 	game.allow_input = true
+	_rescue_guide()
 	
+
+func _rescue_guide():
+	print("Rescue guide")
+	$Label.text = "Now, try going to the ocean to get into your boat!"
+	while not player.is_in_ocean:
+		await get_tree().create_timer(0.5).timeout
+	$Label.text = "You're doing great!"
+	await self.e_pressed
+	game.allow_input = false
+	$Label.text = "Oh no! Someone is drowning over there!"
+	await self.e_pressed
+	$Label.text = "Quick, go to that cat!"
+	await self.e_pressed
+	game.allow_input = true
+	$Label.text = "Press e to save the cat!"
+	while not npc1.rescued:
+		await get_tree().create_timer(0.5).timeout
+	game.allow_input = false
+	$Label.text = "Thank you for saving me! I'm feline great"
+	await self.e_pressed
+	$Label.text = "Can you save my friend too, they're deeper in!"
+	await self.e_pressed
+	game.allow_input = true
+	$Label.text = "Quick, save the other cat too!"
+	while not npc2.rescued:
+		await get_tree().create_timer(0.5).timeout
+	game.allow_input = false
+	$Label.text = "Thanks for saving me! You're ameowzing."
+	await self.e_pressed
+	$Label.text = "You're a good man, Jack Meowgan."
+	await self.e_pressed
+	$Label.text = "We got a little sidetracked, let's try fishing!"
+	await self.e_pressed
 	_fishing_guide()
-	
+
 # might have to add a tutorial for rescuing? :sob: :wilted:
 # ensure player does not go back to ocean by setting a boundary idk?
 func _fishing_guide():
 	print("fishing start")
-	$Label.text = "Now, try going to the ocean to get into your boat!"
-	while not player.is_in_ocean:
-		await get_tree().create_timer(0.5).timeout
-	$Label.text = "Great Job! Now Let's Try Fishing!"
+	$Label.text = "Now Let's Try Fishing!"
 	await self.e_pressed
-	game.allow_input = false
 	$Label.text = "Press 'F' to cast your reel!"
 	await self.f_pressed
 	$Label.text = "Now we wait for a bite, it usually takes a bit"
@@ -123,25 +155,29 @@ func _day_night_cycle_guide():
 	await self.e_pressed
 	$Label.text = "We have to return back to the island at night, it's dangerous"
 	await self.e_pressed
-	$Label.text = "If you stay out too long, you will be transported back to the island automatically"
+	$Label.text = "You will be rescued if you stay out too long"
 	game.allow_input = true
 	while player.is_in_ocean:
 		await get_tree().create_timer(0.5).timeout
-	$Label.text = "You're back on the island, you should sell your fish!"
+	game.allow_input = false
+	$Label.text = "You're back on the island!"
 	await self.e_pressed
 	_sell_fish_guide()
 	
 func _sell_fish_guide():
 	print("sell start")
-	$Label.text = "Talk to that cat to sell your fish!"
+	$Label.text = "Thanks for saving me earlier, you can sell me your fish!"
 	await self.e_pressed
+	game.allow_input = true
 	# sell fish and whatnot
 	_skills_guide()
 	
 func _skills_guide():
 	print("skill start")
-	$Label.text = "You have some money, try upgrading your stats!"
+	game.allow_input = false
+	$Label.text = "You saved me earlier, I can upgrade your skills!"
 	await self.e_pressed
+	game.allow_input = true
 	_on_tutorial_end()
 	
 func _on_tutorial_end():
