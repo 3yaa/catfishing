@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@export var dev_mode:bool = true
+@export var dev_mode:bool = false
 
 @onready var fish_score = $FishCounter/FishScore
 
@@ -70,12 +70,13 @@ func update_money_display():
 	ui_money.text = str(player.money)
 	
 func update_clock_display() -> void:
-	if clock.is_day:
-		ui_clock_phase.text = "Day"
-	else:
-		ui_clock_phase.text = "Night"
+	if not dev_mode:
+		if clock.is_day:
+			ui_clock_phase.text = "Day"
+		else:
+			ui_clock_phase.text = "Night"
 		
-	ui_clock_time.text = str(int(clock.get_remaining_time()))
+		ui_clock_time.text = str(int(clock.get_remaining_time()))
 	
 func update_warning_display() -> void:
 	if player.is_in_ocean and not clock.is_day:

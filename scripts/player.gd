@@ -23,6 +23,7 @@ signal is_late			# Triggered when stay too late in ocean and got teleport back
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var clock = $"../Clock"
 @onready var game = get_node("/root/Game/WorldUI")
+@onready var tutorial = get_node("/root/Game/Tutorial_Manager")
 
 func _ready():
 	var ui = get_node("/root/Game/WorldUI")
@@ -95,7 +96,7 @@ func exit_ocean():
 	
 
 func handle_late_in_ocean():
-	if is_in_ocean and not clock.is_day and clock.get_remaining_time() < 5.0:
+	if not tutorial.tutorial_ongoing and is_in_ocean and not clock.is_day and clock.get_remaining_time() < 5.0:
 		global_position = spawn_position
 		is_late.emit()
 	
