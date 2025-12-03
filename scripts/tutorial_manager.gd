@@ -12,6 +12,8 @@ signal f_pressed
 @onready var game = get_node("/root/Game/WorldUI")
 @onready var player = get_node("/root/Game/Player")
 @onready var camera = get_node("/root/Game/Camera2D")
+@onready var clock = get_node("/root/Game/Clock")
+
 var temporary_binding = false
 var tutorial_ongoing = true
 
@@ -115,6 +117,8 @@ func _minigame_guide():
 	
 func _day_night_cycle_guide():
 	print("cycle start")
+	clock.cycle_changed.emit(not clock.is_day)
+	clock.is_day = false
 	$Label.text = "Looks like it's gotten late, we should return back"
 	await self.e_pressed
 	$Label.text = "We have to return back to the island at night, it's dangerous"
