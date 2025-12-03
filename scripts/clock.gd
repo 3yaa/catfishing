@@ -13,7 +13,7 @@ var night_duration:float = 15.0
 
 func _ready():
 	is_day = true
-	_start_cycle()
+	# _start_cycle()
 	
 
 # idea is to call this function from the main script:

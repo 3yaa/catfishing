@@ -1,7 +1,7 @@
 class_name NPC
 extends Area2D
 
-@onready var ui = $"../UI"
+@onready var ui = $"../WorldUI"
 
 var rescued = false
 var has_player = false

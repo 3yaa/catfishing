@@ -27,9 +27,9 @@ func _create_deck():
 	# create all cards and put into deck
 	for suit in suits:
 		for i in range(ranks.size()):
-			var rank = rank[i]
-			# 
-			var value;
+			var rank = ranks[i]
+			
+			var value
 			if i < 9:
 				value = i + 2
 			elif i < 12:
@@ -37,10 +37,10 @@ func _create_deck():
 			else:
 				value = 11
 			# put into deck
-			card.append(Card.new(suit, rank, value))
+			cards.append(Card.new(suit, rank, value))
 
 func shuffle():
 	cards.shuffle()
 
 func draw_card() -> Card:
-	return cards.pop_back();
+	return cards.pop_back()
