@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://dlaaqsui6rtpr"]
+[gd_scene load_steps=30 format=4 uid="uid://dlaaqsui6rtpr"]
 
 [ext_resource type="Script" uid="uid://cuyhki8mlbgr0" path="res://scripts/main_game.gd" id="1_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://2pd4wty6nwsi" path="res://scenes/player.tscn" id="1_uwrxv"]
@@ -22,6 +22,8 @@
 [ext_resource type="Script" uid="uid://7b26u7o8k0wu" path="res://scripts/upgrade_shop_manager.gd" id="20_1kice"]
 [ext_resource type="PackedScene" uid="uid://bnclqcapf7vnm" path="res://scenes/fish_shop.tscn" id="21_5newe"]
 [ext_resource type="Script" uid="uid://c44vs5batsyer" path="res://scripts/fish_shop_manager.gd" id="22_37s47"]
+[ext_resource type="Texture2D" uid="uid://cycyli5lvcoau" path="res://assets/platforms/land.png" id="23_bt5mj"]
+[ext_resource type="Texture2D" uid="uid://m56y0ud1o30k" path="res://assets/platforms/water.png" id="24_e1j6l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iywne"]
 texture = ExtResource("5_iywne")
@@ -189,6 +191,9 @@ texture = ExtResource("5_iywne")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_p57ef")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e1j6l"]
+size = Vector2(561.5, 20)
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_0tnpc")
 
@@ -197,9 +202,9 @@ scroll_scale = Vector2(0.4, 0.4)
 scroll_offset = Vector2(400, 249)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
-position = Vector2(656.01056, 136.06345)
+position = Vector2(244.00003, 7.000002)
 rotation = 1.5707964
-scale = Vector2(0.6602757, 1.0878037)
+scale = Vector2(0.29934853, 0.59329116)
 texture = ExtResource("2_trtic")
 
 [node name="TileMap_Background" type="TileMapLayer" parent="."]
@@ -234,7 +239,7 @@ target = NodePath("../Player")
 script = ExtResource("7_u5sy4")
 
 [node name="OceanArea" parent="." instance=ExtResource("9_dinhu")]
-position = Vector2(651, 327)
+position = Vector2(652, 382)
 
 [node name="FishLogic" type="Node2D" parent="."]
 script = ExtResource("9_vtaks")
@@ -268,6 +273,10 @@ script = ExtResource("14_trtic")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -3.0
+offset_top = 119.0
+offset_right = -3.0
+offset_bottom = 119.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -288,3 +297,27 @@ offset_top = 112.0
 offset_right = 551.0
 offset_bottom = 297.0
 script = ExtResource("22_37s47")
+
+[node name="land" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="land"]
+position = Vector2(332, 357)
+rotation = 1.5707964
+scale = Vector2(0.40890208, 0.588001)
+texture = ExtResource("23_bt5mj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="land"]
+position = Vector2(307.25, 354)
+shape = SubResource("RectangleShape2D_e1j6l")
+
+[node name="sea" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="sea"]
+position = Vector2(834, 362)
+scale = Vector2(0.8680001, 0.8685001)
+texture = ExtResource("24_e1j6l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1218, 363)
+scale = Vector2(0.8680001, 0.8685001)
+texture = ExtResource("24_e1j6l")

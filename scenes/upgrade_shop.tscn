@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://d3l7ri6i8tb41"]
+[gd_scene load_steps=0 format=3 uid="uid://d3l7ri6i8tb41"]
 
 [node name="UpgradeShop" type="Panel"]
 offset_right = 366.0
