@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://dlaaqsui6rtpr"]
+[gd_scene load_steps=31 format=4 uid="uid://dlaaqsui6rtpr"]
 
 [ext_resource type="Script" uid="uid://cuyhki8mlbgr0" path="res://scripts/main_game.gd" id="1_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://2pd4wty6nwsi" path="res://scenes/player.tscn" id="1_uwrxv"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cwjnjn45by5b2" path="res://scenes/ui.tscn" id="6_p57ef"]
 [ext_resource type="Script" uid="uid://b2wgiegidtvun" path="res://scripts/clock.gd" id="7_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://btx5m1k8bm1n8" path="res://scenes/ocean_area.tscn" id="9_dinhu"]
+[ext_resource type="Texture2D" uid="uid://c4ci4hew47e5g" path="res://assets/Mondstadt Background Wallpaper/palmTree.png" id="9_pl11u"]
 [ext_resource type="Script" uid="uid://2yl1hfh0q3jn" path="res://scripts/fish_logic.gd" id="9_vtaks"]
 [ext_resource type="PackedScene" uid="uid://dtipbmymq13e1" path="res://scenes/minigame.tscn" id="10_dinhu"]
 [ext_resource type="Script" uid="uid://cgq63vliv3xal" path="res://scripts/tutorial_manager.gd" id="13_kvuet"]
@@ -120,17 +121,20 @@ size = Vector2(561.5, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pl11u"]
 size = Vector2(1157, 20)
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_e1j6l"]
+b = Vector2(4, 454)
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_0tnpc")
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0.4, 0.4)
+scroll_scale = Vector2(0.1, 0.1)
 scroll_offset = Vector2(400, 249)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
-position = Vector2(507, 44.999992)
+position = Vector2(108.67272, 53.719078)
 rotation = 1.5707964
-scale = Vector2(0.31905207, 0.9797303)
+scale = Vector2(0.36008745, 0.76137567)
 texture = ExtResource("2_trtic")
 
 [node name="TileMap_Background" type="TileMapLayer" parent="."]
@@ -147,8 +151,16 @@ position = Vector2(720, 429)
 script = ExtResource("17_264po")
 
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
-position = Vector2(134, 429)
+z_index = 5
+position = Vector2(109, 428)
 script = ExtResource("2_yqjtg")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+z_index = 2
+z_as_relative = false
+position = Vector2(-375, -114.000015)
+scale = Vector2(-0.40630943, 0.42951357)
+texture = ExtResource("9_pl11u")
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
 position = Vector2(369, 204)
@@ -162,7 +174,8 @@ target = NodePath("../Player")
 script = ExtResource("7_u5sy4")
 
 [node name="OceanArea" parent="." instance=ExtResource("9_dinhu")]
-position = Vector2(618, 453)
+position = Vector2(600, 473)
+scale = Vector2(1.5, 1.5)
 
 [node name="FishLogic" type="Node2D" parent="."]
 script = ExtResource("9_vtaks")
@@ -195,13 +208,14 @@ script = ExtResource("14_trtic")
 [node name="Theme" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="Theme"]
+z_index = -1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 63.0
-offset_top = -46.0
-offset_right = 639.0
-offset_bottom = -111.0
+offset_left = -4.0
+offset_top = -1205.0
+offset_right = 1057.0
+offset_bottom = -817.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -217,41 +231,76 @@ offset_bottom = 183.0
 script = ExtResource("20_1kice")
 
 [node name="FishShop" parent="." instance=ExtResource("21_5newe")]
-offset_left = 142.0
-offset_top = 61.0
-offset_right = 451.0
-offset_bottom = 246.0
+offset_left = 181.0
+offset_top = 53.0
+offset_right = 490.0
+offset_bottom = 238.0
 script = ExtResource("22_37s47")
 
 [node name="land" type="StaticBody2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="land"]
-position = Vector2(335.00003, 475)
+z_index = 1
+position = Vector2(326.00003, 475.00003)
 rotation = 1.5707964
 scale = Vector2(0.40890208, 0.588001)
 texture = ExtResource("23_bt5mj")
+region_enabled = true
+region_rect = Rect2(0, 21.977516, 359.46613, 1052.3574)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="land"]
-position = Vector2(308, 474)
+position = Vector2(246, 453)
 shape = SubResource("RectangleShape2D_e1j6l")
 
 [node name="sea" type="StaticBody2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="sea"]
-position = Vector2(836, 479)
-scale = Vector2(0.8680001, 0.8685001)
+position = Vector2(826.00006, 479)
+scale = Vector2(0.878743, 0.8635702)
 texture = ExtResource("24_e1j6l")
+region_enabled = true
+region_rect = Rect2(33.969208, 0, 436.61765, 500)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sea"]
-position = Vector2(1167.5, 474)
+position = Vector2(1168, 489)
 shape = SubResource("RectangleShape2D_pl11u")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1221, 479)
+z_index = 1
+position = Vector2(1209, 479)
+scale = Vector2(0.8680001, 0.8685001)
+texture = ExtResource("24_e1j6l")
+region_enabled = true
+region_rect = Rect2(29.625492, 0, 440.67227, 500)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(1588, 478)
 scale = Vector2(0.8680001, 0.8685001)
 texture = ExtResource("24_e1j6l")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(1606, 479)
-scale = Vector2(0.8680001, 0.8685001)
-texture = ExtResource("24_e1j6l")
+[node name="barrier" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="barrier"]
+position = Vector2(-93, 9)
+shape = SubResource("SegmentShape2D_e1j6l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1767, 47)
+shape = SubResource("SegmentShape2D_e1j6l")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(-294, 474)
+rotation = -1.5707964
+scale = Vector2(-0.40758306, 0.6164387)
+texture = ExtResource("23_bt5mj")
+region_enabled = true
+region_rect = Rect2(0, 0, 355.16, 1027.3066)
+
+[node name="Tree" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Tree"]
+z_index = 1
+position = Vector2(-31.999996, 259)
+scale = Vector2(0.50633717, 0.5469208)
+texture = ExtResource("9_pl11u")
