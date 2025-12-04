@@ -15,12 +15,16 @@ signal f_pressed
 @onready var clock = get_node("/root/Game/Clock")
 @onready var npc1 = get_node("/root/Game/Npc1")
 @onready var npc2 = get_node("/root/Game/Npc2")
+@onready var upgrade = get_node("/root/Game/UpgradeShop")
+@onready var shop = get_node("/root/Game/FishShop")
+
 
 var temporary_binding = false
 var tutorial_ongoing = true
 
 func _ready():
 	$Label.visible = true
+	$Label.add_theme_color_override("font_color", Color.BLACK)
 	game.tutorial_start.connect(_on_tutorial_start) 
 	
 func _physics_process(_delta):
@@ -159,7 +163,6 @@ func _day_night_cycle_guide():
 	game.allow_input = true
 	while player.is_in_ocean:
 		await get_tree().create_timer(0.5).timeout
-	game.allow_input = false
 	$Label.text = "You're back on the island!"
 	await self.e_pressed
 	_sell_fish_guide()
@@ -167,17 +170,20 @@ func _day_night_cycle_guide():
 func _sell_fish_guide():
 	print("sell start")
 	$Label.text = "Thanks for saving me earlier, you can sell me your fish!"
-	await self.e_pressed
-	game.allow_input = true
+	await shop.shop_open
+	$Label.text = "Press sell to sell your fish here, press the X to exit"
+	await shop.shop_close
 	# sell fish and whatnot
 	_skills_guide()
 	
 func _skills_guide():
 	print("skill start")
-	game.allow_input = false
 	$Label.text = "You saved me earlier, I can upgrade your skills!"
+	await upgrade.shop_open
+	$Label.text = "There are three stats: PLACEHOLDER"
 	await self.e_pressed
-	game.allow_input = true
+	$Label.text = "Choose an upgrade, then press X to exit"
+	await upgrade.shop_close
 	_on_tutorial_end()
 	
 func _on_tutorial_end():

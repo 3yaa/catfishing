@@ -15,6 +15,8 @@ extends Panel
 
 var PRICE: float = 2.0
 
+signal shop_open
+signal shop_close
 
 func _ready() -> void:
 	hide()
@@ -26,10 +28,12 @@ func _ready() -> void:
 
 func enable_shop():
 	update_shop_ui()
+	emit_signal("shop_open")
 	show()
 	
 
 func disable_shop():
+	emit_signal("shop_close")
 	hide()
 	
 

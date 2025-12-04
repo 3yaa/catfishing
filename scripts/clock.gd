@@ -10,10 +10,16 @@ var is_day:bool = true
 var day_duration:float = 30.0
 var night_duration:float = 15.0
 
+@onready var world = get_node("/root/Game/WorldUI")
+@onready var tutorial = get_node("/root/Game/Tutorial_Manager")
 
 func _ready():
 	is_day = true
-	# _start_cycle()
+	if not world.dev_mode:
+		await tutorial.tutorial_end
+		_start_cycle()
+	else:
+		_start_cycle()
 	
 
 # idea is to call this function from the main script:
