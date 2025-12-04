@@ -52,7 +52,9 @@ func _input(event):
 
 func _on_tutorial_start():
 	print("Tutorial started")
-	await get_tree().create_timer(2.0).timeout
+	# allow for gravity for 2~ seconds
+	game.allow_input = true
+	await get_tree().create_timer(1.0).timeout
 	temporary_binding = true
 	# Start tutorial:
 	_movement_guide()
@@ -179,9 +181,11 @@ func _sell_fish_guide():
 func _skills_guide():
 	print("skill start")
 	$Label.text = "You saved me earlier, I can upgrade your skills!"
-	await upgrade.shop_open
+	await self.e_pressed
 	$Label.text = "There are three stats: PLACEHOLDER"
 	await self.e_pressed
+	$Label.text = "Try upgrading a skill!"
+	await upgrade.shop_open
 	$Label.text = "Choose an upgrade, then press X to exit"
 	await upgrade.shop_close
 	_on_tutorial_end()
@@ -191,5 +195,7 @@ func _on_tutorial_end():
 	await self.e_pressed
 	$Label.visible = false
 	temporary_binding = false
+	clock.cycle_changed.emit(clock.is_day)
+	clock.is_day = true
 	tutorial_ongoing = false
 	emit_signal("tutorial_end")
