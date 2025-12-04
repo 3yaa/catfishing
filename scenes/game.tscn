@@ -281,7 +281,7 @@ texture = ExtResource("24_e1j6l")
 [node name="barrier" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="barrier"]
-position = Vector2(-93, 9)
+position = Vector2(-184, 14)
 shape = SubResource("SegmentShape2D_e1j6l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
