@@ -20,7 +20,7 @@
 [ext_resource type="Script" uid="uid://tpeieqxngm6i" path="res://scripts/day_night_theme.gd" id="18_ssvqc"]
 [ext_resource type="PackedScene" uid="uid://d3l7ri6i8tb41" path="res://scenes/upgrade_shop.tscn" id="19_264po"]
 [ext_resource type="Script" uid="uid://7b26u7o8k0wu" path="res://scripts/upgrade_shop_manager.gd" id="20_1kice"]
-[ext_resource type="PackedScene" uid="uid://bnclqcapf7vnm" path="res://scenes/fish_shop.tscn" id="21_5newe"]
+[ext_resource type="PackedScene" path="res://scenes/fish_shop.tscn" id="21_5newe"]
 [ext_resource type="Script" uid="uid://c44vs5batsyer" path="res://scripts/fish_shop_manager.gd" id="22_37s47"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iywne"]

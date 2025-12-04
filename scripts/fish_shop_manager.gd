@@ -8,6 +8,8 @@ extends Panel
 @onready var sell_btn = $Sell
 @onready var close = $Close
 
+signal shop_open
+signal shop_close
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,10 +25,12 @@ func _process(delta: float) -> void:
 
 func enable_shop():
 	update_shop_ui()
+	emit_signal("shop_open")
 	show()
 	
 
 func disable_shop():
+	emit_signal("shop_close")
 	hide()
 	
 
