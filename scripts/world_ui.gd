@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@export var dev_mode:bool = false
+@export var dev_mode: bool = true
 
 @onready var fish_score = $FishCounter/FishScore
 
@@ -14,7 +14,7 @@ extends CanvasLayer
 @onready var ui_money = $Money/MoneyCount
 
 # this is for handling opening sequence + cutscene 
-var allow_input:bool = false
+var allow_input: bool = false
 var fish_count: int = 0
 
 @onready var cutscene = get_parent().get_node("Cutscene_Manager")
@@ -88,7 +88,3 @@ func update_warning_display() -> void:
 		
 func update_dialogue_display(text: String) -> void:
 	ui_dialogue.text = text
-	
-		
-		
-	
