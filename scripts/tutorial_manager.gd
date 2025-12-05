@@ -54,52 +54,56 @@ func _on_tutorial_start():
 	print("Tutorial started")
 	# allow for gravity for 2~ seconds
 	game.allow_input = true
-	await get_tree().create_timer(1.0).timeout
+	#await get_tree().create_timer(1.0).timeout
 	temporary_binding = true
 	# Start tutorial:
 	_movement_guide()
 
 func _movement_guide():
 	# temporarily prevent player movement
-	game.allow_input = false
-	$Label.text = "Welcome to the tutorial! Press 'e' to continue tutorial!"
+	# game.allow_input = false
+	#$Label.text = "Welcome to the tutorial! Press 'e' to continue tutorial!"
+	#await self.e_pressed
+	#$Label.text = "Movement is based on standard WASD and space controls"
+	#await self.e_pressed
+#
+	#game.allow_input = true
+	#$Label.text = "Trying moving right, press 'D'!"
+	#await self.right_pressed
+	#$Label.text = "Awesome!"
+	#await get_tree().create_timer(0.8).timeout
+	#game.allow_input = false
+	#player.animated_sprite.play("idle")
+	#await self.e_pressed
+	#
+	#$Label.text = "Trying moving left, press 'A'!"
+	#game.allow_input = true
+	#await self.left_pressed
+	#$Label.text = "Great!"
+	#await get_tree().create_timer(0.8).timeout
+	#game.allow_input = false
+	#player.animated_sprite.play("idle")
+	#await self.e_pressed
+	#
+	#$Label.text = "Finally, try jumping, press 'W' or 'SPACE'!"
+	#game.allow_input = true
+	#await self.jump_pressed
+	#$Label.text = "Amazing! Let's move onto fishing then!"
+	#await get_tree().create_timer(0.8).timeout
+	#game.allow_input = false
+	#player.animated_sprite.play("idle")
+	#await self.e_pressed
+	#game.allow_input = true
+	$Label.text = "Welcome to Catfishing! Press 'e' to continue!"
 	await self.e_pressed
-	$Label.text = "Movement is based on standard WASD and space controls"
+	$Label.text = "The movement controls are basic WASD and SPACE binding"
 	await self.e_pressed
-
-	game.allow_input = true
-	$Label.text = "Trying moving right, press 'D'!"
-	await self.right_pressed
-	$Label.text = "Awesome!"
-	await get_tree().create_timer(0.8).timeout
-	game.allow_input = false
-	player.animated_sprite.play("idle")
-	await self.e_pressed
-	
-	$Label.text = "Trying moving left, press 'A'!"
-	game.allow_input = true
-	await self.left_pressed
-	$Label.text = "Great!"
-	await get_tree().create_timer(0.8).timeout
-	game.allow_input = false
-	player.animated_sprite.play("idle")
-	await self.e_pressed
-	
-	$Label.text = "Finally, try jumping, press 'W' or 'SPACE'!"
-	game.allow_input = true
-	await self.jump_pressed
-	$Label.text = "Amazing! Let's move onto fishing then!"
-	await get_tree().create_timer(0.8).timeout
-	game.allow_input = false
-	player.animated_sprite.play("idle")
-	await self.e_pressed
-	game.allow_input = true
 	_rescue_guide()
 	
 
 func _rescue_guide():
 	print("Rescue guide")
-	$Label.text = "Now, try going to the ocean to get into your boat!"
+	$Label.text = "Try going to the ocean to get into your boat!"
 	while not player.is_in_ocean:
 		await get_tree().create_timer(0.5).timeout
 	$Label.text = "You're doing great!"
@@ -111,22 +115,23 @@ func _rescue_guide():
 	await self.e_pressed
 	game.allow_input = true
 	$Label.text = "Press e to save the cat!"
+	npc1.rescued = true
 	while not npc1.rescued:
 		await get_tree().create_timer(0.5).timeout
 	game.allow_input = false
 	$Label.text = "Thank you for saving me! I'm feline great"
-	await self.e_pressed
-	$Label.text = "Can you save my friend too, they're deeper in!"
-	await self.e_pressed
-	game.allow_input = true
-	$Label.text = "Quick, save the other cat too!"
-	while not npc2.rescued:
-		await get_tree().create_timer(0.5).timeout
-	game.allow_input = false
-	$Label.text = "Thanks for saving me! You're ameowzing."
-	await self.e_pressed
-	$Label.text = "You're a good man, Jack Meowgan."
-	await self.e_pressed
+	#await self.e_pressed
+	#$Label.text = "Can you save my friend too, they're deeper in!"
+	#await self.e_pressed
+	#game.allow_input = true
+	#$Label.text = "Quick, save the other cat too!"
+	#while not npc2.rescued:
+		#await get_tree().create_timer(0.5).timeout
+	#game.allow_input = false
+	#$Label.text = "Thanks for saving me! You're ameowzing."
+	#await self.e_pressed
+	#$Label.text = "You're a good man, Jack Meowgan."
+	#await self.e_pressed
 	$Label.text = "We got a little sidetracked, let's try fishing!"
 	await self.e_pressed
 	_fishing_guide()
@@ -172,11 +177,12 @@ func _day_night_cycle_guide():
 func _sell_fish_guide():
 	print("sell start")
 	$Label.text = "Thanks for saving me earlier, you can sell me your fish!"
-	await shop.shop_open
-	$Label.text = "Press sell to sell your fish here, press the X to exit"
-	await shop.shop_close
+	#await shop.shop_open
+	#$Label.text = "Press sell to sell your fish here, press the X to exit"
+	#await shop.shop_close
 	# sell fish and whatnot
-	_skills_guide()
+	# _skills_guide()
+	_on_tutorial_end()
 	
 func _skills_guide():
 	print("skill start")
