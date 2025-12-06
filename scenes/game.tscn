@@ -25,7 +25,7 @@
 [ext_resource type="Script" uid="uid://c44vs5batsyer" path="res://scripts/fish_shop_manager.gd" id="22_37s47"]
 [ext_resource type="Texture2D" uid="uid://cycyli5lvcoau" path="res://assets/platforms/land.png" id="23_bt5mj"]
 [ext_resource type="Texture2D" uid="uid://m56y0ud1o30k" path="res://assets/platforms/water.png" id="24_e1j6l"]
-[ext_resource type="Script" uid="uid://brn33aiyfow2q" path="res://scripts/hints.gd" id="26_bhx41"]
+[ext_resource type="Script" path="res://scripts/hints.gd" id="26_bhx41"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iywne"]
 texture = ExtResource("5_iywne")
@@ -185,7 +185,7 @@ target = NodePath("../Player")
 script = ExtResource("7_u5sy4")
 
 [node name="OceanArea" parent="." instance=ExtResource("9_dinhu")]
-position = Vector2(573, 467)
+position = Vector2(596, 451)
 scale = Vector2(1.5, 1.5)
 
 [node name="FishLogic" type="Node2D" parent="."]
@@ -273,7 +273,7 @@ region_enabled = true
 region_rect = Rect2(33.969208, 0, 436.61765, 500)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sea"]
-position = Vector2(1130, 471)
+position = Vector2(1150, 458)
 shape = SubResource("RectangleShape2D_pl11u")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
