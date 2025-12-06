@@ -3,6 +3,7 @@ extends Panel
 
 @onready var player = $"../Player"
 @onready var fish_logic = $"../FishLogic"
+@onready var world_ui = $"../WorldUI"
 
 @onready var ui_fish_count = $FishCount
 @onready var sell_btn = $Sell
@@ -27,11 +28,13 @@ func enable_shop():
 	update_shop_ui()
 	emit_signal("shop_open")
 	show()
+	world_ui.allow_input = false
 	
 
 func disable_shop():
 	emit_signal("shop_close")
 	hide()
+	world_ui.allow_input = true
 	
 
 func update_shop_ui():

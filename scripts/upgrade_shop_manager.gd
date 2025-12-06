@@ -2,6 +2,7 @@ class_name UpgradeShopManager
 extends Panel
 
 @onready var player = $"../Player"
+@onready var world_ui = $"../WorldUI"
 
 @onready var reel_skill_level = $ReelSkillLevel
 @onready var luck_level = $LuckLevel
@@ -30,11 +31,13 @@ func enable_shop():
 	update_shop_ui()
 	emit_signal("shop_open")
 	show()
+	world_ui.allow_input = false
 	
 
 func disable_shop():
 	emit_signal("shop_close")
 	hide()
+	world_ui.allow_input = true
 	
 
 func update_shop_ui():
