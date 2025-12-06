@@ -1,10 +1,10 @@
-class_name NPCUpgradeShop
+class_name NPCCosmeticsShop
 extends NPC
 
-@onready var shop = $"../UpgradeShop"
+#@onready var shop = $"../FishShop"
 
-const position_ocean = Vector2(1200, 430)
-const position_island = Vector2(300, 430)
+const position_ocean = Vector2(1480, 430)
+const position_island = Vector2(150, 430)
 
 
 func _ready() -> void:
@@ -15,15 +15,15 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if has_player and not rescued and Input.is_action_just_pressed("interact"):
 		rescue()
-	elif has_player and rescued and Input.is_action_just_pressed("interact"):
-		shop.enable_shop()
-
+	#elif has_player and rescued and Input.is_action_just_pressed("interact"):
+		#shop.enable_shop()
+	
 	
 func rescue():
 	rescued = true
 	global_position = position_island
-
+	
 
 # Overwrite prompt
 func get_interact_prompt():
-	return "Press E to buy upgrades"
+	return "Press E to buy cosmetics"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://dlaaqsui6rtpr"]
+[gd_scene load_steps=33 format=4 uid="uid://dlaaqsui6rtpr"]
 
 [ext_resource type="Script" uid="uid://cuyhki8mlbgr0" path="res://scripts/main_game.gd" id="1_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://2pd4wty6nwsi" path="res://scenes/player.tscn" id="1_uwrxv"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c6ckhw3uwaeti" path="res://assets/platforms/world_tileset.png" id="5_iywne"]
 [ext_resource type="PackedScene" uid="uid://cwjnjn45by5b2" path="res://scenes/ui.tscn" id="6_p57ef"]
 [ext_resource type="Script" uid="uid://b2wgiegidtvun" path="res://scripts/clock.gd" id="7_u5sy4"]
+[ext_resource type="Script" uid="uid://b1phrbyh0srip" path="res://scripts/npc/npc_cosmetics_shop.gd" id="8_qnb83"]
 [ext_resource type="PackedScene" uid="uid://btx5m1k8bm1n8" path="res://scenes/ocean_area.tscn" id="9_dinhu"]
 [ext_resource type="Texture2D" uid="uid://c4ci4hew47e5g" path="res://assets/Mondstadt Background Wallpaper/palmTree.png" id="9_pl11u"]
 [ext_resource type="Script" uid="uid://2yl1hfh0q3jn" path="res://scripts/fish_logic.gd" id="9_vtaks"]
@@ -167,6 +168,9 @@ script = ExtResource("16_ssvqc")
 [node name="Npc2" parent="." instance=ExtResource("15_rysoc")]
 position = Vector2(720, 429)
 script = ExtResource("17_264po")
+
+[node name="Npc3" parent="." instance=ExtResource("15_rysoc")]
+script = ExtResource("8_qnb83")
 
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
 z_index = 5
