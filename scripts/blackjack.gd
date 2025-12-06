@@ -1,33 +1,175 @@
 class_name Blackjack
+extends Node
 
 var deck: Deck
-var hand: Array[Deck.Card] = []
-var is_bust: bool = false
+var player_hand: Array[Deck.Card] = []
+var dealer_hand: Array[Deck.Card] = []
+var is_player_bust: bool = false
+var is_dealer_bust: bool = false
 var is_standing: bool = false
+var is_dealer_turn: bool = false
+
+# default blackjack max value
+var max_val = 21
+var common_offset = 7
+var rare_offset = 4
+
+@onready var fish = get_node("/root/Game/FishLogic")
 
 func _init():
-	hand.clear()
+	_reset_game()
+
+func _reset_game():
+	player_hand.clear()
+	dealer_hand.clear()
+	is_player_bust = false
+	is_dealer_bust = false
+	is_standing = false
+	is_dealer_turn = false
+	
+	# create a fresh deck for each game
 	deck = Deck.new()
-	hand.append(deck.draw_card())
-	hand.append(deck.draw_card())
+	
+	# Deal initial cards
+	player_hand.append(deck.draw_card())
+	dealer_hand.append(deck.draw_card())
+	player_hand.append(deck.draw_card())
+	dealer_hand.append(deck.draw_card())
+	
+	# Hide dealer second card
+	dealer_hand[1].visible = false
 
 func is_finished() -> bool:
-	return is_bust || is_standing
-# 
-func get_score() -> int:
+	return is_player_bust || (is_standing && is_dealer_turn)
+
+func get_player_score() -> int:
+	return _calculate_score(player_hand)
+
+func get_dealer_score() -> int:
+	return _calculate_score(dealer_hand)
+
+func _calculate_score(hand: Array[Deck.Card]) -> int:
 	var score = 0
+	var aces = 0
+	
 	for card in hand:
-		score += card.value
+		if card.rank == "A":
+			aces += 1
+			score += 11
+		else:
+			score += card.value
+	
+	# ace 
+	while score > 21 && aces > 0:
+		score -= 10
+		aces -= 1
+	
 	return score
 
 func hit():
-	if is_finished():
+	if is_finished() || is_standing:
 		return
-	# 
-	hand.append(deck.draw_card())
-	if get_score() > 21:
-		is_bust = true
+	
+	player_hand.append(deck.draw_card())
+	if get_player_score() > 21:
+		is_player_bust = true
 
 func stand():
-	is_standing = true
+	if is_standing:
+		return
 	
+	is_standing = true
+	# reveal dealer hidden ahdn
+	dealer_hand[1].visible = true
+	
+	# dealer AI
+	while get_dealer_score() < 17:
+		dealer_hand.append(deck.draw_card())
+	
+	# uncomment this when linking is complete
+	#if is_player_bust:
+		#is_dealer_turn = true
+		#
+	#match fish.current_fish.fish_rarity:
+		#fish.COMMON:
+			#_common_fish()
+		#fish.RARE:
+			#_rare_fish()
+		#fish.SUPER_RARE:
+			#_super_rare_fish()
+		
+	if get_dealer_score() > 21:
+		is_dealer_bust = true
+	
+	is_dealer_turn = true
+
+
+func _common_fish():
+	var satisfied = false
+	while not satisfied:
+		# check for bust
+		if get_dealer_score() > max_val:
+			is_dealer_bust = true
+			satisfied = true
+		# always stop on a 21 obviously	
+		elif get_dealer_score() == max_val:
+			satisfied = true
+		# hit on anything less than 14
+		elif get_dealer_score() < max_val - common_offset:
+			dealer_hand.append(deck.draw_card())
+		# score is >= 14, but less than 21:
+		else:
+			satisfied = true
+		
+	
+
+func _rare_fish():
+	var satisfied = false
+	while not satisfied:
+		# check for bust
+		if get_dealer_score() > max_val:
+			satisfied = true
+			is_dealer_bust = true
+		# always stop on a 21 obviously	
+		elif get_dealer_score() == max_val:
+			satisfied = true
+		# hit on anything less than 17
+		elif get_dealer_score() < max_val - rare_offset:
+			dealer_hand.append(deck.draw_card())
+		# hand is between 17 and 20:
+		else:
+			satisfied = true
+		
+
+func _super_rare_fish():
+	var satisfied = false
+	while not satisfied:
+		# check for bust
+		if get_dealer_score() > max_val:
+			satisfied = true
+			is_dealer_bust = true
+		# always stop on a 21 obviously	
+		elif get_dealer_score() == max_val:
+			satisfied = true
+		# always try to surpass the player
+		elif get_dealer_score() < get_player_score():
+			dealer_hand.append(deck.draw_card())
+		# already higher than the player, but not 21:
+		else:
+			satisfied = true
+
+func get_winner() -> String:
+	if is_player_bust:
+		return "dealer"
+	if is_dealer_bust:
+		return "player"
+	
+	var player_score = get_player_score()
+	var dealer_score = get_dealer_score()
+	
+	if player_score > dealer_score:
+		return "player"
+	elif dealer_score > player_score:
+		return "dealer"
+	else:
+		return "push"

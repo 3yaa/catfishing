@@ -18,3 +18,11 @@ func set_card(suit: String, rank: String):
 	
 	suit_label.add_theme_color_override("font_color", color)
 	rank_label.add_theme_color_override("font_color", color)
+
+func set_card_hidden():
+	rank_label.text = "?"
+	suit_label.text = "?"
+	
+	var color = Color.DARK_GRAY
+	suit_label.add_theme_color_override("font_color", color)
+	rank_label.add_theme_color_override("font_color", color)
