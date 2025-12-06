@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@export var dev_mode: bool = false
+@export var dev_mode: bool = true
 
 @onready var fish_score = $FishCounter/FishScore
 

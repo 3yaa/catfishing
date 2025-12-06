@@ -192,10 +192,10 @@ scale = Vector2(1.5, 1.5)
 script = ExtResource("9_vtaks")
 
 [node name="Minigame" parent="." instance=ExtResource("10_dinhu")]
-offset_left = 528.0
-offset_top = 200.0
-offset_right = 568.0
-offset_bottom = 240.0
+offset_left = 337.0
+offset_top = 336.0
+offset_right = 337.0
+offset_bottom = 336.0
 
 [node name="CardDisplay" parent="." instance=ExtResource("13_trtic")]
 visible = false
@@ -242,10 +242,10 @@ offset_bottom = 183.0
 script = ExtResource("20_1kice")
 
 [node name="FishShop" parent="." instance=ExtResource("21_5newe")]
-offset_left = 181.0
-offset_top = 53.0
-offset_right = 490.0
-offset_bottom = 238.0
+offset_left = -87.0
+offset_top = 44.0
+offset_right = 222.0
+offset_bottom = 229.0
 script = ExtResource("22_37s47")
 
 [node name="land" type="StaticBody2D" parent="."]
