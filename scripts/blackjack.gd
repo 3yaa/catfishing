@@ -1,4 +1,5 @@
 class_name Blackjack
+extends Node
 
 var deck: Deck
 var player_hand: Array[Deck.Card] = []
@@ -7,6 +8,13 @@ var is_player_bust: bool = false
 var is_dealer_bust: bool = false
 var is_standing: bool = false
 var is_dealer_turn: bool = false
+
+# default blackjack max value
+var max_val = 21
+var common_offset = 7
+var rare_offset = 4
+
+@onready var fish = get_node("/root/Game/FishLogic")
 
 func _init():
 	_reset_game()
@@ -78,10 +86,77 @@ func stand():
 	while get_dealer_score() < 17:
 		dealer_hand.append(deck.draw_card())
 	
+	# uncomment this when linking is complete
+	#if is_player_bust:
+		#is_dealer_turn = true
+		#
+	#match fish.current_fish.fish_rarity:
+		#fish.COMMON:
+			#_common_fish()
+		#fish.RARE:
+			#_rare_fish()
+		#fish.SUPER_RARE:
+			#_super_rare_fish()
+		
 	if get_dealer_score() > 21:
 		is_dealer_bust = true
 	
 	is_dealer_turn = true
+
+
+func _common_fish():
+	var satisfied = false
+	while not satisfied:
+		# check for bust
+		if get_dealer_score() > max_val:
+			is_dealer_bust = true
+			satisfied = true
+		# always stop on a 21 obviously	
+		elif get_dealer_score() == max_val:
+			satisfied = true
+		# hit on anything less than 14
+		elif get_dealer_score() < max_val - common_offset:
+			dealer_hand.append(deck.draw_card())
+		# score is >= 14, but less than 21:
+		else:
+			satisfied = true
+		
+	
+
+func _rare_fish():
+	var satisfied = false
+	while not satisfied:
+		# check for bust
+		if get_dealer_score() > max_val:
+			satisfied = true
+			is_dealer_bust = true
+		# always stop on a 21 obviously	
+		elif get_dealer_score() == max_val:
+			satisfied = true
+		# hit on anything less than 17
+		elif get_dealer_score() < max_val - rare_offset:
+			dealer_hand.append(deck.draw_card())
+		# hand is between 17 and 20:
+		else:
+			satisfied = true
+		
+
+func _super_rare_fish():
+	var satisfied = false
+	while not satisfied:
+		# check for bust
+		if get_dealer_score() > max_val:
+			satisfied = true
+			is_dealer_bust = true
+		# always stop on a 21 obviously	
+		elif get_dealer_score() == max_val:
+			satisfied = true
+		# always try to surpass the player
+		elif get_dealer_score() < get_player_score():
+			dealer_hand.append(deck.draw_card())
+		# already higher than the player, but not 21:
+		else:
+			satisfied = true
 
 func get_winner() -> String:
 	if is_player_bust:
