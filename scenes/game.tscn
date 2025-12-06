@@ -118,7 +118,7 @@ texture = ExtResource("5_iywne")
 sources/0 = SubResource("TileSetAtlasSource_iywne")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e1j6l"]
-size = Vector2(561.5, 20)
+size = Vector2(1176.75, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pl11u"]
 size = Vector2(1157, 20)
@@ -255,7 +255,7 @@ script = ExtResource("22_37s47")
 [node name="land" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="land"]
-position = Vector2(290, 458)
+position = Vector2(-17.625, 458)
 shape = SubResource("RectangleShape2D_e1j6l")
 
 [node name="Sprite2D" type="Sprite2D" parent="land"]
@@ -296,7 +296,7 @@ texture = ExtResource("24_e1j6l")
 [node name="barrier" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="barrier"]
-position = Vector2(-150, 10)
+position = Vector2(-610, 41)
 shape = SubResource("SegmentShape2D_e1j6l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
