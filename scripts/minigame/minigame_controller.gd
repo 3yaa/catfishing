@@ -16,7 +16,7 @@ extends Node
 @onready var bet_50_btn = $MinigameUI/BettingPanel/VBoxContainer/Bet50
 @onready var bet_100_btn = $MinigameUI/BettingPanel/VBoxContainer/Bet100
 @onready var bet_all_in_btn = $MinigameUI/BettingPanel/VBoxContainer/BetAllIn
-@onready var fish_sprite = $MinigameUI/FishSprite
+@onready var fish_sprite = $MinigameUI/Control/FishSprite
 
 var card_scene = preload("res://scenes/card_display.tscn")
 
