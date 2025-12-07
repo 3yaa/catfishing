@@ -26,11 +26,11 @@
 [ext_resource type="Texture2D" uid="uid://dadrew1a45k8i" path="res://assets/platforms/land2.png" id="23_qnb83"]
 [ext_resource type="Texture2D" uid="uid://m56y0ud1o30k" path="res://assets/platforms/water.png" id="24_e1j6l"]
 [ext_resource type="PackedScene" uid="uid://br6meobo0il5m" path="res://scenes/cosmetics_shop.tscn" id="25_suyxu"]
-[ext_resource type="Script" path="res://scripts/hints.gd" id="26_bhx41"]
+[ext_resource type="Script" uid="uid://brn33aiyfow2q" path="res://scripts/hints.gd" id="26_bhx41"]
 [ext_resource type="PackedScene" uid="uid://diec6viabj66n" path="res://scenes/cosmetics.tscn" id="27_sww3w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e1j6l"]
-size = Vector2(1176.375, 20)
+size = Vector2(1177.1875, 20)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_e1j6l"]
 a = Vector2(0, 1)
@@ -44,13 +44,10 @@ script = ExtResource("1_0tnpc")
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.1, 0.1)
-scroll_offset = Vector2(400, 249)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
-visible = false
-position = Vector2(-1659.0001, 205)
-rotation = 1.5707964
-scale = Vector2(0.436461, 0.4285466)
+position = Vector2(605, 685)
+scale = Vector2(0.6853686, 0.7316034)
 texture = ExtResource("2_trtic")
 
 [node name="Npc1" parent="." instance=ExtResource("15_rysoc")]
@@ -70,11 +67,11 @@ script = ExtResource("8_qnb83")
 
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
 z_index = 200
-position = Vector2(723, 1035)
+position = Vector2(580, 988)
 script = ExtResource("2_yqjtg")
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
-position = Vector2(369, 204)
+position = Vector2(484, 806)
 zoom = Vector2(2, 2)
 script = ExtResource("4_lbhrr")
 target = NodePath("../Player")
@@ -107,16 +104,17 @@ metadata/_edit_use_anchors_ = true
 script = ExtResource("14_trtic")
 
 [node name="Theme" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Theme"]
 z_index = -1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -819.0
-offset_top = -211.0
-offset_right = 817.0
-offset_bottom = 119.0
+offset_left = -680.0
+offset_top = 118.0
+offset_right = 956.0
+offset_bottom = 448.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -126,6 +124,7 @@ day_color = Color(0.5372549, 0.49411765, 0.36862746, 0.19607843)
 metadata/_edit_group_ = true
 
 [node name="UpgradeShop" parent="." instance=ExtResource("19_264po")]
+visible = false
 z_index = 300
 offset_left = 456.0
 offset_top = 871.0
@@ -135,6 +134,7 @@ script = ExtResource("20_1kice")
 metadata/_edit_use_anchors_ = true
 
 [node name="FishShop" parent="." instance=ExtResource("21_5newe")]
+visible = false
 z_index = 300
 offset_left = 641.0
 offset_top = 865.0
@@ -144,6 +144,7 @@ script = ExtResource("22_37s47")
 metadata/_edit_use_anchors_ = true
 
 [node name="CosmeticsShop" parent="." instance=ExtResource("25_suyxu")]
+visible = false
 z_index = 300
 offset_left = 264.0
 offset_top = 850.0
@@ -153,12 +154,12 @@ offset_bottom = 1050.0
 [node name="land" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="land"]
-position = Vector2(297, 1090)
+position = Vector2(580.59375, 1013)
 shape = SubResource("RectangleShape2D_e1j6l")
 
 [node name="Sprite2D" type="Sprite2D" parent="land"]
 z_index = 1
-position = Vector2(439.026, 1087.9869)
+position = Vector2(437.00006, 1046)
 rotation = 1.5707964
 scale = Vector2(0.4193952, 0.84835726)
 texture = ExtResource("23_qnb83")
@@ -179,7 +180,7 @@ shape = SubResource("SegmentShape2D_e1j6l")
 
 [node name="Sprite2D" type="Sprite2D" parent="land/Tree"]
 z_index = 1
-position = Vector2(514, 855)
+position = Vector2(213, 857)
 scale = Vector2(0.50633717, 0.5469208)
 texture = ExtResource("9_pl11u")
 
@@ -206,6 +207,7 @@ position = Vector2(1464, 1090)
 shape = SubResource("RectangleShape2D_pl11u")
 
 [node name="Cosmetics" parent="." instance=ExtResource("27_sww3w")]
+visible = false
 position = Vector2(489, 632)
 
 [node name="Hints" type="Control" parent="."]
