@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dtipbmymq13e1"]
+[gd_scene load_steps=9 format=3 uid="uid://dtipbmymq13e1"]
 
 [ext_resource type="Script" uid="uid://do84ogts0xyuy" path="res://scripts/minigame/minigame_controller.gd" id="1_hwsak"]
 [ext_resource type="Script" uid="uid://w8tkfa0u1tsp" path="res://scripts/minigame/minigame_manager.gd" id="2_0dp5x"]
 [ext_resource type="PackedScene" uid="uid://hehbnnem2stc" path="res://scenes/card_display.tscn" id="3_22ed1"]
+[ext_resource type="Texture2D" uid="uid://bxcrf8svyyqyc" path="res://assets/Black Jack/gameBackground.png" id="4_bg"]
+[ext_resource type="Texture2D" uid="uid://fe110iyuqqv8" path="res://assets/fish/angler/angler1.png" id="5_fish"]
+[ext_resource type="Texture2D" uid="uid://b6pskwcdtv1lt" path="res://assets/Black Jack/hit_button.png" id="6_hit"]
+[ext_resource type="Texture2D" uid="uid://cd8oim1pijogi" path="res://assets/Black Jack/stand_button.png" id="7_stand"]
+[ext_resource type="Texture2D" uid="uid://brk6ye5hikcwq" path="res://assets/Black Jack/allIn_button.png" id="8_allin"]
 
 [node name="Minigame" type="Control"]
 process_mode = 3
@@ -25,73 +30,143 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HitButton" type="Button" parent="MinigameUI"]
-process_mode = 3
+[node name="OpaqueBackground" type="ColorRect" parent="MinigameUI"]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -121.0
-offset_top = -411.0
-offset_right = -51.0
-offset_bottom = -371.0
 grow_horizontal = 2
-grow_vertical = 0
-text = "Hit"
+grow_vertical = 2
+color = Color(0.2, 0.3, 0.4, 1)
 
-[node name="StandButton" type="Button" parent="MinigameUI"]
+[node name="Control" type="Control" parent="MinigameUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -332.0
+offset_top = -285.0
+offset_right = -332.0
+offset_bottom = -285.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5707964
+
+[node name="FishSprite" type="TextureRect" parent="MinigameUI/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -158.00003
+offset_top = -548.0
+offset_right = 420.46988
+offset_bottom = -127.36011
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_fish")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="GameBackground" type="TextureRect" parent="MinigameUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = -384.0
+offset_right = 512.0
+offset_bottom = 384.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_bg")
+stretch_mode = 5
+
+[node name="HitButton" type="TextureButton" parent="MinigameUI"]
 process_mode = 3
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 28.0
-offset_top = -411.0
-offset_right = 98.0
-offset_bottom = -371.0
+anchor_bottom = 0.5
+offset_left = 57.0
+offset_top = 353.0
+offset_right = 231.5
+offset_bottom = 441.0
 grow_horizontal = 2
-grow_vertical = 0
-text = "Stand"
+grow_vertical = 2
+texture_normal = ExtResource("6_hit")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="StandButton" type="TextureButton" parent="MinigameUI"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -228.0
+offset_top = 360.0
+offset_right = -87.0
+offset_bottom = 439.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("7_stand")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="DealerHandLabel" type="Label" parent="MinigameUI"]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -52.0
-offset_top = 368.0
-offset_right = 48.0
-offset_bottom = 391.0
+anchor_bottom = 0.5
+offset_left = 446.0
+offset_top = -226.0
+offset_right = 546.0
+offset_bottom = -203.0
 grow_horizontal = 2
+grow_vertical = 2
 text = "DEALER"
 horizontal_alignment = 1
 
 [node name="DealerHand" type="HBoxContainer" parent="MinigameUI"]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -200.0
-offset_top = 50.0
-offset_right = 200.0
-offset_bottom = 190.0
+anchor_bottom = 0.5
+offset_left = -211.0
+offset_top = 11.0
+offset_right = 189.0
+offset_bottom = 151.0
 grow_horizontal = 2
+grow_vertical = 2
 alignment = 1
 
 [node name="DealerScoreLabel" type="Label" parent="MinigameUI"]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -59.0
-offset_top = 344.0
-offset_right = 55.0
-offset_bottom = 367.0
+anchor_bottom = 0.5
+offset_left = 466.0
+offset_top = -189.0
+offset_right = 580.0
+offset_bottom = -166.0
 grow_horizontal = 2
+grow_vertical = 2
 text = "Dealer Score: ?"
 horizontal_alignment = 1
 
@@ -102,10 +177,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -97.0
-offset_top = -84.0
-offset_right = 103.0
-offset_bottom = -61.0
+offset_left = 417.0
+offset_top = -33.0
+offset_right = 617.0
+offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "HIT OR STAND?"
@@ -113,49 +188,49 @@ horizontal_alignment = 1
 
 [node name="PlayerHandLabel" type="Label" parent="MinigameUI"]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -50.0
-offset_top = -320.0
-offset_right = 50.0
-offset_bottom = -297.0
+anchor_bottom = 0.5
+offset_left = 448.0
+offset_top = 160.0
+offset_right = 548.0
+offset_bottom = 183.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 text = "PLAYER"
 horizontal_alignment = 1
 
 [node name="PlayerHand" type="HBoxContainer" parent="MinigameUI"]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -189.0
-offset_top = -148.0
-offset_right = 211.0
-offset_bottom = -8.0
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = 208.0
+offset_right = 208.0
+offset_bottom = 348.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 theme_override_constants/separation = 4
 alignment = 1
 
 [node name="PlayerScoreLabel" type="Label" parent="MinigameUI"]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -53.0
-offset_top = -278.0
-offset_right = 60.0
-offset_bottom = -255.0
+anchor_bottom = 0.5
+offset_left = 469.0
+offset_top = 199.0
+offset_right = 582.0
+offset_bottom = 222.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 text = "Player Score: 0"
 horizontal_alignment = 1
 
@@ -199,10 +274,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -100.0
-offset_right = 150.0
-offset_bottom = 100.0
+offset_left = -200.0
+offset_top = -80.0
+offset_right = 200.0
+offset_bottom = 120.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -229,10 +304,12 @@ process_mode = 3
 layout_mode = 2
 text = "Bet 100"
 
-[node name="BetAllIn" type="Button" parent="MinigameUI/BettingPanel/VBoxContainer"]
+[node name="BetAllIn" type="TextureButton" parent="MinigameUI/BettingPanel/VBoxContainer"]
 process_mode = 3
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-text = "ALL IN"
+texture_normal = ExtResource("8_allin")
+stretch_mode = 5
 
 [node name="ProgressMeter" type="VBoxContainer" parent="MinigameUI"]
 layout_mode = 1
@@ -241,10 +318,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -120.0
-offset_top = -150.0
-offset_right = -20.0
-offset_bottom = 150.0
+offset_left = -150.0
+offset_top = -200.0
+offset_right = -30.0
+offset_bottom = 200.0
 grow_horizontal = 0
 grow_vertical = 2
 
@@ -254,7 +331,7 @@ text = "Progress"
 horizontal_alignment = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="MinigameUI/ProgressMeter"]
-custom_minimum_size = Vector2(0, 250)
+custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 max_value = 500.0
 fill_mode = 3
