@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dtipbmymq13e1"]
+[gd_scene load_steps=11 format=3 uid="uid://dtipbmymq13e1"]
 
 [ext_resource type="Script" uid="uid://do84ogts0xyuy" path="res://scripts/minigame/minigame_controller.gd" id="1_hwsak"]
 [ext_resource type="Script" uid="uid://w8tkfa0u1tsp" path="res://scripts/minigame/minigame_manager.gd" id="2_0dp5x"]
@@ -6,8 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://bxcrf8svyyqyc" path="res://assets/Black Jack/gameBackground.png" id="4_bg"]
 [ext_resource type="Texture2D" uid="uid://fe110iyuqqv8" path="res://assets/fish/angler/angler1.png" id="5_fish"]
 [ext_resource type="Texture2D" uid="uid://b6pskwcdtv1lt" path="res://assets/Black Jack/hit_button.png" id="6_hit"]
+[ext_resource type="Theme" uid="uid://bbi2aoes23tm3" path="res://main_menu_button_theme.tres" id="7_jbh4e"]
 [ext_resource type="Texture2D" uid="uid://cd8oim1pijogi" path="res://assets/Black Jack/stand_button.png" id="7_stand"]
 [ext_resource type="Texture2D" uid="uid://brk6ye5hikcwq" path="res://assets/Black Jack/allIn_button.png" id="8_allin"]
+[ext_resource type="Texture2D" uid="uid://caohlvuio2uk5" path="res://assets/Black Jack/redChip.png" id="9_chip"]
 
 [node name="Minigame" type="Control"]
 process_mode = 3
@@ -38,6 +40,28 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.2, 0.3, 0.4, 1)
+
+[node name="OpaqueBackground2" type="ColorRect" parent="MinigameUI"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 104.0
+grow_horizontal = 2
+color = Color(0.6870655, 0.23024377, 0.64110214, 1)
+
+[node name="OpaqueBackground3" type="ColorRect" parent="MinigameUI"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -87.0
+offset_right = 1.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.14174572, 0.5288752, 0.49125516, 1)
 
 [node name="Control" type="Control" parent="MinigameUI"]
 layout_mode = 1
@@ -78,13 +102,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -512.0
-offset_top = -384.0
-offset_right = 512.0
-offset_bottom = 384.0
+offset_left = -617.0
+offset_top = -461.0
+offset_right = 618.0
+offset_bottom = 471.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_bg")
+expand_mode = 1
 stretch_mode = 5
 
 [node name="HitButton" type="TextureButton" parent="MinigameUI"]
@@ -95,10 +120,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 57.0
-offset_top = 353.0
-offset_right = 231.5
-offset_bottom = 441.0
+offset_left = 102.0
+offset_top = 316.0
+offset_right = 276.5
+offset_bottom = 404.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("6_hit")
@@ -113,10 +138,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -228.0
-offset_top = 360.0
-offset_right = -87.0
-offset_bottom = 439.0
+offset_left = -284.0
+offset_top = 323.0
+offset_right = -143.0
+offset_bottom = 402.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("7_stand")
@@ -130,13 +155,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 446.0
-offset_top = -226.0
-offset_right = 546.0
-offset_bottom = -203.0
+offset_left = -941.0
+offset_top = -523.0
+offset_right = -779.0
+offset_bottom = -455.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "DEALER"
+theme = ExtResource("7_jbh4e")
+theme_override_font_sizes/font_size = 50
 horizontal_alignment = 1
 
 [node name="DealerHand" type="HBoxContainer" parent="MinigameUI"]
@@ -146,10 +172,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -211.0
-offset_top = 11.0
-offset_right = 189.0
-offset_bottom = 151.0
+offset_left = -200.0
+offset_top = -24.0
+offset_right = 200.0
+offset_bottom = 116.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -161,13 +187,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 466.0
-offset_top = -189.0
-offset_right = 580.0
-offset_bottom = -166.0
+offset_left = 575.0
+offset_top = -526.0
+offset_right = 908.0
+offset_bottom = -458.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Dealer Score: ?"
+theme = ExtResource("7_jbh4e")
+theme_override_font_sizes/font_size = 50
 horizontal_alignment = 1
 
 [node name="StatusLabel" type="Label" parent="MinigameUI"]
@@ -177,13 +204,32 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 417.0
-offset_top = -33.0
-offset_right = 617.0
-offset_bottom = -10.0
+offset_left = -107.0
+offset_top = 138.0
+offset_right = 93.0
+offset_bottom = 161.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("7_jbh4e")
+theme_override_font_sizes/font_size = 25
 text = "HIT OR STAND?"
+horizontal_alignment = 1
+
+[node name="CurrentBetLabel" type="Label" parent="MinigameUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.0
+offset_top = 460.0
+offset_right = -47.0
+offset_bottom = 529.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Bet: 0"
 horizontal_alignment = 1
 
 [node name="PlayerHandLabel" type="Label" parent="MinigameUI"]
@@ -193,12 +239,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 448.0
-offset_top = 160.0
-offset_right = 548.0
-offset_bottom = 183.0
+offset_left = -929.0
+offset_top = 458.0
+offset_right = -771.0
+offset_bottom = 526.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("7_jbh4e")
+theme_override_font_sizes/font_size = 50
 text = "PLAYER"
 horizontal_alignment = 1
 
@@ -209,10 +257,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -192.0
-offset_top = 208.0
-offset_right = 208.0
-offset_bottom = 348.0
+offset_left = -211.0
+offset_top = 174.0
+offset_right = 189.0
+offset_bottom = 314.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 4
@@ -225,13 +273,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 469.0
-offset_top = 199.0
-offset_right = 582.0
-offset_bottom = 222.0
+offset_left = 477.0
+offset_top = 463.0
+offset_right = 942.0
+offset_bottom = 532.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Player Score: 0"
+theme = ExtResource("7_jbh4e")
+theme_override_font_sizes/font_size = 50
+text = "Player Hand Score: 0"
 horizontal_alignment = 1
 
 [node name="ResultPanel" type="PanelContainer" parent="MinigameUI"]
@@ -241,10 +291,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -50.0
-offset_right = 150.0
-offset_bottom = 50.0
+offset_left = 435.0
+offset_top = 298.0
+offset_right = 735.0
+offset_bottom = 398.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -266,7 +316,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="BettingPanel" type="PanelContainer" parent="MinigameUI"]
+[node name="BettingPanel" type="Control" parent="MinigameUI"]
 process_mode = 3
 layout_mode = 1
 anchors_preset = 8
@@ -274,42 +324,148 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -80.0
-offset_right = 200.0
-offset_bottom = 120.0
+offset_left = -865.0
+offset_top = 16.0
+offset_right = -465.0
+offset_bottom = 316.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MinigameUI/BettingPanel"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MinigameUI/BettingPanel/VBoxContainer"]
-layout_mode = 2
+[node name="TitleLabel" type="Label" parent="MinigameUI/BettingPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = 10.0
+offset_right = 100.0
+offset_bottom = 40.0
+grow_horizontal = 2
 text = "Place Your Bet"
 horizontal_alignment = 1
 
-[node name="Bet10" type="Button" parent="MinigameUI/BettingPanel/VBoxContainer"]
+[node name="Bet10" type="TextureButton" parent="MinigameUI/BettingPanel"]
 process_mode = 3
-layout_mode = 2
-text = "Bet 10"
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -30.0
+offset_right = -70.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("9_chip")
+ignore_texture_size = true
+stretch_mode = 0
 
-[node name="Bet50" type="Button" parent="MinigameUI/BettingPanel/VBoxContainer"]
-process_mode = 3
-layout_mode = 2
-text = "Bet 50"
+[node name="Label" type="Label" parent="MinigameUI/BettingPanel/Bet10"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Bet100" type="Button" parent="MinigameUI/BettingPanel/VBoxContainer"]
+[node name="Bet50" type="TextureButton" parent="MinigameUI/BettingPanel"]
 process_mode = 3
-layout_mode = 2
-text = "Bet 100"
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -100.0
+offset_right = 40.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("9_chip")
+ignore_texture_size = true
+stretch_mode = 0
 
-[node name="BetAllIn" type="TextureButton" parent="MinigameUI/BettingPanel/VBoxContainer"]
+[node name="Label" type="Label" parent="MinigameUI/BettingPanel/Bet50"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "50"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bet100" type="TextureButton" parent="MinigameUI/BettingPanel"]
 process_mode = 3
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 70.0
+offset_top = -30.0
+offset_right = 150.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("9_chip")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MinigameUI/BettingPanel/Bet100"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BetAllIn" type="TextureButton" parent="MinigameUI/BettingPanel"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 10.0
+offset_right = 50.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
 texture_normal = ExtResource("8_allin")
-stretch_mode = 5
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="ProgressMeter" type="VBoxContainer" parent="MinigameUI"]
 layout_mode = 1

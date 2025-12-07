@@ -8,14 +8,16 @@ extends Node
 @onready var dealer_hand_container = $MinigameUI/DealerHand
 @onready var player_score_label = $MinigameUI/PlayerScoreLabel
 @onready var dealer_score_label = $MinigameUI/DealerScoreLabel
+@onready var dealer_hand_label = $MinigameUI/DealerHandLabel
 @onready var status_label = $MinigameUI/StatusLabel
+@onready var current_bet_label = $MinigameUI/CurrentBetLabel
 @onready var result_panel = $MinigameUI/ResultPanel
 @onready var result_text = $MinigameUI/ResultPanel/ResultText
 @onready var betting_panel = $MinigameUI/BettingPanel
-@onready var bet_10_btn = $MinigameUI/BettingPanel/VBoxContainer/Bet10
-@onready var bet_50_btn = $MinigameUI/BettingPanel/VBoxContainer/Bet50
-@onready var bet_100_btn = $MinigameUI/BettingPanel/VBoxContainer/Bet100
-@onready var bet_all_in_btn = $MinigameUI/BettingPanel/VBoxContainer/BetAllIn
+@onready var bet_10_btn = $MinigameUI/BettingPanel/Bet10
+@onready var bet_50_btn = $MinigameUI/BettingPanel/Bet50
+@onready var bet_100_btn = $MinigameUI/BettingPanel/Bet100
+@onready var bet_all_in_btn = $MinigameUI/BettingPanel/BetAllIn
 @onready var fish_sprite = $MinigameUI/Control/FishSprite
 
 var card_scene = preload("res://scenes/card_display.tscn")
@@ -53,7 +55,35 @@ func _start_minigame():
 	print("Starting minigame session")
 	minigame_ui.visible = true
 	fish_sprite.texture = fish_neutral
+	status_label.text = "HIT OR STAND?"
+	_update_fish_name()
+	_initialize_score_labels()
 	_show_betting_ui()
+
+func _initialize_score_labels():
+	# Initialize dealer score label with fish name
+	var fish_name = _get_fish_name()
+	dealer_score_label.text = "%s Score: ?" % fish_name
+	player_score_label.text = "Player Score: 0"
+
+func _get_fish_name() -> String:
+	# Extract fish name from texture path
+	var texture_path = fish_neutral.resource_path
+	var path_parts = texture_path.split("/")
+	
+	if path_parts.size() >= 3:
+		var fish_name = path_parts[path_parts.size() - 2]
+		var words = fish_name.split(" ")
+		var capitalized_name = ""
+		for word in words:
+			if word.length() > 0:
+				capitalized_name += word.capitalize() + " "
+		return capitalized_name.strip_edges()
+	else:
+		return "Dealer"
+
+func _update_fish_name():
+	dealer_hand_label.text = _get_fish_name().to_upper()
 
 func _start_game():
 	print("Starting new round")
@@ -62,6 +92,8 @@ func _start_game():
 	_enable_buttons()
 	_hide_betting_ui()
 	_update_round_display()
+	current_bet_label.text = "Bet: %d" % mg_manager.cur_game_bet
+	current_bet_label.visible = true
 	print("Buttons enabled - disabled state: Hit=", hit_btn.disabled, " Stand=", stand_btn.disabled)
 	_update_display()
 
@@ -120,6 +152,10 @@ func _on_caught_fish():
 	result_panel.visible = true
 	fish_sprite.texture = fish_worried
 	_disable_buttons()
+	
+	await get_tree().create_timer(3.0).timeout
+	result_panel.visible = false
+	minigame_ui.visible = false
 
 
 func _on_lost_fish():
@@ -127,15 +163,18 @@ func _on_lost_fish():
 	status_label.text = "FISH GOT AWAY..."
 	result_text.text = "GAME OVER\nThe fish got away!"
 	result_panel.visible = true
-
 	_disable_buttons()
+	
+	await get_tree().create_timer(3.0).timeout
+	result_panel.visible = false
+	minigame_ui.visible = false
 
 func _update_display():
 	var game = mg_manager.current_game
 	
 	# display both hands
-	_display_hand(game.player_hand, player_hand_container, player_score_label, true)
-	_display_hand(game.dealer_hand, dealer_hand_container, dealer_score_label, game.is_standing)
+	_display_hand(game.player_hand, player_hand_container, player_score_label, true, false)
+	_display_hand(game.dealer_hand, dealer_hand_container, dealer_score_label, game.is_standing, true)
 	
 	# status update
 	if game.is_player_bust:
@@ -147,7 +186,7 @@ func _update_display():
 	else:
 		status_label.text = "HIT OR STAND?"
 
-func _display_hand(hand: Array, container: Container, score_label: Label, show_score: bool):
+func _display_hand(hand: Array, container: Container, score_label: Label, show_score: bool, is_dealer: bool):
 	# clear existing cards
 	for child in container.get_children():
 		child.queue_free()
@@ -163,6 +202,12 @@ func _display_hand(hand: Array, container: Container, score_label: Label, show_s
 			card_display.set_card_hidden()
 	
 	# update score label
+	var label_prefix = ""
+	if is_dealer:
+		label_prefix = _get_fish_name() + " "
+	else:
+		label_prefix = "Player "
+	
 	if show_score:
 		var score = 0
 		for card in hand:
@@ -182,9 +227,9 @@ func _display_hand(hand: Array, container: Container, score_label: Label, show_s
 			score -= 10
 			aces -= 1
 		
-		score_label.text = "Score: %d" % score
+		score_label.text = "%sScore: %d" % [label_prefix, score]
 	else:
-		score_label.text = "Score: ?"
+		score_label.text = "%sScore: ?" % label_prefix
 
 func _clear_hands():
 	for child in player_hand_container.get_children():
@@ -204,6 +249,9 @@ func _show_betting_ui():
 	betting_panel.visible = true
 	hit_btn.visible = false
 	stand_btn.visible = false
+	_clear_hands()
+	status_label.text = "Place Your Bet"
+	current_bet_label.visible = false
 	
 	# udpate buttn based on cur score
 	var current_score = mg_manager.player_score
