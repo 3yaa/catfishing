@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dtipbmymq13e1"]
 
-[ext_resource type="Script" uid="uid://do84ogts0xyuy" path="res://scripts/minigame/minigame_game_controller.gd" id="1_hwsak"]
+[ext_resource type="Script" uid="uid://do84ogts0xyuy" path="res://scripts/minigame/minigame_controller.gd" id="1_hwsak"]
 [ext_resource type="Script" uid="uid://w8tkfa0u1tsp" path="res://scripts/minigame/minigame_manager.gd" id="2_0dp5x"]
 [ext_resource type="PackedScene" uid="uid://hehbnnem2stc" path="res://scenes/card_display.tscn" id="3_22ed1"]
 
@@ -257,8 +257,8 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 max_value = 500.0
-show_percentage = false
 fill_mode = 3
+show_percentage = false
 
 [node name="ScoreLabel" type="Label" parent="MinigameUI/ProgressMeter"]
 layout_mode = 2
