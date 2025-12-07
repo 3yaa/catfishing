@@ -9,6 +9,11 @@ var any_fish = false
 var size_min:float = 1.0
 var size_max:float = 20.0
 
+# base fish price, limit to 2 decimal points
+var base_price:float = 10.00
+
+var reel_chance:float
+
 var fish_inventory: Array[Fish] = []
 
 var current_fish:Fish = null
@@ -52,18 +57,22 @@ func _process(_delta):
 			if not any_fish:
 				current_fish = make_fish()
 				any_fish = true
+				# reset the reel_chance
+				reel_chance = player.reel_skill
 			# when we implement player stats:
 			else:
 				var roll = randf() * 100
 				print(roll)
-				print(player.reel_skill)
-				if player.reel_skill > roll:
+				print(reel_chance)
+				if reel_chance > roll:
 					# probably do some probability algorithm where reeling chance is calculated
 					# use that reeling chance and if it lands, send the fish caught signal
 					player.fish_caught.emit()
 					print(current_fish.stringify())
 					player.is_fishing = false
 					any_fish = false
+				else:
+					reel_chance += 10.0
 	
 	
 func make_fish() -> Fish:
@@ -72,7 +81,7 @@ func make_fish() -> Fish:
 	# value is calculated by the size, then multiplied by two scalers:
 	# player.salesman: small bonus to get more money
 	# rarity: scalar between 1-3x, biggest boost of value to fish
-	var value:float = player.salesman * size * (rarity + 1)
+	var value:float = (base_price +  size) * player.salesman  * (rarity + 1)
 	# this trunctuates the float to 2 decimal places
 	value = floor(value * 100) / 100.0
 	var new_fish = Fish.new(size, rarity, value)
