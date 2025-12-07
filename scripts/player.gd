@@ -18,6 +18,7 @@ var salesman:float = 1.0 # salesman indicates how much more you can sell a fish 
 var money: float = 100.0
 
 signal fish_caught
+signal fish_reeled
 signal is_late			# Triggered when stay too late in ocean and got teleport back
 
 @onready var animated_sprite = $AnimatedSprite2D

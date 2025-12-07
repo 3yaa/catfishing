@@ -1,5 +1,4 @@
 class_name Blackjack
-extends Node
 
 var deck: Deck
 var player_hand: Array[Deck.Card] = []
@@ -13,8 +12,6 @@ var is_dealer_turn: bool = false
 var max_val = 21
 var common_offset = 7
 var rare_offset = 4
-
-@onready var fish = get_node("/root/Game/FishLogic")
 
 func _init():
 	_reset_game()
@@ -74,7 +71,7 @@ func hit():
 	if get_player_score() > 21:
 		is_player_bust = true
 
-func stand():
+func stand(fish):
 	if is_standing:
 		return
 	
@@ -83,20 +80,20 @@ func stand():
 	dealer_hand[1].visible = true
 	
 	# dealer AI
-	while get_dealer_score() < 17:
-		dealer_hand.append(deck.draw_card())
+	#while get_dealer_score() < 17:
+		#dealer_hand.append(deck.draw_card())
 	
-	# uncomment this when linking is complete
-	#if is_player_bust:
-		#is_dealer_turn = true
-		#
-	#match fish.current_fish.fish_rarity:
-		#fish.COMMON:
-			#_common_fish()
-		#fish.RARE:
-			#_rare_fish()
-		#fish.SUPER_RARE:
-			#_super_rare_fish()
+	 #uncomment this when linking is complete
+	if is_player_bust:
+		is_dealer_turn = true
+		
+	match fish.current_fish.fish_rarity:
+		fish.Rarity.COMMON:
+			_common_fish()
+		fish.Rarity.RARE:
+			_rare_fish()
+		fish.Rarity.SUPER_RARE:
+			_super_rare_fish()
 		
 	if get_dealer_score() > 21:
 		is_dealer_bust = true

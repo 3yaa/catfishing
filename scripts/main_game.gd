@@ -4,13 +4,17 @@ extends Node2D
 @onready var minigame_container = $MinigameContainer
 @onready var minigame = $MinigameContainer/Minigame
 @onready var minigame_trigger_button = $WorldUI/MinigameTriggerButton
+@onready var player = get_node("/root/Game/Player")
 
 func _ready() -> void:
 	# minigame initially hide
 	minigame_container.visible = false
 	
 	# TEMP button to start minigame
-	minigame_trigger_button.pressed.connect(_on_minigame_trigger_pressed)
+	# minigame_trigger_button.pressed.connect(_on_minigame_trigger_pressed)
+	
+	# when the fish is caught, the minigame is triggered
+	player.fish_reeled.connect(_on_minigame_trigger_pressed)
 	
 	# connect minigame finish signals
 	var mg_manager = minigame.get_node("MinigameManager")

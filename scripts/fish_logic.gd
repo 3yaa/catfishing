@@ -67,7 +67,7 @@ func _process(_delta):
 				if reel_chance > roll:
 					# probably do some probability algorithm where reeling chance is calculated
 					# use that reeling chance and if it lands, send the fish caught signal
-					player.fish_caught.emit()
+					player.fish_reeled.emit()
 					print(current_fish.stringify())
 					player.is_fishing = false
 					any_fish = false

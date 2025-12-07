@@ -20,6 +20,7 @@ extends Node
 @onready var bet_100_btn = $MinigameUI/BettingPanel/Bet100
 @onready var bet_all_in_btn = $MinigameUI/BettingPanel/BetAllIn
 @onready var fish_sprite = $MinigameUI/Control/FishSprite
+@onready var fish = get_node("/root/Game/FishLogic")
 
 var card_scene = preload("res://scenes/card_display.tscn")
 
@@ -176,7 +177,7 @@ func _on_hit():
 func _on_stand():
 	print("STAND BUTTON PRESSED!")
 	_button_press_animation(stand_btn)
-	mg_manager.current_game.stand()
+	mg_manager.current_game.stand(fish)
 	_update_display()
 	_disable_buttons()
 	await get_tree().create_timer(1.0).timeout
