@@ -122,7 +122,7 @@ size = Vector2(561.5, 20)
 size = Vector2(1157, 20)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_e1j6l"]
-b = Vector2(4, 454)
+b = Vector2(0, 525)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_0tnpc")
@@ -267,16 +267,18 @@ shape = SubResource("RectangleShape2D_pl11u")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
-position = Vector2(1209, 479)
+position = Vector2(1209, 479.00003)
 scale = Vector2(0.8680001, 0.8685001)
 texture = ExtResource("24_e1j6l")
 region_enabled = true
 region_rect = Rect2(29.625492, 0, 440.67227, 500)
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(1588, 478)
+position = Vector2(1592, 479)
 scale = Vector2(0.8680001, 0.8685001)
 texture = ExtResource("24_e1j6l")
+region_enabled = true
+region_rect = Rect2(29.216484, 0, 442.09357, 500)
 
 [node name="barrier" type="StaticBody2D" parent="."]
 
