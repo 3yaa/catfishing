@@ -260,7 +260,7 @@ script = ExtResource("22_37s47")
 z_index = 300
 offset_left = 94.0
 offset_top = 257.0
-offset_right = 452.0
+offset_right = 429.0
 offset_bottom = 457.0
 
 [node name="land" type="StaticBody2D" parent="."]
