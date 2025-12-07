@@ -8,52 +8,134 @@ extends Node
 @onready var dealer_hand_container = $MinigameUI/DealerHand
 @onready var player_score_label = $MinigameUI/PlayerScoreLabel
 @onready var dealer_score_label = $MinigameUI/DealerScoreLabel
+@onready var dealer_hand_label = $MinigameUI/DealerHandLabel
 @onready var status_label = $MinigameUI/StatusLabel
+@onready var current_bet_container = $MinigameUI/CurrentBetContainer
+@onready var current_bet_label = $MinigameUI/CurrentBetContainer/VBoxContainer/CurrentBetLabel
 @onready var result_panel = $MinigameUI/ResultPanel
 @onready var result_text = $MinigameUI/ResultPanel/ResultText
 @onready var betting_panel = $MinigameUI/BettingPanel
-@onready var bet_10_btn = $MinigameUI/BettingPanel/VBoxContainer/Bet10
-@onready var bet_50_btn = $MinigameUI/BettingPanel/VBoxContainer/Bet50
-@onready var bet_100_btn = $MinigameUI/BettingPanel/VBoxContainer/Bet100
-@onready var bet_all_in_btn = $MinigameUI/BettingPanel/VBoxContainer/BetAllIn
+@onready var bet_10_btn = $MinigameUI/BettingPanel/Bet10
+@onready var bet_50_btn = $MinigameUI/BettingPanel/Bet50
+@onready var bet_100_btn = $MinigameUI/BettingPanel/Bet100
+@onready var bet_all_in_btn = $MinigameUI/BettingPanel/BetAllIn
 @onready var fish_sprite = $MinigameUI/Control/FishSprite
 
 var card_scene = preload("res://scenes/card_display.tscn")
 
-# Fish textures
+# fish texture -- HARDCODED CUR
 var fish_neutral = preload("res://assets/fish/angler/angler1.png")
 var fish_annoyed = preload("res://assets/fish/angler/angler2.png")
 var fish_worried = preload("res://assets/fish/angler/angler3.png")
+
+var fish_idle_time: float = 0.0
+var top_panel: ColorRect
+var bottom_panel: ColorRect
+var player_sprite: AnimatedSprite2D
 
 func _ready():
 	minigame_ui.visible = false
 	result_panel.visible = false
 	
-	print("Minigame controller ready")
-	print("Hit button: ", hit_btn)
-	print("Stand button: ", stand_btn)
-
+	# panel ref
+	top_panel = $MinigameUI/OpaqueBackground2
+	bottom_panel = $MinigameUI/OpaqueBackground3
+	
+	# player ref
+	var player_node = $MinigameUI/Player
+	if player_node and player_node.has_node("AnimatedSprite2D"):
+		player_sprite = player_node.get_node("AnimatedSprite2D")
+	
 	hit_btn.pressed.connect(_on_hit)
 	stand_btn.pressed.connect(_on_stand)
 	
-	# Connect betting buttons
+	# connect betting buttons
 	bet_10_btn.pressed.connect(func(): _on_bet_selected(10))
 	bet_50_btn.pressed.connect(func(): _on_bet_selected(50))
 	bet_100_btn.pressed.connect(func(): _on_bet_selected(100))
 	bet_all_in_btn.pressed.connect(func(): _on_bet_selected(mg_manager.player_score))
 	
-	print("Buttons connected")
-
 	mg_manager.cur_game_finished.connect(_on_game_finished)
 	mg_manager.caught_fish.connect(_on_caught_fish)
 	mg_manager.lost_fish.connect(_on_lost_fish)
 	mg_manager.score_updated.connect(_on_score_updated)
 
+func _process(delta: float):
+	if minigame_ui.visible:
+		_animate_fish(delta)
+
 func _start_minigame():
-	print("Starting minigame session")
 	minigame_ui.visible = true
+	
+	# hide action buttons -- imd
+	hit_btn.visible = false
+	stand_btn.visible = false
+	betting_panel.visible = false
+	current_bet_container.visible = false
+	# 
+	player_sprite.play("idle_ocean")
+	# 
 	fish_sprite.texture = fish_neutral
+	status_label.text = "HIT OR STAND?"
+	_update_fish_name()
+	_initialize_score_labels()
+	# animate panel
+	_animate_panels_in()
+	# 
+	await get_tree().create_timer(0.8).timeout
 	_show_betting_ui()
+
+func _animate_panels_in():
+	# start panels off-screen
+	top_panel.position.y = - top_panel.size.y
+	bottom_panel.position.y = get_viewport().size.y
+	# animate top panel sliding down
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_BACK)
+	# 
+	tween.tween_property(top_panel, "position:y", 0, 0.6)
+	tween.tween_property(bottom_panel, "position:y", get_viewport().size.y - bottom_panel.size.y, 0.6)
+
+func _animate_fish(delta: float):
+	fish_idle_time += delta
+	# floating motion
+	var float_offset_y = sin(fish_idle_time * 1.5) * 15.0
+	var float_offset_x = cos(fish_idle_time * 0.8) * 8.0
+	# rotation
+	var rotation_offset = sin(fish_idle_time * 1.2) * 0.05
+	# base position -- CHANGE IF WANT SMT DIF
+	var base_x = -158.0
+	var base_y = -548.0
+	# 
+	fish_sprite.position.x = base_x + float_offset_x
+	fish_sprite.position.y = base_y + float_offset_y
+	fish_sprite.rotation = rotation_offset
+
+# init dealer with fish
+func _initialize_score_labels():
+	var fish_name = _get_fish_name()
+	dealer_score_label.text = "%s Hand: ?" % fish_name
+	player_score_label.text = "Player Hand: 0"
+
+func _get_fish_name() -> String:
+	var texture_path = fish_neutral.resource_path
+	var path_parts = texture_path.split("/")
+	# 
+	if path_parts.size() >= 3:
+		var fish_name = path_parts[path_parts.size() - 2]
+		var words = fish_name.split(" ")
+		var capitalized_name = ""
+		for word in words:
+			if word.length() > 0:
+				capitalized_name += word.capitalize() + " "
+		return capitalized_name.strip_edges()
+	else:
+		return "Dealer"
+
+func _update_fish_name():
+	dealer_hand_label.text = _get_fish_name().to_upper()
 
 func _start_game():
 	print("Starting new round")
@@ -62,7 +144,18 @@ func _start_game():
 	_enable_buttons()
 	_hide_betting_ui()
 	_update_round_display()
-	print("Buttons enabled - disabled state: Hit=", hit_btn.disabled, " Stand=", stand_btn.disabled)
+	current_bet_label.text = str(mg_manager.cur_game_bet)
+	# animate bet
+	current_bet_container.visible = true
+	current_bet_container.modulate.a = 0
+	current_bet_container.scale = Vector2(0.8, 0.8)
+	# 
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.tween_property(current_bet_container, "modulate:a", 1.0, 0.3)
+	tween.parallel().tween_property(current_bet_container, "scale", Vector2(1.0, 1.0), 0.3)
+
 	_update_display()
 
 func _update_round_display():
@@ -71,6 +164,7 @@ func _update_round_display():
 
 func _on_hit():
 	print("HIT BUTTON PRESSED!")
+	_button_press_animation(hit_btn)
 	mg_manager.current_game.hit()
 	_update_display()
 	
@@ -81,15 +175,21 @@ func _on_hit():
 
 func _on_stand():
 	print("STAND BUTTON PRESSED!")
+	_button_press_animation(stand_btn)
 	mg_manager.current_game.stand()
 	_update_display()
 	_disable_buttons()
 	await get_tree().create_timer(1.0).timeout
 	mg_manager.finish_game()
 
+func _button_press_animation(button: Control):
+	var tween = create_tween()
+	tween.tween_property(button, "scale", Vector2(0.9, 0.9), 0.1)
+	tween.tween_property(button, "scale", Vector2(1.0, 1.0), 0.1)
+
 func _on_game_finished(score: int, total_score: int, winner: String):
 	var result_message = ""
-	
+	# 
 	match winner:
 		"player":
 			result_message = "YOU WIN!"
@@ -98,13 +198,27 @@ func _on_game_finished(score: int, total_score: int, winner: String):
 			result_message = "DEALER WINS"
 		"push":
 			result_message = "PUSH - TIE"
-	
+	# 
 	var score_text = "+%d" % score if score > 0 else str(score)
 	result_text.text = "%s\nScore: %s\nTotal: %d" % [result_message, score_text, total_score]
+	# aniamte result
+	result_panel.scale = Vector2(0.5, 0.5)
+	result_panel.modulate.a = 0
 	result_panel.visible = true
-
+	# 
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.tween_property(result_panel, "scale", Vector2(1.0, 1.0), 0.4)
+	tween.parallel().tween_property(result_panel, "modulate:a", 1.0, 0.4)
+	# 
 	await get_tree().create_timer(2.0).timeout
+	# fade out result
+	var fade_tween = create_tween()
+	fade_tween.tween_property(result_panel, "modulate:a", 0.0, 0.3)
+	await fade_tween.finished
 	result_panel.visible = false
+	result_panel.modulate.a = 1.0
 	
 	# chekc win/lose
 	mg_manager.new_game()
@@ -120,6 +234,10 @@ func _on_caught_fish():
 	result_panel.visible = true
 	fish_sprite.texture = fish_worried
 	_disable_buttons()
+	
+	await get_tree().create_timer(3.0).timeout
+	result_panel.visible = false
+	minigame_ui.visible = false
 
 
 func _on_lost_fish():
@@ -127,15 +245,18 @@ func _on_lost_fish():
 	status_label.text = "FISH GOT AWAY..."
 	result_text.text = "GAME OVER\nThe fish got away!"
 	result_panel.visible = true
-
 	_disable_buttons()
+	
+	await get_tree().create_timer(3.0).timeout
+	result_panel.visible = false
+	minigame_ui.visible = false
 
 func _update_display():
 	var game = mg_manager.current_game
 	
 	# display both hands
-	_display_hand(game.player_hand, player_hand_container, player_score_label, true)
-	_display_hand(game.dealer_hand, dealer_hand_container, dealer_score_label, game.is_standing)
+	_display_hand(game.player_hand, player_hand_container, player_score_label, true, false)
+	_display_hand(game.dealer_hand, dealer_hand_container, dealer_score_label, game.is_standing, true)
 	
 	# status update
 	if game.is_player_bust:
@@ -147,12 +268,13 @@ func _update_display():
 	else:
 		status_label.text = "HIT OR STAND?"
 
-func _display_hand(hand: Array, container: Container, score_label: Label, show_score: bool):
+func _display_hand(hand: Array, container: Container, score_label: Label, show_score: bool, is_dealer: bool):
 	# clear existing cards
 	for child in container.get_children():
 		child.queue_free()
 	
-	# create card displays
+	# create card displays with animation
+	var card_index = 0
 	for card in hand:
 		var card_display = card_scene.instantiate()
 		container.add_child(card_display)
@@ -161,8 +283,28 @@ func _display_hand(hand: Array, container: Container, score_label: Label, show_s
 			card_display.set_card(card.suit, card.rank)
 		else:
 			card_display.set_card_hidden()
+		
+		# card animation
+		card_display.modulate.a = 0
+		card_display.scale = Vector2(0.5, 0.5)
+		
+		var tween = create_tween()
+		tween.set_ease(Tween.EASE_OUT)
+		tween.set_trans(Tween.TRANS_BACK)
+		
+		# card delay for animation
+		tween.tween_property(card_display, "modulate:a", 1.0, 0.3).set_delay(0.1 * card_index)
+		tween.parallel().tween_property(card_display, "scale", Vector2(1.0, 1.0), 0.3).set_delay(0.1 * card_index)
+		
+		card_index += 1
 	
-	# update score label
+	# score label update
+	var label_prefix = ""
+	if is_dealer:
+		label_prefix = _get_fish_name() + " "
+	else:
+		label_prefix = "Player "
+	
 	if show_score:
 		var score = 0
 		for card in hand:
@@ -182,9 +324,9 @@ func _display_hand(hand: Array, container: Container, score_label: Label, show_s
 			score -= 10
 			aces -= 1
 		
-		score_label.text = "Score: %d" % score
+		score_label.text = "%sHand: %d" % [label_prefix, score]
 	else:
-		score_label.text = "Score: ?"
+		score_label.text = "%sHand: ?" % label_prefix
 
 func _clear_hands():
 	for child in player_hand_container.get_children():
@@ -204,24 +346,131 @@ func _show_betting_ui():
 	betting_panel.visible = true
 	hit_btn.visible = false
 	stand_btn.visible = false
+	_clear_hands()
+	status_label.text = "Place Your Bet"
+	current_bet_container.visible = false
 	
-	# udpate buttn based on cur score
+	# move status label up for betting
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(status_label, "position:y", status_label.position.y - 100, 0.3)
+	
+	# animate betting in
+	betting_panel.scale = Vector2(0.8, 0.8)
+	betting_panel.modulate.a = 0
+	
+	var tween2 = create_tween()
+	tween2.set_ease(Tween.EASE_OUT)
+	tween2.set_trans(Tween.TRANS_BACK)
+	tween2.tween_property(betting_panel, "scale", Vector2(1.0, 1.0), 0.4)
+	tween2.parallel().tween_property(betting_panel, "modulate:a", 1.0, 0.4)
+	
+	# 
+	_setup_chip_hover_effects()
+	
+	# Update button states based on current score
 	var current_score = mg_manager.player_score
-	bet_10_btn.disabled = current_score < 10
-	bet_50_btn.disabled = current_score < 50
-	bet_100_btn.disabled = current_score < 100
-	bet_all_in_btn.disabled = current_score <= 0
+	_update_chip_state(bet_10_btn, current_score >= 10)
+	_update_chip_state(bet_50_btn, current_score >= 50)
+	_update_chip_state(bet_100_btn, current_score >= 100)
+	_update_chip_state(bet_all_in_btn, current_score > 0)
+
+func _update_chip_state(chip: TextureButton, can_afford: bool):
+	chip.disabled = not can_afford
+	
+	if can_afford:
+		chip.modulate = Color(1.0, 1.0, 1.0, 1.0)
+		chip.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	else:
+		chip.modulate = Color(0.4, 0.4, 0.4, 0.6)
+		chip.mouse_default_cursor_shape = Control.CURSOR_ARROW
+
+func _setup_chip_hover_effects():
+	for chip in [bet_10_btn, bet_50_btn, bet_100_btn, bet_all_in_btn]:
+		if not chip.mouse_entered.is_connected(_on_chip_hover):
+			chip.mouse_entered.connect(_on_chip_hover.bind(chip))
+		if not chip.mouse_exited.is_connected(_on_chip_unhover):
+			chip.mouse_exited.connect(_on_chip_unhover.bind(chip))
+
+func _on_chip_hover(chip: Control):
+	if not chip.disabled:
+		var tween = create_tween()
+		tween.set_ease(Tween.EASE_OUT)
+		tween.tween_property(chip, "scale", Vector2(1.15, 1.15), 0.2)
+
+func _on_chip_unhover(chip: Control):
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(chip, "scale", Vector2(1.0, 1.0), 0.2)
 
 func _hide_betting_ui():
 	betting_panel.visible = false
+	
+	# move status label down for hit and miss
+	var label_tween = create_tween()
+	label_tween.set_ease(Tween.EASE_OUT)
+	label_tween.set_trans(Tween.TRANS_CUBIC)
+	label_tween.tween_property(status_label, "position:y", status_label.position.y + 100, 0.3)
+	
+	# animate action buttons
 	hit_btn.visible = true
 	stand_btn.visible = true
+	hit_btn.modulate.a = 0
+	stand_btn.modulate.a = 0
+	hit_btn.scale = Vector2(0.8, 0.8)
+	stand_btn.scale = Vector2(0.8, 0.8)
+	
+	var button_tween = create_tween()
+	button_tween.set_parallel(true)
+	button_tween.set_ease(Tween.EASE_OUT)
+	button_tween.set_trans(Tween.TRANS_BACK)
+	
+	button_tween.tween_property(hit_btn, "modulate:a", 1.0, 0.4).set_delay(0.1)
+	button_tween.tween_property(hit_btn, "scale", Vector2(1.0, 1.0), 0.4).set_delay(0.1)
+	button_tween.tween_property(stand_btn, "modulate:a", 1.0, 0.4).set_delay(0.2)
+	button_tween.tween_property(stand_btn, "scale", Vector2(1.0, 1.0), 0.4).set_delay(0.2)
+	# 
+	_setup_action_button_hover()
+
+func _setup_action_button_hover():
+	if not hit_btn.mouse_entered.is_connected(_on_action_button_hover):
+		hit_btn.mouse_entered.connect(_on_action_button_hover.bind(hit_btn))
+		hit_btn.mouse_exited.connect(_on_action_button_unhover.bind(hit_btn))
+		stand_btn.mouse_entered.connect(_on_action_button_hover.bind(stand_btn))
+		stand_btn.mouse_exited.connect(_on_action_button_unhover.bind(stand_btn))
+
+func _on_action_button_hover(button: Control):
+	if not button.disabled:
+		var tween = create_tween()
+		tween.set_ease(Tween.EASE_OUT)
+		tween.tween_property(button, "scale", Vector2(1.1, 1.1), 0.2)
+
+func _on_action_button_unhover(button: Control):
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(button, "scale", Vector2(1.0, 1.0), 0.2)
 
 func _on_bet_selected(bet_amount: int):
 	print("Bet selected: ", bet_amount)
+	
+	# validate bet amount
+	if bet_amount > mg_manager.player_score:
+		print("Cannot afford bet of ", bet_amount, " with score ", mg_manager.player_score)
+		return
+	
 	# clamp bet to current score for all-in
 	var actual_bet = min(bet_amount, mg_manager.player_score)
 	mg_manager.set_bet(actual_bet)
+	
+	# animate betting panel out
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_IN)
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.tween_property(betting_panel, "modulate:a", 0.0, 0.3)
+	tween.parallel().tween_property(betting_panel, "scale", Vector2(0.8, 0.8), 0.3)
+	
+	await tween.finished
 	_start_game()
 
 func _on_score_updated(current_score: int, target_score: int):
@@ -229,12 +478,29 @@ func _on_score_updated(current_score: int, target_score: int):
 	var score_label = $MinigameUI/ProgressMeter/ScoreLabel
 	var round_label = $MinigameUI/ProgressMeter/RoundLabel
 	
+	# aniamte progress bar change
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	
 	progress_bar.max_value = target_score
-	progress_bar.value = current_score
+	tween.tween_property(progress_bar, "value", current_score, 0.5)
+	
 	score_label.text = "%d / %d" % [current_score, target_score]
 	round_label.text = "Round: %d/%d" % [mg_manager.cur_game_num, mg_manager.max_game_num]
 	
+	# add pulsing effect when close to winning
+	var progress_percent = float(current_score) / float(target_score)
+	if progress_percent >= 0.8:
+		_pulse_progress_bar(progress_bar)
+	
 	_update_fish_emotion()
+
+func _pulse_progress_bar(progress_bar: ProgressBar):
+	var tween = create_tween()
+	tween.set_loops()
+	tween.tween_property(progress_bar, "modulate", Color(1.5, 1.2, 1.0), 0.8)
+	tween.tween_property(progress_bar, "modulate", Color(1.0, 1.0, 1.0), 0.8)
 
 func _update_fish_emotion():
 	var progress_percent = float(mg_manager.player_score) / float(mg_manager.score_to_catch)
