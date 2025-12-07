@@ -16,7 +16,7 @@ func _ready():
 	night_bg.modulate.a = 0.0 # start wiht day
 	# 
 	player.position.x = 0
-	player.position.y = 1200
+	player.position.y = 1000
 	sprite.play("idle_ocean")
 	start_walking()
 

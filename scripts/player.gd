@@ -15,6 +15,12 @@ var reel_skill:float = 10.0 # reel_skill indicates how fast the fish hooks
 var luck:float = 10.0 # luck indicates how likely you are to get rarer fish
 var salesman:float = 1.0 # salesman indicates how much more you can sell a fish for
 
+var power_ups = {
+	power1 = false,
+	power2 = false,
+	power3 = false,
+}
+
 var money: float = 100.0
 
 signal fish_caught
