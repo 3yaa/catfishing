@@ -5,9 +5,9 @@ extends Panel
 @onready var world_ui = $"../WorldUI"
 @onready var cosmetics = $"../Cosmetics"
 
-@onready var house_buy = $House/Buy
-@onready var cat_tree_buy = $CatTree/Buy
-@onready var chair_buy = $Chair/Buy
+@onready var house_buy =$ScrollContainer/VBoxContainer/House/Buy
+@onready var cat_tree_buy = $ScrollContainer/VBoxContainer/CatTree/Buy
+@onready var chair_buy = $ScrollContainer/VBoxContainer/Chair/Buy
 
 @onready var close_btn = $Close
 

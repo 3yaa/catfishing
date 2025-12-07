@@ -1,13 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://br6meobo0il5m"]
+[gd_scene load_steps=5 format=3 uid="uid://br6meobo0il5m"]
 
 [ext_resource type="Script" uid="uid://c5qafcnwqo7k4" path="res://scripts/cosmetics_shop_manager.gd" id="1_pn7ka"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_05kp5"]
+
+[sub_resource type="Theme" id="Theme_05kp5"]
+
+[sub_resource type="Theme" id="Theme_wwxib"]
 
 [node name="CosmeticsShop" type="Panel"]
 offset_left = 158.0
 offset_top = 148.0
 offset_right = 491.0
 offset_bottom = 418.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_05kp5")
 script = ExtResource("1_pn7ka")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 4.0
+offset_right = 227.0
+offset_bottom = 34.0
+theme = SubResource("Theme_05kp5")
+text = "IKEA"
+horizontal_alignment = 1
 
 [node name="Close" type="Button" parent="."]
 layout_mode = 0
@@ -17,44 +34,47 @@ offset_right = 332.0
 offset_bottom = 33.0
 text = "X"
 
-[node name="House" type="HBoxContainer" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 0
-offset_left = 18.0
-offset_top = 55.0
-offset_right = 290.0
-offset_bottom = 95.0
+offset_left = 90.0
+offset_top = 59.0
+offset_right = 286.0
+offset_bottom = 154.0
+horizontal_scroll_mode = 0
 
-[node name="Label" type="Label" parent="House"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
 layout_mode = 2
+
+[node name="House" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/House"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "House"
 
-[node name="Buy" type="Button" parent="House"]
+[node name="Buy" type="Button" parent="ScrollContainer/VBoxContainer/House"]
+layout_mode = 2
+theme = SubResource("Theme_wwxib")
+
+[node name="CatTree" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="CatTree" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 21.0
-offset_top = 122.0
-offset_right = 314.0
-offset_bottom = 162.0
-
-[node name="Label" type="Label" parent="CatTree"]
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/CatTree"]
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Cat Tree"
 
-[node name="Buy" type="Button" parent="CatTree"]
+[node name="Buy" type="Button" parent="ScrollContainer/VBoxContainer/CatTree"]
 layout_mode = 2
 
-[node name="Chair" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 24.0
-offset_top = 180.0
-offset_right = 338.0
-offset_bottom = 220.0
-
-[node name="Label" type="Label" parent="Chair"]
+[node name="Chair" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Chair"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "Chair"
 
-[node name="Buy" type="Button" parent="Chair"]
+[node name="Buy" type="Button" parent="ScrollContainer/VBoxContainer/Chair"]
 layout_mode = 2
