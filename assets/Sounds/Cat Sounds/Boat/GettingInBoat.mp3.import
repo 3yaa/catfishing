@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://blpaemg7kmi6g"
+path="res://.godot/imported/GettingInBoat.mp3-405c9b30f2f7118e1b9d4a2048de111b.mp3str"
+
+[deps]
+
+source_file="res://assets/Sounds/Cat Sounds/Boat/GettingInBoat.mp3"
+dest_files=["res://.godot/imported/GettingInBoat.mp3-405c9b30f2f7118e1b9d4a2048de111b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
