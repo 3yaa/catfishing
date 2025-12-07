@@ -152,15 +152,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -617.0
+offset_left = -512.0
 offset_top = -461.0
-offset_right = 618.0
+offset_right = 545.0
 offset_bottom = 471.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_bg")
 expand_mode = 1
-stretch_mode = 5
 
 [node name="HitButton" type="TextureButton" parent="MinigameUI"]
 process_mode = 3
@@ -232,17 +231,13 @@ alignment = 1
 
 [node name="DealerScoreLabel" type="Label" parent="MinigameUI"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 575.0
-offset_top = -526.0
-offset_right = 908.0
-offset_bottom = -458.0
+offset_left = -166.5
+offset_right = 166.5
+offset_bottom = 68.0
 grow_horizontal = 2
-grow_vertical = 2
 theme = ExtResource("7_jbh4e")
 theme_override_font_sizes/font_size = 50
 horizontal_alignment = 1
@@ -337,17 +332,17 @@ alignment = 1
 
 [node name="PlayerScoreLabel" type="Label" parent="MinigameUI"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 477.0
-offset_top = 455.0
-offset_right = 942.0
-offset_bottom = 524.0
+anchor_bottom = 1.0
+offset_left = -232.5
+offset_top = -82.0
+offset_right = 232.5
+offset_bottom = -13.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 theme = ExtResource("7_jbh4e")
 theme_override_font_sizes/font_size = 50
 text = "Player Hand: 0"
