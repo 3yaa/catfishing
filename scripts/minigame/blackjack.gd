@@ -30,13 +30,13 @@ func _reset_game():
 	# create a fresh deck for each game
 	deck = Deck.new()
 	
-	# Deal initial cards
+	# deal initial cards
 	player_hand.append(deck.draw_card())
 	dealer_hand.append(deck.draw_card())
 	player_hand.append(deck.draw_card())
 	dealer_hand.append(deck.draw_card())
 	
-	# Hide dealer second card
+	# hide one dealer card
 	dealer_hand[1].visible = false
 
 func is_finished() -> bool:
@@ -122,7 +122,6 @@ func _common_fish():
 			satisfied = true
 		
 	
-
 func _rare_fish():
 	var satisfied = false
 	while not satisfied:

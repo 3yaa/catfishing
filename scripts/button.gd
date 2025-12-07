@@ -8,7 +8,7 @@ func _ready():
 
 func _physics_process(delta):
 	time += delta
-	# Linear up and down - no slow down at peaks
+	# linear up and down - no slow down at peaks
 	var cycle = fmod(time * 3, PI * 2)
 	var triangle = abs((cycle / PI) - 1.0) * 2.0 - 1.0
 	position.y = original_y + triangle * 8

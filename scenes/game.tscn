@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dlaaqsui6rtpr"]
+[gd_scene load_steps=31 format=3 uid="uid://dlaaqsui6rtpr"]
 
 [ext_resource type="Script" uid="uid://cuyhki8mlbgr0" path="res://scripts/main_game.gd" id="1_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://2pd4wty6nwsi" path="res://scenes/player.tscn" id="1_uwrxv"]
@@ -13,7 +13,6 @@
 [ext_resource type="Script" uid="uid://2yl1hfh0q3jn" path="res://scripts/fish_logic.gd" id="9_vtaks"]
 [ext_resource type="PackedScene" uid="uid://dtipbmymq13e1" path="res://scenes/minigame.tscn" id="10_dinhu"]
 [ext_resource type="Script" uid="uid://cgq63vliv3xal" path="res://scripts/tutorial_manager.gd" id="13_kvuet"]
-[ext_resource type="PackedScene" uid="uid://hehbnnem2stc" path="res://scenes/card_display.tscn" id="13_trtic"]
 [ext_resource type="Script" uid="uid://b5cpnl0hwso6k" path="res://scripts/cutscene_manager.gd" id="14_trtic"]
 [ext_resource type="PackedScene" uid="uid://ww7lhtqnbr0b" path="res://scenes/npc.tscn" id="15_rysoc"]
 [ext_resource type="Script" uid="uid://bgm5r0wluufyu" path="res://scripts/npc/npc_fish_shop.gd" id="16_ssvqc"]
@@ -30,7 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://diec6viabj66n" path="res://scenes/cosmetics.tscn" id="27_sww3w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e1j6l"]
-size = Vector2(1176.75, 20)
+size = Vector2(1176.375, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pl11u"]
 size = Vector2(1157, 20)
@@ -82,7 +81,7 @@ script = ExtResource("8_qnb83")
 
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
 z_index = 200
-position = Vector2(121, 427)
+position = Vector2(723, 1035)
 script = ExtResource("2_yqjtg")
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
@@ -102,18 +101,6 @@ scale = Vector2(1.5, 1.5)
 
 [node name="FishLogic" type="Node2D" parent="."]
 script = ExtResource("9_vtaks")
-
-[node name="Minigame" parent="." instance=ExtResource("10_dinhu")]
-offset_left = 337.0
-offset_top = 336.0
-offset_right = 337.0
-offset_bottom = 336.0
-
-[node name="CardDisplay" parent="." instance=ExtResource("13_trtic")]
-offset_left = 413.0
-offset_top = 207.0
-offset_right = 453.0
-offset_bottom = 257.0
 
 [node name="Tutorial_Manager" type="Node2D" parent="."]
 script = ExtResource("13_kvuet")
@@ -172,7 +159,7 @@ offset_bottom = 457.0
 [node name="land" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="land"]
-position = Vector2(-17.625, 458)
+position = Vector2(468, 1098)
 shape = SubResource("RectangleShape2D_e1j6l")
 
 [node name="Sprite2D" type="Sprite2D" parent="land"]
@@ -244,3 +231,19 @@ script = ExtResource("26_bhx41")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="MinigameContainer" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = 100
+
+[node name="Background" type="ColorRect" parent="MinigameContainer"]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.8)
+
+[node name="Minigame" parent="MinigameContainer" instance=ExtResource("10_dinhu")]

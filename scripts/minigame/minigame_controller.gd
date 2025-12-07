@@ -11,31 +11,59 @@ extends Node
 @onready var status_label = $MinigameUI/StatusLabel
 @onready var result_panel = $MinigameUI/ResultPanel
 @onready var result_text = $MinigameUI/ResultPanel/ResultText
+@onready var betting_panel = $MinigameUI/BettingPanel
+@onready var bet_10_btn = $MinigameUI/BettingPanel/VBoxContainer/Bet10
+@onready var bet_50_btn = $MinigameUI/BettingPanel/VBoxContainer/Bet50
+@onready var bet_100_btn = $MinigameUI/BettingPanel/VBoxContainer/Bet100
+@onready var bet_all_in_btn = $MinigameUI/BettingPanel/VBoxContainer/BetAllIn
 
 var card_scene = preload("res://scenes/card_display.tscn")
 
 func _ready():
 	minigame_ui.visible = false
 	result_panel.visible = false
+	
+	print("Minigame controller ready")
+	print("Hit button: ", hit_btn)
+	print("Stand button: ", stand_btn)
 
 	hit_btn.pressed.connect(_on_hit)
 	stand_btn.pressed.connect(_on_stand)
+	
+	# Connect betting buttons
+	bet_10_btn.pressed.connect(func(): _on_bet_selected(10))
+	bet_50_btn.pressed.connect(func(): _on_bet_selected(50))
+	bet_100_btn.pressed.connect(func(): _on_bet_selected(100))
+	bet_all_in_btn.pressed.connect(func(): _on_bet_selected(mg_manager.player_score))
+	
+	print("Buttons connected")
 
 	mg_manager.cur_game_finished.connect(_on_game_finished)
 	mg_manager.caught_fish.connect(_on_caught_fish)
 	mg_manager.lost_fish.connect(_on_lost_fish)
+	mg_manager.score_updated.connect(_on_score_updated)
 
-	mg_manager.new_game()
-	_start_game()
+func _start_minigame():
+	print("Starting minigame session")
+	minigame_ui.visible = true
+	_show_betting_ui()
 
 func _start_game():
-	minigame_ui.visible = true
+	print("Starting new round")
 	result_panel.visible = false
 	_clear_hands()
 	_enable_buttons()
+	_hide_betting_ui()
+	_update_round_display()
+	print("Buttons enabled - disabled state: Hit=", hit_btn.disabled, " Stand=", stand_btn.disabled)
 	_update_display()
 
+func _update_round_display():
+	var round_label = $MinigameUI/ProgressMeter/RoundLabel
+	round_label.text = "Round: %d/%d" % [mg_manager.cur_game_num, mg_manager.max_game_num]
+
 func _on_hit():
+	print("HIT BUTTON PRESSED!")
 	mg_manager.current_game.hit()
 	_update_display()
 	
@@ -45,6 +73,7 @@ func _on_hit():
 		mg_manager.finish_game()
 
 func _on_stand():
+	print("STAND BUTTON PRESSED!")
 	mg_manager.current_game.stand()
 	_update_display()
 	_disable_buttons()
@@ -66,14 +95,15 @@ func _on_game_finished(score: int, total_score: int, winner: String):
 	result_text.text = "%s\nScore: %s\nTotal: %d" % [result_message, score_text, total_score]
 	result_panel.visible = true
 
-	await get_tree().create_timer(3.0).timeout
+	await get_tree().create_timer(2.0).timeout
+	result_panel.visible = false
 	
-	# check if game should continue ??? might be borken
-	if mg_manager.player_score >= mg_manager.score_to_catch || mg_manager.cur_game_num >= mg_manager.max_game_num:
-		return
-		
+	# chekc win/lose
 	mg_manager.new_game()
-	_start_game()
+	
+	# show betting ui
+	if mg_manager.player_score > 0 && mg_manager.player_score < mg_manager.score_to_catch && mg_manager.cur_game_num < mg_manager.max_game_num:
+		_show_betting_ui()
 
 func _on_caught_fish():
 	print("CAUGHT FISH - YOU WIN!")
@@ -124,7 +154,7 @@ func _display_hand(hand: Array, container: Container, score_label: Label, show_s
 		else:
 			card_display.set_card_hidden()
 	
-	# Update score label
+	# update score label
 	if show_score:
 		var score = 0
 		for card in hand:
@@ -161,3 +191,37 @@ func _disable_buttons():
 func _enable_buttons():
 	hit_btn.disabled = false
 	stand_btn.disabled = false
+
+func _show_betting_ui():
+	betting_panel.visible = true
+	hit_btn.visible = false
+	stand_btn.visible = false
+	
+	# udpate buttn based on cur score
+	var current_score = mg_manager.player_score
+	bet_10_btn.disabled = current_score < 10
+	bet_50_btn.disabled = current_score < 50
+	bet_100_btn.disabled = current_score < 100
+	bet_all_in_btn.disabled = current_score <= 0
+
+func _hide_betting_ui():
+	betting_panel.visible = false
+	hit_btn.visible = true
+	stand_btn.visible = true
+
+func _on_bet_selected(bet_amount: int):
+	print("Bet selected: ", bet_amount)
+	# clamp bet to current score for all-in
+	var actual_bet = min(bet_amount, mg_manager.player_score)
+	mg_manager.set_bet(actual_bet)
+	_start_game()
+
+func _on_score_updated(current_score: int, target_score: int):
+	var progress_bar = $MinigameUI/ProgressMeter/ProgressBar
+	var score_label = $MinigameUI/ProgressMeter/ScoreLabel
+	var round_label = $MinigameUI/ProgressMeter/RoundLabel
+	
+	progress_bar.max_value = target_score
+	progress_bar.value = current_score
+	score_label.text = "%d / %d" % [current_score, target_score]
+	round_label.text = "Round: %d/%d" % [mg_manager.cur_game_num, mg_manager.max_game_num]

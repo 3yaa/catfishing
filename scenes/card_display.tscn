@@ -2,16 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c1xhor6pyrj8h" path="res://scripts/card_display.gd" id="1_nfdgj"]
 
-[node name="CardDisplay" type="PanelContainer"]
+[node name="CardDisplay" type="TextureRect"]
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 50.0
 script = ExtResource("1_nfdgj")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 2
-
-[node name="RankLabel" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="SuitLabel" type="Label" parent="VBoxContainer"]
-layout_mode = 2
