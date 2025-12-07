@@ -1,38 +1,78 @@
-[gd_scene format=3 uid="uid://bnclqcapf7vnm"]
+[gd_scene load_steps=5 format=3 uid="uid://bnclqcapf7vnm"]
+
+[ext_resource type="Texture2D" uid="uid://b7kisih3tshpc" path="res://assets/background/shopBackground.png" id="1_0lmfb"]
+[ext_resource type="Script" uid="uid://c44vs5batsyer" path="res://scripts/fish_shop_manager.gd" id="2_otyrg"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_otyrg"]
+texture = ExtResource("1_0lmfb")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_otyrg"]
+bg_color = Color(0.69803923, 0.13333334, 0.13333334, 1)
 
 [node name="FishShop" type="Panel"]
 offset_right = 309.0
-offset_bottom = 185.0
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 78.0
-offset_top = 62.0
-offset_right = 165.0
-offset_bottom = 85.0
-text = "Fish Count:"
-
-[node name="FishCount" type="Label" parent="."]
-layout_mode = 0
-offset_left = 199.0
-offset_top = 63.0
-offset_right = 239.0
-offset_bottom = 86.0
-text = "0"
+offset_bottom = 193.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_otyrg")
+script = ExtResource("2_otyrg")
 
 [node name="Sell" type="Button" parent="."]
 layout_mode = 0
-offset_left = 132.0
-offset_top = 103.0
-offset_right = 187.0
-offset_bottom = 139.0
+offset_left = 130.0
+offset_top = 140.0
+offset_right = 185.0
+offset_bottom = 176.0
 text = "Sell
 "
 
 [node name="Close" type="Button" parent="."]
 layout_mode = 0
-offset_left = 284.0
-offset_top = 1.0
-offset_right = 309.0
-offset_bottom = 25.0
+offset_left = 275.0
+offset_right = 308.0
+offset_bottom = 33.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_otyrg")
 text = "X"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 13.0
+offset_right = 279.0
+offset_bottom = 47.0
+theme_override_colors/font_color = Color(0.0056611504, 0.0056611514, 0.00566115, 1)
+theme_override_font_sizes/font_size = 24
+text = "Fish Shop"
+horizontal_alignment = 1
+
+[node name="FishCount" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 52.0
+offset_right = 279.0
+offset_bottom = 92.0
+alignment = 1
+
+[node name="Label" type="Label" parent="FishCount"]
+layout_mode = 2
+text = "Fish Count:"
+horizontal_alignment = 1
+
+[node name="Number" type="Label" parent="FishCount"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Price" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 83.0
+offset_right = 278.0
+offset_bottom = 123.0
+alignment = 1
+
+[node name="Label" type="Label" parent="Price"]
+layout_mode = 2
+text = "Total Value: "
+
+[node name="Number" type="Label" parent="Price"]
+layout_mode = 2
+text = "0"

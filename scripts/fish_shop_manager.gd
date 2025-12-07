@@ -5,7 +5,8 @@ extends Panel
 @onready var fish_logic = $"../FishLogic"
 @onready var world_ui = $"../WorldUI"
 
-@onready var ui_fish_count = $FishCount
+@onready var ui_fish_count = $FishCount/Number
+@onready var ui_fish_value = $Price/Number
 @onready var sell_btn = $Sell
 @onready var close = $Close
 
@@ -39,14 +40,20 @@ func disable_shop():
 
 func update_shop_ui():
 	ui_fish_count.text = str(fish_logic.fish_inventory.size())
+	ui_fish_value.text = "$" + str(get_total_fish_value())
 
 
 func sell():
-	var money_earned = 0
-	for fish in fish_logic.fish_inventory:
-		money_earned += fish.value
-	print("Sell for $", money_earned)
+	var fish_value = get_total_fish_value()
+	print("Sell for $", fish_value)
 	
-	player.money += money_earned
+	player.money += fish_value
 	fish_logic.fish_inventory.clear()
 	update_shop_ui()
+	
+	
+func get_total_fish_value():
+	var value = 0
+	for fish in fish_logic.fish_inventory:
+		value += fish.value
+	return value
