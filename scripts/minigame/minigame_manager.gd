@@ -23,8 +23,6 @@ func initialize_minigame(target_score: int, start_score: int):
 	score_updated.emit(player_score, score_to_catch)
 
 func new_game():
-	print("new_game() called - player_score: ", player_score, " score_to_catch: ", score_to_catch, " cur_game_num: ", cur_game_num)
-	
 	# win condition
 	if player_score >= score_to_catch:
 		print("EMITTING caught_fish signal!")

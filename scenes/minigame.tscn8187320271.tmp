@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dtipbmymq13e1"]
+[gd_scene load_steps=14 format=3 uid="uid://dtipbmymq13e1"]
 
 [ext_resource type="Script" uid="uid://do84ogts0xyuy" path="res://scripts/minigame/minigame_controller.gd" id="1_hwsak"]
 [ext_resource type="Script" uid="uid://w8tkfa0u1tsp" path="res://scripts/minigame/minigame_manager.gd" id="2_0dp5x"]
@@ -13,9 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://cd8oim1pijogi" path="res://assets/Black Jack/stand_button.png" id="7_stand"]
 [ext_resource type="Texture2D" uid="uid://brk6ye5hikcwq" path="res://assets/Black Jack/allIn_button.png" id="8_allin"]
 [ext_resource type="Texture2D" uid="uid://caohlvuio2uk5" path="res://assets/Black Jack/redChip.png" id="9_chip"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_802es"]
-bg_color = Color(0, 0.7009197, 0.57253796, 1)
 
 [node name="Minigame" type="Control"]
 process_mode = 3
@@ -170,10 +167,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 91.0
-offset_top = 313.0
-offset_right = 255.5
-offset_bottom = 394.0
+offset_left = 102.0
+offset_top = 316.0
+offset_right = 276.5
+offset_bottom = 404.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("6_hit")
@@ -188,10 +185,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -271.0
-offset_top = 314.0
-offset_right = -130.0
-offset_bottom = 393.0
+offset_left = -284.0
+offset_top = 323.0
+offset_right = -143.0
+offset_bottom = 402.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("7_stand")
@@ -343,14 +340,14 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 477.0
-offset_top = 455.0
+offset_top = 463.0
 offset_right = 942.0
-offset_bottom = 524.0
+offset_bottom = 532.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("7_jbh4e")
 theme_override_font_sizes/font_size = 50
-text = "Player Hand: 0"
+text = "Player Hand Score: 0"
 horizontal_alignment = 1
 
 [node name="ResultPanel" type="PanelContainer" parent="MinigameUI"]
@@ -564,32 +561,22 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="MinigameUI/ProgressMeter"]
 layout_mode = 2
-theme = ExtResource("7_jbh4e")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
 text = "Progress"
 horizontal_alignment = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="MinigameUI/ProgressMeter"]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
-theme_override_styles/fill = SubResource("StyleBoxFlat_802es")
 max_value = 500.0
 fill_mode = 3
 show_percentage = false
 
 [node name="ScoreLabel" type="Label" parent="MinigameUI/ProgressMeter"]
 layout_mode = 2
-theme = ExtResource("7_jbh4e")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
 text = "0 / 500"
 horizontal_alignment = 1
 
 [node name="RoundLabel" type="Label" parent="MinigameUI/ProgressMeter"]
 layout_mode = 2
-theme = ExtResource("7_jbh4e")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
 text = "Round: 1/8"
 horizontal_alignment = 1
