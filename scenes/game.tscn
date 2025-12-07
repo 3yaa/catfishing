@@ -98,6 +98,7 @@ offset_left = 61.0
 offset_top = 1.0
 offset_right = 101.0
 offset_bottom = 24.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Cutscene_Manager" type="Node2D" parent="."]
 script = ExtResource("14_trtic")
@@ -128,6 +129,7 @@ offset_top = 871.0
 offset_right = 804.0
 offset_bottom = 1046.0
 script = ExtResource("20_1kice")
+metadata/_edit_use_anchors_ = true
 
 [node name="FishShop" parent="." instance=ExtResource("21_5newe")]
 z_index = 300
@@ -136,6 +138,7 @@ offset_top = 865.0
 offset_right = 950.0
 offset_bottom = 1050.0
 script = ExtResource("22_37s47")
+metadata/_edit_use_anchors_ = true
 
 [node name="CosmeticsShop" parent="." instance=ExtResource("25_suyxu")]
 z_index = 300
@@ -208,14 +211,18 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("26_bhx41")
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="Hints"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
 
 [node name="MinigameContainer" type="CanvasLayer" parent="."]
 process_mode = 3
 layer = 100
+visible = false
 
 [node name="Minigame" parent="MinigameContainer" instance=ExtResource("10_dinhu")]
+metadata/_edit_use_anchors_ = true
