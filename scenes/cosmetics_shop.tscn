@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://br6meobo0il5m"]
+
+[ext_resource type="Script" uid="uid://c5qafcnwqo7k4" path="res://scripts/cosmetics_shop_manager.gd" id="1_pn7ka"]
+
+[node name="CosmeticShop" type="Panel"]
+offset_left = 158.0
+offset_top = 148.0
+offset_right = 516.0
+offset_bottom = 418.0
+script = ExtResource("1_pn7ka")
+
+[node name="Close" type="Button" parent="."]
+layout_mode = 0
+offset_left = 333.0
+offset_right = 356.0
+offset_bottom = 24.0
+text = "X"
