@@ -1,15 +1,15 @@
-[gd_scene load_steps=31 format=3 uid="uid://dlaaqsui6rtpr"]
+[gd_scene load_steps=30 format=3 uid="uid://dlaaqsui6rtpr"]
 
 [ext_resource type="Script" uid="uid://cuyhki8mlbgr0" path="res://scripts/main_game.gd" id="1_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://2pd4wty6nwsi" path="res://scenes/player.tscn" id="1_uwrxv"]
-[ext_resource type="Texture2D" uid="uid://bom0hcsi6mb6s" path="res://assets/Mondstadt Background Wallpaper/sky.jpeg" id="2_trtic"]
+[ext_resource type="Texture2D" path="res://assets/Mondstadt Background Wallpaper/sky.jpeg" id="2_trtic"]
 [ext_resource type="Script" uid="uid://c4nlmna60i861" path="res://scripts/player.gd" id="2_yqjtg"]
 [ext_resource type="Script" uid="uid://bsj23fju2j7vg" path="res://scripts/lock_camera.gd" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://cwjnjn45by5b2" path="res://scenes/ui.tscn" id="6_p57ef"]
 [ext_resource type="Script" uid="uid://b2wgiegidtvun" path="res://scripts/clock.gd" id="7_u5sy4"]
 [ext_resource type="Script" uid="uid://b1phrbyh0srip" path="res://scripts/npc/npc_cosmetics_shop.gd" id="8_qnb83"]
 [ext_resource type="PackedScene" uid="uid://btx5m1k8bm1n8" path="res://scenes/ocean_area.tscn" id="9_dinhu"]
-[ext_resource type="Texture2D" uid="uid://c4ci4hew47e5g" path="res://assets/Mondstadt Background Wallpaper/palmTree.png" id="9_pl11u"]
+[ext_resource type="Texture2D" path="res://assets/Mondstadt Background Wallpaper/palmTree.png" id="9_pl11u"]
 [ext_resource type="Script" uid="uid://2yl1hfh0q3jn" path="res://scripts/fish_logic.gd" id="9_vtaks"]
 [ext_resource type="PackedScene" uid="uid://dtipbmymq13e1" path="res://scenes/minigame.tscn" id="10_dinhu"]
 [ext_resource type="Script" uid="uid://cgq63vliv3xal" path="res://scripts/tutorial_manager.gd" id="13_kvuet"]
@@ -26,7 +26,6 @@
 [ext_resource type="Texture2D" uid="uid://cycyli5lvcoau" path="res://assets/platforms/land.png" id="23_bt5mj"]
 [ext_resource type="Texture2D" uid="uid://m56y0ud1o30k" path="res://assets/platforms/water.png" id="24_e1j6l"]
 [ext_resource type="Script" uid="uid://brn33aiyfow2q" path="res://scripts/hints.gd" id="26_bhx41"]
-[ext_resource type="PackedScene" uid="uid://bksfpeeyww0i1" path="res://scenes/main_menu.tscn" id="28_sww3w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e1j6l"]
 size = Vector2(561.5, 20)
@@ -46,7 +45,8 @@ scroll_scale = Vector2(0.1, 0.1)
 scroll_offset = Vector2(400, 249)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
-position = Vector2(-219, 36)
+visible = false
+position = Vector2(-1659.0001, 205)
 rotation = 1.5707964
 scale = Vector2(0.436461, 0.4285466)
 texture = ExtResource("2_trtic")
@@ -108,7 +108,6 @@ offset_right = 337.0
 offset_bottom = 336.0
 
 [node name="CardDisplay" parent="." instance=ExtResource("13_trtic")]
-visible = false
 offset_left = 413.0
 offset_top = 207.0
 offset_right = 453.0
@@ -129,6 +128,7 @@ script = ExtResource("14_trtic")
 [node name="Theme" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="Theme"]
+visible = false
 z_index = -1
 anchors_preset = 15
 anchor_right = 1.0
@@ -221,7 +221,6 @@ region_enabled = true
 region_rect = Rect2(0, 0, 355.16, 1027.3066)
 
 [node name="Hints" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -232,11 +231,3 @@ script = ExtResource("26_bhx41")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
-
-[node name="MainMenu" parent="." instance=ExtResource("28_sww3w")]
-
-[node name="MainMenu2" parent="." instance=ExtResource("28_sww3w")]
-offset_left = -788.0
-offset_top = 5.0
-offset_right = -189.0
-offset_bottom = 516.0

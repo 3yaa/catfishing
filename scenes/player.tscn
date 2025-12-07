@@ -104,7 +104,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
-size = Vector2(65, 42.6875)
+size = Vector2(39.5, 52)
 
 [node name="Player" type="CharacterBody2D"]
 
@@ -113,10 +113,10 @@ z_index = 4
 position = Vector2(0, 2.000001)
 scale = Vector2(0.146658, 0.15779321)
 sprite_frames = SubResource("SpriteFrames_fjrip")
-animation = &"idle"
+animation = &"swim"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 6.65625)
+position = Vector2(-12.75, 2)
 shape = SubResource("RectangleShape2D_g2els")

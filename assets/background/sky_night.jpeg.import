@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bom0hcsi6mb6s"
-path="res://.godot/imported/sky.jpeg-5701ac673be38e9e89de8d485890f755.ctex"
+uid="uid://dlth5ndw1qugm"
+path="res://.godot/imported/sky_night.jpeg-2c1660c5037a0f8cfccb8d16e90898e2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Mondstadt Background Wallpaper/sky.jpeg"
-dest_files=["res://.godot/imported/sky.jpeg-5701ac673be38e9e89de8d485890f755.ctex"]
+source_file="res://assets/background/sky_night.jpeg"
+dest_files=["res://.godot/imported/sky_night.jpeg-2c1660c5037a0f8cfccb8d16e90898e2.ctex"]
 
 [params]
 

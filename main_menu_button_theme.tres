@@ -1,9 +1,11 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://bbi2aoes23tm3"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://bbi2aoes23tm3"]
+
+[ext_resource type="FontFile" uid="uid://bautrqaskm40v" path="res://assets/font/Chewy,Margarine,Schoolbell/Margarine/Margarine-Regular.ttf" id="1_yxg01"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vue75"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqqt6"]
-bg_color = Color(0.29967797, 0.6370112, 0.84054244, 1)
+bg_color = Color(0.23380747, 0.55934805, 0.7535109, 1)
 border_width_bottom = 15
 border_color = Color(0.12040908, 0.352639, 0.48652637, 1)
 corner_radius_top_left = 25
@@ -30,6 +32,10 @@ corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 
 [resource]
+default_font = ExtResource("1_yxg01")
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_focus_color = Color(0, 0, 0, 1)
+Button/fonts/font = ExtResource("1_yxg01")
 Button/styles/focus = SubResource("StyleBoxEmpty_vue75")
 Button/styles/hover = SubResource("StyleBoxFlat_bqqt6")
 Button/styles/normal = SubResource("StyleBoxFlat_vue75")
