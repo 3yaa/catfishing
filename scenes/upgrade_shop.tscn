@@ -11,7 +11,7 @@ bg_color = Color(0.69803923, 0.13333334, 0.13333334, 1)
 
 [node name="UpgradeShop" type="Panel"]
 offset_right = 277.0
-offset_bottom = 175.0
+offset_bottom = 257.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_mfja5")
 script = ExtResource("1_v8ny2")
 
@@ -118,3 +118,15 @@ text = "Power3: "
 
 [node name="Buy" type="Button" parent="ScrollContainer/VBoxContainer/Power3"]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 15.0
+offset_right = 251.0
+offset_bottom = 38.0
+theme_override_colors/font_color = Color(0.00069389754, 0.00069389766, 0.0006938976, 1)
+theme_override_font_sizes/font_size = 24
+text = "Upgrade"
+horizontal_alignment = 1
+vertical_alignment = 1

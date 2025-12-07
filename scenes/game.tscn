@@ -113,31 +113,30 @@ day_color = Color(0.5372549, 0.49411765, 0.36862746, 0.19607843)
 metadata/_edit_group_ = true
 
 [node name="UpgradeShop" parent="." instance=ExtResource("19_264po")]
-visible = false
 z_index = 300
-offset_left = 473.0
-offset_top = 862.0
-offset_right = 749.31
-offset_bottom = 1037.0
+offset_left = 472.0
+offset_top = 802.0
+offset_right = 748.31
+offset_bottom = 1052.0
 metadata/_edit_use_anchors_ = true
 
 [node name="FishShop" parent="." instance=ExtResource("21_5newe")]
 visible = false
 z_index = 300
-offset_left = 641.0
-offset_top = 865.0
-offset_right = 950.0
-offset_bottom = 1050.0
+offset_left = 588.0
+offset_top = 799.0
+offset_right = 897.0
+offset_bottom = 984.0
 script = ExtResource("22_37s47")
 metadata/_edit_use_anchors_ = true
 
 [node name="CosmeticsShop" parent="." instance=ExtResource("25_suyxu")]
 visible = false
 z_index = 300
-offset_left = 264.0
-offset_top = 850.0
-offset_right = 562.0
-offset_bottom = 1050.0
+offset_left = 307.0
+offset_top = 765.0
+offset_right = 605.0
+offset_bottom = 1003.0
 
 [node name="land" type="StaticBody2D" parent="."]
 
