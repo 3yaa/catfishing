@@ -17,9 +17,10 @@ script = ExtResource("1_v8ny2")
 
 [node name="Close" type="Button" parent="."]
 layout_mode = 0
-offset_left = 246.0
-offset_right = 276.0
-offset_bottom = 31.0
+offset_left = 245.0
+offset_top = 1.0
+offset_right = 275.0
+offset_bottom = 32.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_ya5xe")
 text = "X"
 
@@ -51,10 +52,12 @@ text = "Reel Skill: "
 
 [node name="Level" type="Label" parent="ScrollContainer/VBoxContainer/ReelSkill"]
 layout_mode = 2
+size_flags_horizontal = 3
 text = "0"
 
 [node name="Buy" type="Button" parent="ScrollContainer/VBoxContainer/ReelSkill"]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="Luck" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -66,10 +69,12 @@ text = "Luck: "
 
 [node name="Level" type="Label" parent="ScrollContainer/VBoxContainer/Luck"]
 layout_mode = 2
+size_flags_horizontal = 3
 text = "0"
 
 [node name="Buy" type="Button" parent="ScrollContainer/VBoxContainer/Luck"]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="Salesman" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -81,40 +86,9 @@ text = "Salesman: "
 
 [node name="Level" type="Label" parent="ScrollContainer/VBoxContainer/Salesman"]
 layout_mode = 2
+size_flags_horizontal = 3
 text = "0"
 
 [node name="Buy" type="Button" parent="ScrollContainer/VBoxContainer/Salesman"]
 layout_mode = 2
-
-[node name="Power1" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Power1"]
-layout_mode = 2
 size_flags_horizontal = 3
-text = "Power1:  "
-
-[node name="Buy" type="Button" parent="ScrollContainer/VBoxContainer/Power1"]
-layout_mode = 2
-
-[node name="Power2" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Power2"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Power2: "
-
-[node name="Buy" type="Button" parent="ScrollContainer/VBoxContainer/Power2"]
-layout_mode = 2
-
-[node name="Power3" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Power3"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Power3: "
-
-[node name="Buy" type="Button" parent="ScrollContainer/VBoxContainer/Power3"]
-layout_mode = 2
