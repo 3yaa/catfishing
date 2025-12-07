@@ -16,8 +16,14 @@ extends Node
 @onready var bet_50_btn = $MinigameUI/BettingPanel/VBoxContainer/Bet50
 @onready var bet_100_btn = $MinigameUI/BettingPanel/VBoxContainer/Bet100
 @onready var bet_all_in_btn = $MinigameUI/BettingPanel/VBoxContainer/BetAllIn
+@onready var fish_sprite = $MinigameUI/FishSprite
 
 var card_scene = preload("res://scenes/card_display.tscn")
+
+# Fish textures
+var fish_neutral = preload("res://assets/fish/angler/angler1.png")
+var fish_annoyed = preload("res://assets/fish/angler/angler2.png")
+var fish_worried = preload("res://assets/fish/angler/angler3.png")
 
 func _ready():
 	minigame_ui.visible = false
@@ -46,6 +52,7 @@ func _ready():
 func _start_minigame():
 	print("Starting minigame session")
 	minigame_ui.visible = true
+	fish_sprite.texture = fish_neutral
 	_show_betting_ui()
 
 func _start_game():
@@ -86,6 +93,7 @@ func _on_game_finished(score: int, total_score: int, winner: String):
 	match winner:
 		"player":
 			result_message = "YOU WIN!"
+			_update_fish_emotion()
 		"dealer":
 			result_message = "DEALER WINS"
 		"push":
@@ -110,7 +118,7 @@ func _on_caught_fish():
 	status_label.text = "YOU CAUGHT THE FISH!"
 	result_text.text = "VICTORY!\nYou caught the fish!"
 	result_panel.visible = true
-
+	fish_sprite.texture = fish_worried
 	_disable_buttons()
 
 
@@ -225,3 +233,13 @@ func _on_score_updated(current_score: int, target_score: int):
 	progress_bar.value = current_score
 	score_label.text = "%d / %d" % [current_score, target_score]
 	round_label.text = "Round: %d/%d" % [mg_manager.cur_game_num, mg_manager.max_game_num]
+	
+	_update_fish_emotion()
+
+func _update_fish_emotion():
+	var progress_percent = float(mg_manager.player_score) / float(mg_manager.score_to_catch)
+	
+	if progress_percent >= 0.8:
+		fish_sprite.texture = fish_worried
+	else:
+		fish_sprite.texture = fish_neutral
