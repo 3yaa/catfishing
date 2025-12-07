@@ -1,7 +1,7 @@
 class_name MinigameManager
 extends Node
 
-@export var max_game_num: int = 8
+@export var max_game_num: int = 5
 
 var score_to_catch: int = 500
 var starting_score: int = 100

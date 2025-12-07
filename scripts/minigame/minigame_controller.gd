@@ -73,6 +73,10 @@ func _start_minigame():
 	stand_btn.visible = false
 	betting_panel.visible = false
 	current_bet_container.visible = false
+	
+	# clear any leftover from prev minigame
+	_clear_hands()
+	
 	# 
 	player_sprite.play("idle_ocean")
 	# 
@@ -225,7 +229,7 @@ func _on_game_finished(score: int, total_score: int, winner: String):
 	mg_manager.new_game()
 	
 	# show betting ui
-	if mg_manager.player_score > 0 && mg_manager.player_score < mg_manager.score_to_catch && mg_manager.cur_game_num < mg_manager.max_game_num:
+	if mg_manager.player_score > 0 && mg_manager.player_score < mg_manager.score_to_catch && mg_manager.cur_game_num <= mg_manager.max_game_num:
 		_show_betting_ui()
 
 func _on_caught_fish():
@@ -306,28 +310,35 @@ func _display_hand(hand: Array, container: Container, score_label: Label, show_s
 	else:
 		label_prefix = "Player "
 	
+	# calcualte visible card score
+	var visible_score = 0
+	var visible_aces = 0
+	var has_hidden_cards = false
+	
+	for card in hand:
+		if card.visible:
+			if card.rank == "A":
+				visible_score += 11
+				visible_aces += 1
+			else:
+				visible_score += card.value
+		else:
+			has_hidden_cards = true
+	
+	# adj for aces
+	while visible_score > 21 && visible_aces > 0:
+		visible_score -= 10
+		visible_aces -= 1
+	
+	# show score
 	if show_score:
-		var score = 0
-		for card in hand:
-			if card.visible:
-				if card.rank == "A":
-					score += 11
-				else:
-					score += card.value
-		
-		# fooking ace 
-		var aces = 0
-		for card in hand:
-			if card.visible && card.rank == "A":
-				aces += 1
-		
-		while score > 21 && aces > 0:
-			score -= 10
-			aces -= 1
-		
-		score_label.text = "%sHand: %d" % [label_prefix, score]
+		score_label.text = "%sHand: %d" % [label_prefix, visible_score]
 	else:
-		score_label.text = "%sHand: ?" % label_prefix
+		# dealer with hidden cards, show visible score + ?
+		if is_dealer && has_hidden_cards:
+			score_label.text = "%sHand: %d + ?" % [label_prefix, visible_score]
+		else:
+			score_label.text = "%sHand: ?" % label_prefix
 
 func _clear_hands():
 	for child in player_hand_container.get_children():
@@ -348,6 +359,12 @@ func _show_betting_ui():
 	hit_btn.visible = false
 	stand_btn.visible = false
 	_clear_hands()
+	
+	# reset score labels
+	var fish_name = _get_fish_name()
+	dealer_score_label.text = "%s Hand: ?" % fish_name
+	player_score_label.text = "Player Hand: 0"
+	
 	status_label.text = "Place Your Bet"
 	current_bet_container.visible = false
 	
