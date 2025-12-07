@@ -3,8 +3,8 @@ extends NPC
 
 @onready var shop = $"../FishShop"
 
-const position_ocean = Vector2(920, 430)
-const position_island = Vector2(450, 430)
+const position_ocean = Vector2(1200, 1050)
+const position_island = Vector2(700, 1050)
 
 
 func _ready() -> void:
