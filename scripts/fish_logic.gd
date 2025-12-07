@@ -6,17 +6,17 @@ extends Node2D
 var any_fish = false
 
 # size params
-var size_min:float = 1.0
-var size_max:float = 20.0
+var size_min: float = 1.0
+var size_max: float = 20.0
 
 # base fish price, limit to 2 decimal points
-var base_price:float = 10.00
+var base_price: float = 10.00
 
-var reel_chance:float
+var reel_chance: float
 
 var fish_inventory: Array[Fish] = []
 
-var current_fish:Fish = null
+var current_fish: Fish = null
 enum Rarity {
 	COMMON,
 	RARE,
@@ -27,11 +27,11 @@ var fishing_cooldown = 0.5
 var fishing_timer = 0.0
 	
 class Fish:
-	var size:float
+	var size: float
 	var fish_rarity: Rarity
-	var value:float 
+	var value: float
 	
-	func _init(new_size:float, new_rarity:int, new_value:float):
+	func _init(new_size: float, new_rarity: int, new_value: float):
 		self.size = new_size
 		self.fish_rarity = new_rarity
 		self.value = new_value
@@ -44,10 +44,7 @@ class Fish:
 		
 		
 func _ready():
-	var fish1 = make_fish()
-	var fish2 = make_fish()
-	fish_inventory.append(fish1)
-	fish_inventory.append(fish2)
+	pass
 
 func _process(_delta):
 	if player.is_fishing and not tutorial.tutorial_ongoing:
@@ -69,19 +66,34 @@ func _process(_delta):
 					# use that reeling chance and if it lands, send the fish caught signal
 					player.fish_reeled.emit()
 					print(current_fish.stringify())
+					add_fish_to_inventory(current_fish)
 					player.is_fishing = false
 					any_fish = false
 				else:
 					reel_chance += 10.0
+
+func add_fish_to_inventory(fish: Fish):
+	fish_inventory.append(fish)
+	print("fish added, total fish: ", fish_inventory.size())
+
+func get_fish_count_by_rarity(rarity: int) -> int:
+	var count = 0
+	for fish in fish_inventory:
+		if fish.fish_rarity == rarity:
+			count += 1
+	return count
+
+func get_total_fish_count() -> int:
+	return fish_inventory.size()
 	
 	
 func make_fish() -> Fish:
-	var size:float = randf_range(size_min, size_max)
-	var rarity:int = random_rarity()
+	var size: float = randf_range(size_min, size_max)
+	var rarity: int = random_rarity()
 	# value is calculated by the size, then multiplied by two scalers:
 	# player.salesman: small bonus to get more money
 	# rarity: scalar between 1-3x, biggest boost of value to fish
-	var value:float = (base_price +  size) * player.salesman  * (rarity + 1)
+	var value: float = (base_price + size) * player.salesman * (rarity + 1)
 	# this trunctuates the float to 2 decimal places
 	value = floor(value * 100) / 100.0
 	var new_fish = Fish.new(size, rarity, value)
@@ -98,8 +110,6 @@ func random_rarity() -> int:
 	if roll < player.luck:
 		return 2 # super rare fish!
 	elif roll < player.luck * 3:
-		return 1 # super rare 
+		return 1 # super rare
 	else:
 		return 0 # common fish
-
-	

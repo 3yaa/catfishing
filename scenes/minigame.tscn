@@ -121,10 +121,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -332.0
-offset_top = -285.0
-offset_right = -332.0
-offset_bottom = -285.0
+offset_left = -311.0
+offset_top = -218.0
+offset_right = -311.0
+offset_bottom = -218.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 1.5707964
@@ -136,10 +136,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -158.00003
-offset_top = -548.0
-offset_right = 420.46988
-offset_bottom = -127.36011
+offset_left = -166.00003
+offset_top = -521.0
+offset_right = 412.46988
+offset_bottom = -100.36011
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_fish")
@@ -213,6 +213,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("7_jbh4e")
 theme_override_font_sizes/font_size = 50
+text = "f name"
 horizontal_alignment = 1
 
 [node name="DealerHand" type="HBoxContainer" parent="MinigameUI"]
@@ -242,6 +243,7 @@ offset_bottom = 77.0
 grow_horizontal = 2
 theme = ExtResource("7_jbh4e")
 theme_override_font_sizes/font_size = 50
+text = "fish score"
 horizontal_alignment = 1
 
 [node name="StatusLabel" type="Label" parent="MinigameUI"]
@@ -544,6 +546,21 @@ grow_vertical = 2
 texture_normal = ExtResource("8_allin")
 ignore_texture_size = true
 stretch_mode = 0
+
+[node name="RarityLabel" type="Label" parent="MinigameUI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -250.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 88.0
+grow_horizontal = 0
+theme = ExtResource("7_jbh4e")
+theme_override_font_sizes/font_size = 45
+text = "rarity"
+horizontal_alignment = 2
 
 [node name="ProgressMeter" type="VBoxContainer" parent="MinigameUI"]
 layout_mode = 1
