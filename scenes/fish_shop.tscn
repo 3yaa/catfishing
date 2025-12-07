@@ -1,4 +1,4 @@
-[gd_scene load_steps=0 format=3 uid="uid://bnclqcapf7vnm"]
+[gd_scene format=3 uid="uid://bnclqcapf7vnm"]
 
 [node name="FishShop" type="Panel"]
 offset_right = 309.0
