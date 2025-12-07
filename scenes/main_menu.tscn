@@ -6,7 +6,7 @@
 [ext_resource type="Theme" uid="uid://bbi2aoes23tm3" path="res://main_menu_button_theme.tres" id="2_wu84c"]
 [ext_resource type="Texture2D" uid="uid://dlth5ndw1qugm" path="res://assets/background/sky_night.jpeg" id="4_rtw2f"]
 [ext_resource type="AudioStream" uid="uid://div5xliebslu1" path="res://assets/sound/Cat fishing.mp3" id="5_8ln24"]
-[ext_resource type="Script" path="res://scripts/button.gd" id="7_jk1qb"]
+[ext_resource type="Script" uid="uid://krh8n6qinybu" path="res://scripts/button.gd" id="7_jk1qb"]
 [ext_resource type="Texture2D" uid="uid://c4ci4hew47e5g" path="res://assets/background/palmTree.png" id="7_tbmy8"]
 [ext_resource type="PackedScene" uid="uid://2pd4wty6nwsi" path="res://scenes/player.tscn" id="8_jk1qb"]
 
@@ -43,10 +43,10 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -27.0
-offset_top = 315.0
-offset_right = 27.0
-offset_bottom = 704.0
+offset_left = -29.0
+offset_top = 224.0
+offset_right = 93.0
+offset_bottom = 613.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_bqqt6")
@@ -113,7 +113,7 @@ grow_vertical = 0
 texture = ExtResource("7_tbmy8")
 
 [node name="Player" parent="." instance=ExtResource("8_jk1qb")]
-position = Vector2(460, 942)
+position = Vector2(-117, 996)
 scale = Vector2(3, 3)
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]

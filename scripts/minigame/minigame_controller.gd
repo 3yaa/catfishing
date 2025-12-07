@@ -21,13 +21,23 @@ extends Node
 @onready var bet_all_in_btn = $MinigameUI/BettingPanel/BetAllIn
 @onready var fish_sprite = $MinigameUI/Control/FishSprite
 @onready var fish = get_node("/root/Game/FishLogic")
+@onready var rarity_label = $MinigameUI/RarityLabel
 
 var card_scene = preload("res://scenes/card_display.tscn")
 
-# fish texture -- HARDCODED CUR
-var fish_neutral = preload("res://assets/fish/angler/angler1.png")
-var fish_annoyed = preload("res://assets/fish/angler/angler2.png")
-var fish_worried = preload("res://assets/fish/angler/angler3.png")
+# fish textures - dynamically loaded based on rarity
+var fish_neutral: Texture2D
+var fish_annoyed: Texture2D
+var fish_worried: Texture2D
+
+# fish type mapping by rarity
+var fish_types = {
+	0: "clown fish", # COMMON
+	1: "blue tang", # RARE
+	2: "shark" # SUPER_RARE
+}
+
+var current_fish_rarity: int = 0
 
 var fish_idle_time: float = 0.0
 var top_panel: ColorRect
@@ -77,12 +87,18 @@ func _start_minigame():
 	# clear any leftover from prev minigame
 	_clear_hands()
 	
+	# load fish based on current_fish rarity
+	if fish.current_fish:
+		current_fish_rarity = fish.current_fish.fish_rarity
+		_load_fish_textures(current_fish_rarity)
+	
 	# 
 	player_sprite.play("idle_ocean")
 	# 
 	fish_sprite.texture = fish_neutral
 	status_label.text = "HIT OR STAND?"
 	_update_fish_name()
+	_update_rarity_label()
 	_initialize_score_labels()
 	# animate panel
 	_animate_panels_in()
@@ -124,20 +140,63 @@ func _initialize_score_labels():
 	dealer_score_label.text = "%s Hand: ?" % fish_name
 	player_score_label.text = "Player Hand: 0"
 
+func _load_fish_textures(rarity: int):
+	var fish_type = fish_types.get(rarity, "clown fish")
+	var base_path = "res://assets/fish/%s/" % fish_type
+	
+	# load the three emotion states
+	if fish_type == "blue tang":
+		fish_neutral = load(base_path + "blueTang1.png")
+		fish_annoyed = load(base_path + "blueTang2.png")
+		fish_worried = load(base_path + "blueTang3.png")
+	elif fish_type == "clown fish":
+		fish_neutral = load(base_path + "clown1.png")
+		fish_annoyed = load(base_path + "clown2.png")
+		fish_worried = load(base_path + "clown3.png")
+	elif fish_type == "shark":
+		fish_neutral = load(base_path + "shark1.png")
+		fish_annoyed = load(base_path + "shark2.png")
+		fish_worried = load(base_path + "shark3.png")
+
 func _get_fish_name() -> String:
-	var texture_path = fish_neutral.resource_path
-	var path_parts = texture_path.split("/")
-	# 
-	if path_parts.size() >= 3:
-		var fish_name = path_parts[path_parts.size() - 2]
-		var words = fish_name.split(" ")
-		var capitalized_name = ""
-		for word in words:
-			if word.length() > 0:
-				capitalized_name += word.capitalize() + " "
-		return capitalized_name.strip_edges()
-	else:
-		return "Dealer"
+	if fish_neutral and fish_neutral.resource_path:
+		var texture_path = fish_neutral.resource_path
+		var path_parts = texture_path.split("/")
+		# 
+		if path_parts.size() >= 3:
+			var fish_name = path_parts[path_parts.size() - 2]
+			var words = fish_name.split(" ")
+			var capitalized_name = ""
+			for word in words:
+				if word.length() > 0:
+					capitalized_name += word.capitalize() + " "
+			return capitalized_name.strip_edges()
+	return "Dealer"
+
+func _update_rarity_label():
+	var rarity_names = {
+		0: "COMMON",
+		1: "RARE",
+		2: "SUPER RARE"
+	}
+	var rarity_colors = {
+		0: Color(0.7, 0.7, 0.7), # gray for common
+		1: Color(0.3, 0.6, 1.0), # blue for rare
+		2: Color(1.0, 0.8, 0.0) # gold for super rare
+	}
+	
+	rarity_label.text = rarity_names.get(current_fish_rarity, "COMMON")
+	rarity_label.modulate = rarity_colors.get(current_fish_rarity, Color.WHITE)
+	
+	# animate rarity label entrance
+	rarity_label.scale = Vector2(0.5, 0.5)
+	rarity_label.modulate.a = 0
+	
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.tween_property(rarity_label, "scale", Vector2(1.0, 1.0), 0.5)
+	tween.parallel().tween_property(rarity_label, "modulate:a", 1.0, 0.5)
 
 func _update_fish_name():
 	dealer_hand_label.text = _get_fish_name().to_upper()

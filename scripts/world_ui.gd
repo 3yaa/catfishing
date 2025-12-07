@@ -1,11 +1,15 @@
 extends CanvasLayer
 
-@export var dev_mode: bool = false
+@export var dev_mode: bool = true
 
-@onready var fish_score = $FishCounter/FishScore
+@onready var total_fish_label = $FishCounter/Total
+@onready var common_fish_label = $FishCounter/Common
+@onready var rare_fish_label = $FishCounter/Rare
+@onready var super_rare_fish_label = $FishCounter/SuperRare
 
 @onready var clock = $"../Clock"
 @onready var player = $"../Player"
+@onready var fish_logic = $"../FishLogic"
 
 @onready var ui_clock_phase = $TimeOfDay/Phase
 @onready var ui_clock_time = $TimeOfDay/Time
@@ -15,7 +19,6 @@ extends CanvasLayer
 
 # this is for handling opening sequence + cutscene 
 var allow_input: bool = false
-var fish_count: int = 0
 
 @onready var cutscene = get_parent().get_node("Cutscene_Manager")
 @onready var tutorial = get_parent().get_node("Tutorial_Manager")
@@ -51,19 +54,24 @@ func _process(delta: float) -> void:
 		update_clock_display()
 		update_warning_display()
 		update_money_display()
-	
-func _add_fish() -> void:
-	fish_count += 1
-	update_fish_display()
+		update_fish_display()
 
 func update_fish_display() -> void:
-	fish_score.text = str(fish_count)
+	var total = fish_logic.get_total_fish_count()
+	var common = fish_logic.get_fish_count_by_rarity(0)
+	var rare = fish_logic.get_fish_count_by_rarity(1)
+	var super_rare = fish_logic.get_fish_count_by_rarity(2)
+	
+	total_fish_label.text = "Fish: " + str(total)
+	common_fish_label.text = "● " + str(common)
+	rare_fish_label.text = "● " + str(rare)
+	super_rare_fish_label.text = "★ " + str(super_rare)
 
 # call when caught fish
 func caught_fish() -> void:
 	# player.is_fishing = false
 	# set up this connection later
-	_add_fish()
+	update_fish_display()
 	print("caught fish")
 	
 func update_money_display():
