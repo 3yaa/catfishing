@@ -20,7 +20,7 @@ signal mini_end
 @onready var fish = get_node("/root/Game/FishLogic")
 @onready var minigame = get_node("/root/Game/MinigameContainer/Minigame/MinigameManager")
 
-@onready var label = get_node("/root/Game/Tutorial_Manager/Label")
+@onready var label = get_node("/root/Game/Player/Text_Manager/Tutorial")
 @onready var mini_label = get_node("/root/Game/MinigameContainer/Minigame/MinigameUI/Rules")
 
 var temporary_binding = false
@@ -37,13 +37,6 @@ func _ready():
 	minigame.caught_fish.connect(_caught_fish)
 	minigame.lost_fish.connect(_lost_fish)
 	
-func _process(_delta):
-	if label.visible:
-		# label.position = Vector2(player.position.x - label.size.x / 2, player.position.y - label.size.y * 4)
-		# label.position = Vector2(camera.position.x - label.size.x / 2, camera.position.y - label.size.y * 4)
-		label.position = Vector2(player.position.x - label.size.x / 2, player.position.y - label.size.y * 0.5)
-		# Assuming this script is on a Camera2D or any Control node
-		
 		
 func _input(event):
 	if not temporary_binding:
@@ -108,6 +101,8 @@ func _movement_guide():
 	#await self.e_pressed
 	#game.allow_input = true
 	label.text = "Welcome to Catfishing! Press 'e' to continue!"
+	await self.e_pressed
+	label.text = "'e' will be the 'interact' button used to exhaust dialogue and talk to npcs!"
 	await self.e_pressed
 	label.text = "The movement controls are basic WASD and SPACE binding"
 	await self.e_pressed

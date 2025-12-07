@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@export var dev_mode: bool = true
+@export var dev_mode: bool = false
 
 @onready var fish_score = $FishCounter/FishScore
 
@@ -30,8 +30,8 @@ func _ready() -> void:
 		tutorial.tutorial_ongoing = false
 	else:
 		# Cutscene will play on ready:
-		emit_signal("cutscene_start")
-		await cutscene.cutscene_end
+		#emit_signal("cutscene_start")
+		#await cutscene.cutscene_end
 		# then tutorial
 		emit_signal("tutorial_start")
 		await tutorial.tutorial_end

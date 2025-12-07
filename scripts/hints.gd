@@ -2,7 +2,7 @@ extends Control
 
 @onready var tutorial = get_node("/root/Game/Tutorial_Manager")
 @onready var camera = get_node("/root/Game/Camera2D")
-
+@onready var label = get_node("/root/Game/Player/Text_Manager/Hint")
 
 var hints = [
 	"Rescue cats to unlock shops!",
@@ -24,16 +24,12 @@ var ongoing_hint = false
 signal new_hint
 
 func _ready():
-	$Label.visible = false
-	$Label.add_theme_color_override("font_color", Color.BLACK)
+	label.visible = false
+	label.add_theme_color_override("font_color", Color.BLACK)
 	self.connect("new_hint", _show_hint)
 	
 
-func _physics_process(delta):
-	pass
-
 func _process(delta):
-	$Label.position = Vector2(camera.position.x - $Label.size.x / 2, camera.position.y - $Label.size.y * 8)
 	if tutorial.tutorial_ongoing:
 		pass
 	else:
@@ -47,9 +43,9 @@ func _process(delta):
 func _show_hint():
 	ongoing_hint = true
 	hint_no = randi() % hints.size()
-	$Label.text = "Hint: " + hints[hint_no]
-	$Label.visible = true
+	label.text = "Hint: " + hints[hint_no]
+	label.visible = true
 	await get_tree().create_timer(10.0).timeout
-	$Label.visible = false
+	label.visible = false
 	await get_tree().create_timer(20.0).timeout
 	ongoing_hint = false

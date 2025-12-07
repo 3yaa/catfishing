@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dlaaqsui6rtpr"]
+[gd_scene load_steps=30 format=3 uid="uid://dlaaqsui6rtpr"]
 
 [ext_resource type="Script" uid="uid://cuyhki8mlbgr0" path="res://scripts/main_game.gd" id="1_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://2pd4wty6nwsi" path="res://scenes/player.tscn" id="1_uwrxv"]
@@ -15,9 +15,7 @@
 [ext_resource type="Script" uid="uid://cgq63vliv3xal" path="res://scripts/tutorial_manager.gd" id="13_kvuet"]
 [ext_resource type="Script" uid="uid://b5cpnl0hwso6k" path="res://scripts/cutscene_manager.gd" id="14_trtic"]
 [ext_resource type="PackedScene" uid="uid://ww7lhtqnbr0b" path="res://scenes/npc.tscn" id="15_rysoc"]
-[ext_resource type="FontFile" uid="uid://fl4gxokmbnqb" path="res://assets/font/Chewy,Margarine,Schoolbell/Chewy/Chewy-Regular.ttf" id="15_suyxu"]
 [ext_resource type="Script" uid="uid://bgm5r0wluufyu" path="res://scripts/npc/npc_fish_shop.gd" id="16_ssvqc"]
-[ext_resource type="Theme" uid="uid://bbi2aoes23tm3" path="res://main_menu_button_theme.tres" id="16_sww3w"]
 [ext_resource type="Script" uid="uid://ck6cij3c1aw2a" path="res://scripts/npc/npc_upgrade_shop.gd" id="17_264po"]
 [ext_resource type="Script" uid="uid://tpeieqxngm6i" path="res://scripts/day_night_theme.gd" id="18_ssvqc"]
 [ext_resource type="PackedScene" uid="uid://d3l7ri6i8tb41" path="res://scenes/upgrade_shop.tscn" id="19_264po"]
@@ -26,11 +24,8 @@
 [ext_resource type="Texture2D" uid="uid://dadrew1a45k8i" path="res://assets/platforms/land2.png" id="23_qnb83"]
 [ext_resource type="Texture2D" uid="uid://m56y0ud1o30k" path="res://assets/platforms/water.png" id="24_e1j6l"]
 [ext_resource type="PackedScene" uid="uid://br6meobo0il5m" path="res://scenes/cosmetics_shop.tscn" id="25_suyxu"]
-[ext_resource type="Script" path="res://scripts/hints.gd" id="26_bhx41"]
+[ext_resource type="Script" uid="uid://brn33aiyfow2q" path="res://scripts/hints.gd" id="26_bhx41"]
 [ext_resource type="PackedScene" uid="uid://diec6viabj66n" path="res://scenes/cosmetics.tscn" id="27_sww3w"]
-
-[sub_resource type="Theme" id="Theme_sww3w"]
-default_font = ExtResource("15_suyxu")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e1j6l"]
 size = Vector2(1177.1875, 20)
@@ -93,12 +88,6 @@ script = ExtResource("9_vtaks")
 
 [node name="Tutorial_Manager" type="Node2D" parent="."]
 script = ExtResource("13_kvuet")
-
-[node name="Label" type="RichTextLabel" parent="Tutorial_Manager"]
-offset_right = 40.0
-offset_bottom = 23.0
-theme = SubResource("Theme_sww3w")
-theme_override_font_sizes/normal_font_size = 24
 
 [node name="Cutscene_Manager" type="Node2D" parent="."]
 script = ExtResource("14_trtic")
@@ -215,14 +204,6 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("26_bhx41")
-metadata/_edit_use_anchors_ = true
-
-[node name="Label" type="Label" parent="Hints"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-theme = ExtResource("16_sww3w")
-theme_override_font_sizes/font_size = 16
 metadata/_edit_use_anchors_ = true
 
 [node name="MinigameContainer" type="CanvasLayer" parent="."]
