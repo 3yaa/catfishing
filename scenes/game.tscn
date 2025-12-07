@@ -154,10 +154,10 @@ metadata/_edit_use_anchors_ = true
 
 [node name="CosmeticsShop" parent="." instance=ExtResource("25_suyxu")]
 z_index = 300
-offset_left = 94.0
-offset_top = 257.0
-offset_right = 429.0
-offset_bottom = 457.0
+offset_left = 89.0
+offset_top = 497.0
+offset_right = 424.0
+offset_bottom = 697.0
 metadata/_edit_use_anchors_ = true
 
 [node name="land" type="StaticBody2D" parent="."]
@@ -168,7 +168,7 @@ shape = SubResource("RectangleShape2D_e1j6l")
 
 [node name="Sprite2D" type="Sprite2D" parent="land"]
 z_index = 1
-position = Vector2(324, 472)
+position = Vector2(394, 462.00006)
 rotation = 1.5707964
 scale = Vector2(0.40890205, 0.59275377)
 texture = ExtResource("23_bt5mj")
@@ -178,8 +178,8 @@ region_rect = Rect2(0, 21.977516, 359.46613, 1052.3574)
 [node name="sea" type="StaticBody2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="sea"]
-position = Vector2(827, 475.99997)
-scale = Vector2(0.878743, 0.8635702)
+position = Vector2(912.99994, 478.99994)
+scale = Vector2(2.287995, 0.8635702)
 texture = ExtResource("24_e1j6l")
 region_enabled = true
 region_rect = Rect2(33.969208, 0, 436.61765, 500)

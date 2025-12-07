@@ -14,10 +14,10 @@ bg_color = Color(0.69803923, 0.13333334, 0.13333334, 1)
 [sub_resource type="Theme" id="Theme_wwxib"]
 
 [node name="CosmeticsShop" type="Panel"]
-offset_left = 208.0
-offset_top = 150.0
-offset_right = 506.0
-offset_bottom = 457.0
+offset_left = 140.0
+offset_top = 141.0
+offset_right = 438.0
+offset_bottom = 448.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_05kp5")
 script = ExtResource("1_pn7ka")
 
