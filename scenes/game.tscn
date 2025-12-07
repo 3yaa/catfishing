@@ -1,15 +1,15 @@
-[gd_scene load_steps=35 format=4 uid="uid://dlaaqsui6rtpr"]
+[gd_scene load_steps=32 format=3 uid="uid://dlaaqsui6rtpr"]
 
 [ext_resource type="Script" uid="uid://cuyhki8mlbgr0" path="res://scripts/main_game.gd" id="1_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://2pd4wty6nwsi" path="res://scenes/player.tscn" id="1_uwrxv"]
-[ext_resource type="Texture2D" path="res://assets/Mondstadt Background Wallpaper/sky.jpeg" id="2_trtic"]
+[ext_resource type="Texture2D" uid="uid://bom0hcsi6mb6s" path="res://assets/background/sky.jpeg" id="2_trtic"]
 [ext_resource type="Script" uid="uid://c4nlmna60i861" path="res://scripts/player.gd" id="2_yqjtg"]
 [ext_resource type="Script" uid="uid://bsj23fju2j7vg" path="res://scripts/lock_camera.gd" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://cwjnjn45by5b2" path="res://scenes/ui.tscn" id="6_p57ef"]
 [ext_resource type="Script" uid="uid://b2wgiegidtvun" path="res://scripts/clock.gd" id="7_u5sy4"]
 [ext_resource type="Script" uid="uid://b1phrbyh0srip" path="res://scripts/npc/npc_cosmetics_shop.gd" id="8_qnb83"]
 [ext_resource type="PackedScene" uid="uid://btx5m1k8bm1n8" path="res://scenes/ocean_area.tscn" id="9_dinhu"]
-[ext_resource type="Texture2D" path="res://assets/Mondstadt Background Wallpaper/palmTree.png" id="9_pl11u"]
+[ext_resource type="Texture2D" uid="uid://c4ci4hew47e5g" path="res://assets/background/palmTree.png" id="9_pl11u"]
 [ext_resource type="Script" uid="uid://2yl1hfh0q3jn" path="res://scripts/fish_logic.gd" id="9_vtaks"]
 [ext_resource type="PackedScene" uid="uid://dtipbmymq13e1" path="res://scenes/minigame.tscn" id="10_dinhu"]
 [ext_resource type="Script" uid="uid://cgq63vliv3xal" path="res://scripts/tutorial_manager.gd" id="13_kvuet"]
@@ -27,11 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://m56y0ud1o30k" path="res://assets/platforms/water.png" id="24_e1j6l"]
 [ext_resource type="PackedScene" uid="uid://br6meobo0il5m" path="res://scenes/cosmetics_shop.tscn" id="25_suyxu"]
 [ext_resource type="Script" uid="uid://brn33aiyfow2q" path="res://scripts/hints.gd" id="26_bhx41"]
-<<<<<<< HEAD
-=======
 [ext_resource type="PackedScene" uid="uid://diec6viabj66n" path="res://scenes/cosmetics.tscn" id="27_sww3w"]
-[ext_resource type="PackedScene" uid="uid://bksfpeeyww0i1" path="res://scenes/main_menu.tscn" id="28_sww3w"]
->>>>>>> 5fe45fceaf89f2100dddc91be26be46d757b1017
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e1j6l"]
 size = Vector2(1176.75, 20)
