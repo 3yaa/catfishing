@@ -2,6 +2,7 @@ class_name MinigameManager
 extends Node
 
 @export var max_game_num: int = 5
+@onready var player = get_node("/root/Game/Player")
 
 var score_to_catch: int = 500
 var starting_score: int = 100
