@@ -1,0 +1,36 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://bbi2aoes23tm3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vue75"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqqt6"]
+bg_color = Color(0.29967797, 0.6370112, 0.84054244, 1)
+border_width_bottom = 15
+border_color = Color(0.12040908, 0.352639, 0.48652637, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vue75"]
+bg_color = Color(0.29967797, 0.6370112, 0.84054244, 1)
+border_width_bottom = 15
+border_color = Color(0.12040908, 0.352639, 0.48652637, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ekxnf"]
+bg_color = Color(0.29967797, 0.6370112, 0.84054244, 1)
+border_width_top = 15
+border_color = Color(0.101960786, 0.4392157, 0.5921569, 0)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[resource]
+Button/styles/focus = SubResource("StyleBoxEmpty_vue75")
+Button/styles/hover = SubResource("StyleBoxFlat_bqqt6")
+Button/styles/normal = SubResource("StyleBoxFlat_vue75")
+Button/styles/pressed = SubResource("StyleBoxFlat_ekxnf")

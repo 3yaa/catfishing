@@ -1,0 +1,93 @@
+[gd_scene load_steps=4 format=3 uid="uid://bksfpeeyww0i1"]
+
+[ext_resource type="Texture2D" uid="uid://bom0hcsi6mb6s" path="res://assets/Mondstadt Background Wallpaper/sky.jpeg" id="1_ekxnf"]
+[ext_resource type="Texture2D" uid="uid://cycyli5lvcoau" path="res://assets/platforms/land.png" id="2_bqqt6"]
+[ext_resource type="Theme" uid="uid://bbi2aoes23tm3" path="res://main_menu_button_theme.tres" id="2_wu84c"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1959.0
+offset_top = -26.0
+offset_right = 1118.0
+offset_bottom = 712.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5707964
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("1_ekxnf")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25736567
+anchor_top = 0.14891975
+anchor_right = 0.687175
+anchor_bottom = 0.14891975
+offset_top = -45.5
+offset_bottom = 45.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 66
+text = "CatFishing"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.18804161
+anchor_top = 0.33487654
+anchor_right = 0.76949733
+anchor_bottom = 0.5
+offset_top = -4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_wu84c")
+theme_override_font_sizes/font_size = 56
+text = "Play"
+metadata/_edit_use_anchors_ = true
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2521664
+anchor_top = 0.5925926
+anchor_right = 0.6932409
+anchor_bottom = 0.72376543
+offset_top = -4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_wu84c")
+theme_override_font_sizes/font_size = 56
+text = "Exit"
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1956.0
+offset_top = 805.0
+offset_right = 2328.7498
+offset_bottom = 2805.7788
+rotation = 1.5707964
+texture = ExtResource("2_bqqt6")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
