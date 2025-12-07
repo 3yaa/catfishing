@@ -26,7 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://dadrew1a45k8i" path="res://assets/platforms/land2.png" id="23_qnb83"]
 [ext_resource type="Texture2D" uid="uid://m56y0ud1o30k" path="res://assets/platforms/water.png" id="24_e1j6l"]
 [ext_resource type="PackedScene" uid="uid://br6meobo0il5m" path="res://scenes/cosmetics_shop.tscn" id="25_suyxu"]
-[ext_resource type="Script" path="res://scripts/hints.gd" id="26_bhx41"]
+[ext_resource type="Script" uid="uid://brn33aiyfow2q" path="res://scripts/hints.gd" id="26_bhx41"]
 [ext_resource type="PackedScene" uid="uid://diec6viabj66n" path="res://scenes/cosmetics.tscn" id="27_sww3w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e1j6l"]

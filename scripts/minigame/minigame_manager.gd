@@ -1,6 +1,9 @@
 class_name MinigameManager
 extends Node
 
+
+@onready var player = get_node("/root/Game/Player")
+
 @export var max_game_num: int = 8
 
 var score_to_catch: int = 500
@@ -27,6 +30,7 @@ func new_game():
 	if player_score >= score_to_catch:
 		print("EMITTING caught_fish signal!")
 		caught_fish.emit()
+		player.fish_caught.emit()
 		return
 	
 	# lose con - out of score
