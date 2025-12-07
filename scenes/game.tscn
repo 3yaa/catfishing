@@ -25,7 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://dadrew1a45k8i" path="res://assets/platforms/land2.png" id="23_qnb83"]
 [ext_resource type="Texture2D" uid="uid://m56y0ud1o30k" path="res://assets/platforms/water.png" id="24_e1j6l"]
 [ext_resource type="PackedScene" uid="uid://br6meobo0il5m" path="res://scenes/cosmetics_shop.tscn" id="25_suyxu"]
-[ext_resource type="Script" uid="uid://brn33aiyfow2q" path="res://scripts/hints.gd" id="26_bhx41"]
+[ext_resource type="Script" path="res://scripts/hints.gd" id="26_bhx41"]
 [ext_resource type="PackedScene" uid="uid://diec6viabj66n" path="res://scenes/cosmetics.tscn" id="27_sww3w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e1j6l"]
@@ -152,12 +152,12 @@ offset_bottom = 1050.0
 [node name="land" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="land"]
-position = Vector2(580.59375, 1013)
+position = Vector2(297, 1090)
 shape = SubResource("RectangleShape2D_e1j6l")
 
 [node name="Sprite2D" type="Sprite2D" parent="land"]
 z_index = 1
-position = Vector2(437.00006, 1046)
+position = Vector2(439, 1088)
 rotation = 1.5707964
 scale = Vector2(0.4193952, 0.84835726)
 texture = ExtResource("23_qnb83")
