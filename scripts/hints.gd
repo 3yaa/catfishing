@@ -15,7 +15,7 @@ var hints = [
 	"Powerups can be bought from stores as you progress!",
 	"Avoid hitting on high numbers, that can be dangerous!",
 	"You don't have to win every match, win what you can!",
-	"Rarer fish play more safely, so aim for higher numbers!",
+	"Rarer fish play more aggressively, so aim for higher numbers!",
 ]
 
 var hint_no:int
@@ -30,9 +30,10 @@ func _ready():
 	
 
 func _physics_process(delta):
-	$Label.position = Vector2(camera.position.x - $Label.size.x / 2, camera.position.y - $Label.size.y * 6)
+	pass
 
 func _process(delta):
+	$Label.position = Vector2(camera.position.x - $Label.size.x / 2, camera.position.y - $Label.size.y * 8)
 	if tutorial.tutorial_ongoing:
 		pass
 	else:
