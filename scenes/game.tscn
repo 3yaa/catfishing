@@ -27,7 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://diec6viabj66n" path="res://scenes/cosmetics.tscn" id="27_sww3w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e1j6l"]
-size = Vector2(1177.1875, 20)
+size = Vector2(2219.5938, 20)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_e1j6l"]
 a = Vector2(0, 1)
@@ -37,15 +37,8 @@ b = Vector2(4, 454)
 size = Vector2(1157, 20)
 
 [node name="Game" type="Node2D"]
+position = Vector2(-17, 17)
 script = ExtResource("1_0tnpc")
-
-[node name="Parallax2D" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0.1, 0.1)
-
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
-position = Vector2(605, 685)
-scale = Vector2(0.6853686, 0.7316034)
-texture = ExtResource("2_trtic")
 
 [node name="Npc1" parent="." instance=ExtResource("15_rysoc")]
 z_index = 100
@@ -137,17 +130,17 @@ offset_bottom = 1003.0
 [node name="land" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="land"]
-position = Vector2(297, 1090)
+position = Vector2(-224.20313, 1090)
 shape = SubResource("RectangleShape2D_e1j6l")
 
 [node name="Sprite2D" type="Sprite2D" parent="land"]
 z_index = 1
-position = Vector2(439, 1088)
+position = Vector2(434.00003, 1085)
 rotation = 1.5707964
 scale = Vector2(0.4193952, 0.84835726)
 texture = ExtResource("23_qnb83")
 region_enabled = true
-region_rect = Rect2(0, 21.977516, 359.46613, 1052.3574)
+region_rect = Rect2(0, 21.977516, 360.765, 1006.49854)
 
 [node name="barrier" type="StaticBody2D" parent="land"]
 
@@ -179,7 +172,7 @@ texture = ExtResource("9_pl11u")
 
 [node name="Sprite2D" type="Sprite2D" parent="sea"]
 z_index = 150
-position = Vector2(1464, 1091)
+position = Vector2(1438.0001, 1089)
 scale = Vector2(2.6503804, 0.8635702)
 texture = ExtResource("24_e1j6l")
 region_enabled = true
@@ -208,3 +201,37 @@ visible = false
 
 [node name="Minigame" parent="MinigameContainer" instance=ExtResource("10_dinhu")]
 metadata/_edit_use_anchors_ = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(-1775, -866)
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(1818, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(2246, 1207)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_trtic")
+
+[node name="End of Land" type="StaticBody2D" parent="."]
+z_index = 1
+position = Vector2(217.99997, 726)
+rotation = 0.099483766
+
+[node name="Sprite2D2" type="Sprite2D" parent="End of Land"]
+z_index = 1
+position = Vector2(-611.52765, 417.80255)
+rotation = 1.4817846
+scale = Vector2(0.419, -0.848)
+texture = ExtResource("23_qnb83")
+region_enabled = true
+region_rect = Rect2(0, 21.977516, 362.767, 1036.2245)
+
+[node name="tree unreachable" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="tree unreachable"]
+z_index = 2
+position = Vector2(-212, 823)
+scale = Vector2(-0.8, 0.7)
+texture = ExtResource("9_pl11u")
