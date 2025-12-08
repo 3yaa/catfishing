@@ -2,6 +2,7 @@ class_name NPC
 extends Area2D
 
 @onready var ui = $"../WorldUI"
+@onready var animated_sprite = $AnimatedSprite2D
 
 var rescued = false
 var has_player = false
@@ -10,6 +11,7 @@ var has_player = false
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
+	play_sprite_animation()
 
 
 func _process(delta: float) -> void:
@@ -31,3 +33,12 @@ func _on_body_exited(body: Player):
 	
 func get_interact_prompt():
 	return "Press E to interact"
+	
+	
+func play_sprite_animation():
+	if not rescued:
+		animated_sprite.play("drowning")
+	else:
+		animated_sprite.play("default")
+		
+		

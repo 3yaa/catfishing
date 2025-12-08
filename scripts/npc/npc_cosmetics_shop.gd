@@ -28,6 +28,7 @@ func rescue():
 	global_position = position_island
 	background.texture = background_sprite
 	background.visible = true
+	play_sprite_animation()
 	
 
 # Overwrite prompt
