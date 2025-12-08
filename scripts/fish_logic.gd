@@ -30,19 +30,17 @@ class Fish:
 	var size: float
 	var fish_rarity: Rarity
 	var value: float
-	var sell_value: float
 	
-	func _init(new_size: float, new_rarity: int, new_value: float, new_sell_value: float):
+	func _init(new_size: float, new_rarity: int, new_value: float):
 		self.size = new_size
 		self.fish_rarity = new_rarity
 		self.value = new_value
-		self.sell_value = new_sell_value
 		
 	# function for verbose output, doesnt functionally do anything
 	func stringify() -> String:
 		var rarity_names = ["COMMON", "RARE", "SUPER_RARE"]
 		var rarity_name = rarity_names[fish_rarity]
-		return "Fish(size=%s, rarity=%s, value=%s, sell_value=%s)" % [size, rarity_name, value, sell_value]
+		return "Fish(size=%s, rarity=%s, value=%s)" % [size, rarity_name, value]
 		
 		
 func _ready():
@@ -108,19 +106,7 @@ func make_fish() -> Fish:
 	# this trunctuates the float to 2 decimal places
 	value = floor(value * 100) / 100.0
 	
-	# sell value based on rarity
-	var sell_value: float
-	match rarity:
-		0: # COMMON
-			sell_value = 100.0
-		1: # RARE
-			sell_value = 300.0
-		2: # SUPER_RARE
-			sell_value = 700.0
-		_:
-			sell_value = 100.0
-	
-	var new_fish = Fish.new(size, rarity, value, sell_value)
+	var new_fish = Fish.new(size, rarity, value)
 	return new_fish
 	
 func random_rarity() -> int:
