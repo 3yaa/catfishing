@@ -124,9 +124,9 @@ text = "$0"
 [node name="Sell" type="Button" parent="."]
 layout_mode = 0
 offset_left = 194.0
-offset_top = 22.0
+offset_top = 19.0
 offset_right = 264.0
-offset_bottom = 55.0
+offset_bottom = 52.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("3_font")
 theme_override_font_sizes/font_size = 24
@@ -181,10 +181,10 @@ text = "Insufficient Funds!
 
 [node name="Debt" type="Button" parent="."]
 layout_mode = 0
-offset_left = 171.0
-offset_top = 62.0
-offset_right = 266.0
-offset_bottom = 95.0
+offset_left = 159.0
+offset_top = 60.0
+offset_right = 276.0
+offset_bottom = 93.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("3_font")
 theme_override_font_sizes/font_size = 24

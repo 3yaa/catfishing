@@ -126,7 +126,7 @@ func buy_cosmetic(item_name: String):
 		item_sprite.visible = true
 		
 		# animate the item appearing
-		_animate_item_purchase(item_sprite)
+		#_animate_item_purchase(item_sprite)
 		
 		update_shop_ui()
 	else:
