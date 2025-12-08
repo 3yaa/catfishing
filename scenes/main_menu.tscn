@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bksfpeeyww0i1"]
+[gd_scene load_steps=11 format=3 uid="uid://bksfpeeyww0i1"]
 
 [ext_resource type="Texture2D" uid="uid://bom0hcsi6mb6s" path="res://assets/background/sky.jpeg" id="1_ekxnf"]
 [ext_resource type="Script" uid="uid://c61owka0ukdve" path="res://scripts/main_menu.gd" id="1_jk1qb"]
 [ext_resource type="Texture2D" uid="uid://cycyli5lvcoau" path="res://assets/platforms/land.png" id="2_bqqt6"]
 [ext_resource type="Theme" uid="uid://bbi2aoes23tm3" path="res://main_menu_button_theme.tres" id="2_wu84c"]
 [ext_resource type="Texture2D" uid="uid://dlth5ndw1qugm" path="res://assets/background/sky_night.jpeg" id="4_rtw2f"]
+[ext_resource type="Texture2D" uid="uid://btttpgn7sxjh5" path="res://assets/background/TitleBackground.png" id="5_5dd4i"]
 [ext_resource type="AudioStream" uid="uid://div5xliebslu1" path="res://assets/sound/Cat fishing.mp3" id="5_8ln24"]
 [ext_resource type="Script" uid="uid://krh8n6qinybu" path="res://scripts/button.gd" id="7_jk1qb"]
 [ext_resource type="Texture2D" uid="uid://c4ci4hew47e5g" path="res://assets/background/palmTree.png" id="7_tbmy8"]
@@ -23,6 +24,8 @@ parameters/looping = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -171.81824
+offset_bottom = -34.545532
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.1, 1.1)
@@ -37,6 +40,34 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_rtw2f")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 48.0
+offset_top = 83.0
+offset_right = 48.0
+offset_bottom = 83.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 0.35)
+
+[node name="TileBox" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -710.0
+offset_top = -556.0
+offset_right = 700.0
+offset_bottom = 470.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_5dd4i")
 
 [node name="FloorSand" type="TextureRect" parent="."]
 anchors_preset = 14
@@ -56,8 +87,10 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -373.0
-offset_bottom = -171.0
+offset_left = 52.0
+offset_top = -370.0
+offset_right = 52.0
+offset_bottom = -168.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_wu84c")
