@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dtipbmymq13e1"]
+[gd_scene load_steps=18 format=3 uid="uid://dtipbmymq13e1"]
 
 [ext_resource type="Script" uid="uid://do84ogts0xyuy" path="res://scripts/minigame/minigame_controller.gd" id="1_hwsak"]
 [ext_resource type="Script" uid="uid://w8tkfa0u1tsp" path="res://scripts/minigame/minigame_manager.gd" id="2_0dp5x"]
@@ -14,6 +14,30 @@
 [ext_resource type="Texture2D" uid="uid://brk6ye5hikcwq" path="res://assets/Black Jack/allIn_button.png" id="8_allin"]
 [ext_resource type="Texture2D" uid="uid://caohlvuio2uk5" path="res://assets/Black Jack/redChip.png" id="9_chip"]
 [ext_resource type="Script" uid="uid://dutm8b8esjhd4" path="res://scripts/rules.gd" id="14_8e78p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bet_container"]
+bg_color = Color(0.1, 0.1, 0.15, 0.9)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.8, 0.6, 0.2, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_result_panel"]
+bg_color = Color(0.1, 0.1, 0.15, 0.95)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.8, 0.6, 0.2, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_802es"]
 bg_color = Color(0, 0.7009197, 0.57253796, 1)
@@ -260,7 +284,7 @@ offset_bottom = 161.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("7_jbh4e")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 40
 text = "HIT OR STAND?"
 horizontal_alignment = 1
 
@@ -274,14 +298,7 @@ offset_top = 300.0
 offset_right = -1540.0
 offset_bottom = 380.0
 grow_horizontal = 0
-
-[node name="BetBorder" type="ColorRect" parent="MinigameUI/CurrentBetContainer"]
-layout_mode = 2
-color = Color(0.8, 0.6, 0.2, 1)
-
-[node name="BetBackground" type="ColorRect" parent="MinigameUI/CurrentBetContainer"]
-layout_mode = 2
-color = Color(0.1, 0.1, 0.15, 0.9)
+theme_override_styles/panel = SubResource("StyleBoxFlat_bet_container")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MinigameUI/CurrentBetContainer"]
 layout_mode = 2
@@ -366,14 +383,7 @@ offset_right = 200.0
 offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="ResultBorder" type="ColorRect" parent="MinigameUI/ResultPanel"]
-layout_mode = 2
-color = Color(0.8, 0.6, 0.2, 1)
-
-[node name="ResultBackground" type="ColorRect" parent="MinigameUI/ResultPanel"]
-layout_mode = 2
-color = Color(0.1, 0.1, 0.15, 0.95)
+theme_override_styles/panel = SubResource("StyleBoxFlat_result_panel")
 
 [node name="ResultText" type="Label" parent="MinigameUI/ResultPanel"]
 layout_mode = 2

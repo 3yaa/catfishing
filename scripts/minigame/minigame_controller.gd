@@ -43,6 +43,7 @@ var fish_idle_time: float = 0.0
 var top_panel: ColorRect
 var bottom_panel: ColorRect
 var player_sprite: AnimatedSprite2D
+var waiting_for_click: bool = false
 
 func _ready():
 	minigame_ui.visible = false
@@ -75,17 +76,33 @@ func _process(delta: float):
 	if minigame_ui.visible:
 		_animate_fish(delta)
 
-func _start_minigame():
-	minigame_ui.visible = true
+func _reset_minigame_state():
+	# cancel any pending click waits
+	waiting_for_click = false
 	
-	# hide action buttons -- imd
-	hit_btn.visible = false
-	stand_btn.visible = false
+	# ensure all panels are in correct state
+	result_panel.visible = false
+	result_panel.modulate.a = 1.0
 	betting_panel.visible = false
 	current_bet_container.visible = false
+	hit_btn.visible = false
+	stand_btn.visible = false
 	
-	# clear any leftover from prev minigame
+	# clear hands
 	_clear_hands()
+	
+	print("Minigame state reset complete")
+
+func _start_minigame():
+	print("=== STARTING MINIGAME ===")
+	print("Current game num: ", mg_manager.cur_game_num)
+	print("Player score: ", mg_manager.player_score)
+	print("Target score: ", mg_manager.score_to_catch)
+	
+	# reset all state from previous minigame
+	_reset_minigame_state()
+	
+	minigame_ui.visible = true
 	
 	# load fish based on current_fish rarity
 	if fish.current_fish:
@@ -264,7 +281,7 @@ func _on_game_finished(score: int, total_score: int, winner: String):
 			result_message = "PUSH - TIE"
 	# 
 	var score_text = "+%d" % score if score > 0 else str(score)
-	result_text.text = "%s\nScore: %s\nTotal: %d" % [result_message, score_text, total_score]
+	result_text.text = "%s\nScore: %s\nTotal: %d\n\nClick to continue" % [result_message, score_text, total_score]
 	# aniamte result
 	result_panel.scale = Vector2(0.5, 0.5)
 	result_panel.modulate.a = 0
@@ -275,8 +292,10 @@ func _on_game_finished(score: int, total_score: int, winner: String):
 	tween.set_trans(Tween.TRANS_BACK)
 	tween.tween_property(result_panel, "scale", Vector2(1.0, 1.0), 0.4)
 	tween.parallel().tween_property(result_panel, "modulate:a", 1.0, 0.4)
-	# 
-	await get_tree().create_timer(2.0).timeout
+	
+	# wait for click
+	await _wait_for_click()
+	
 	# fade out result
 	var fade_tween = create_tween()
 	fade_tween.tween_property(result_panel, "modulate:a", 0.0, 0.3)
@@ -293,27 +312,51 @@ func _on_game_finished(score: int, total_score: int, winner: String):
 
 func _on_caught_fish():
 	print("CAUGHT FISH - YOU WIN!")
+	
+	# immediately hide the minigame
+	minigame_ui.visible = false
+	
+	# show victory popup
 	status_label.text = "YOU CAUGHT THE FISH!"
-	result_text.text = "VICTORY!\nYou caught the fish!"
+	result_text.text = "VICTORY!\nYou caught the fish!\n\nClick to continue"
 	result_panel.visible = true
 	fish_sprite.texture = fish_worried
 	_disable_buttons()
 	
-	await get_tree().create_timer(3.0).timeout
+	# make result panel visible
+	result_panel.get_parent().remove_child(result_panel)
+	get_parent().add_child(result_panel)
+	
+	await _wait_for_click()
+	
+	# cleanup
+	get_parent().remove_child(result_panel)
+	minigame_ui.add_child(result_panel)
 	result_panel.visible = false
-	minigame_ui.visible = false
 
 
 func _on_lost_fish():
 	print("LOST FISH - GAME OVER")
+	
+	# immediately hide the minigame to prevent any further interaction
+	minigame_ui.visible = false
+	
+	# show game over popup
 	status_label.text = "FISH GOT AWAY..."
-	result_text.text = "GAME OVER\nThe fish got away!"
+	result_text.text = "GAME OVER\nThe fish got away!\n\nClick to continue"
 	result_panel.visible = true
 	_disable_buttons()
 	
-	await get_tree().create_timer(3.0).timeout
+	# make result panel visible even when minigame_ui is hidden
+	result_panel.get_parent().remove_child(result_panel)
+	get_parent().add_child(result_panel)
+	
+	await _wait_for_click()
+	
+	# cleanup
+	get_parent().remove_child(result_panel)
+	minigame_ui.add_child(result_panel)
 	result_panel.visible = false
-	minigame_ui.visible = false
 
 func _update_display():
 	var game = mg_manager.current_game
@@ -586,3 +629,32 @@ func _update_fish_emotion():
 		fish_sprite.texture = fish_worried
 	else:
 		fish_sprite.texture = fish_neutral
+
+func _wait_for_click() -> void:
+	waiting_for_click = true
+	
+	# wait for any currently held mouse button to be released
+	while Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and waiting_for_click:
+		await get_tree().process_frame
+	
+	if not waiting_for_click:
+		return
+	
+	# wait a couple frames to clear any lingering input events
+	await get_tree().process_frame
+	await get_tree().process_frame
+	
+	if not waiting_for_click:
+		return
+	
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
+	# wait for a fresh click
+	while waiting_for_click:
+		if Input.is_action_just_pressed("ui_accept"):
+			break
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+			break
+		await get_tree().process_frame
+	
+	waiting_for_click = false

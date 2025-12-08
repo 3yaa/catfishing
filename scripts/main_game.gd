@@ -30,20 +30,21 @@ func _on_minigame_trigger_pressed() -> void:
 	# pause game
 	get_tree().paused = true
 	
-	# use player money as starting score
-	var player_starting_score = int(player.money)
-	
-	# rarity determines how much to add to current score for target
+	# starting score based on fish rarity
 	var fish_logic = get_node("/root/Game/FishLogic")
+	var player_starting_score = 50 # default for common
 	var rarity_bonus = 100 # default
 	
 	if fish_logic.current_fish:
 		match fish_logic.current_fish.fish_rarity:
 			0: # COMMON
+				player_starting_score = 50
 				rarity_bonus = 100
 			1: # RARE
+				player_starting_score = 60
 				rarity_bonus = 200
 			2: # SUPER_RARE
+				player_starting_score = 70
 				rarity_bonus = 450
 	
 	var fish_target_score = player_starting_score + rarity_bonus
@@ -53,20 +54,8 @@ func _on_minigame_trigger_pressed() -> void:
 	minigame._start_minigame()
 
 func _on_minigame_complete() -> void:
-	# update money with minigame score
-	var mg_manager = minigame.get_node("MinigameManager")
-	player.money = float(mg_manager.player_score)
-	
-	# timer processes when paused
-	var timer = Timer.new()
-	timer.process_mode = Node.PROCESS_MODE_ALWAYS
-	timer.wait_time = 3.0
-	timer.one_shot = true
-	add_child(timer)
-	timer.start()
-	print("Timer started, waiting 3 seconds...")
-	await timer.timeout
-	timer.queue_free()
+	# minigame no longer affects player money
+	# minigame controller already handles the click-to-continue
 	
 	# close minigame
 	minigame_container.visible = false
