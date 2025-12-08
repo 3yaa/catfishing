@@ -35,8 +35,8 @@
 size = Vector2(2219.5938, 20)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_e1j6l"]
-a = Vector2(-323, -72)
-b = Vector2(-330, 429)
+a = Vector2(-287, -63)
+b = Vector2(-289, 377)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pl11u"]
 size = Vector2(1157, 20)
@@ -160,9 +160,9 @@ shape = SubResource("RectangleShape2D_e1j6l")
 
 [node name="Sprite2D" type="Sprite2D" parent="land"]
 z_index = 1
-position = Vector2(434, 1100.0001)
+position = Vector2(434, 1105.771)
 rotation = 1.5707964
-scale = Vector2(0.4193952, 0.84835726)
+scale = Vector2(0.43217885, 0.84835726)
 texture = ExtResource("23_qnb83")
 region_enabled = true
 region_rect = Rect2(0, 21.977516, 360.765, 1006.49854)
@@ -170,7 +170,7 @@ region_rect = Rect2(0, 21.977516, 360.765, 1006.49854)
 [node name="barrier" type="StaticBody2D" parent="land"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="land/barrier"]
-position = Vector2(-3, 686)
+position = Vector2(90, 690)
 shape = SubResource("SegmentShape2D_e1j6l")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="land/barrier"]
@@ -181,8 +181,8 @@ shape = SubResource("SegmentShape2D_e1j6l")
 
 [node name="Sprite2D" type="Sprite2D" parent="sea"]
 z_index = 150
-position = Vector2(1926.1086, 1103.0001)
-scale = Vector2(4.8894105, 0.8635702)
+position = Vector2(1536.1086, 1108.5538)
+scale = Vector2(3.1004193, 0.88578504)
 texture = ExtResource("24_e1j6l")
 region_enabled = true
 region_rect = Rect2(33.969208, 0, 436.61765, 500)
@@ -192,6 +192,7 @@ position = Vector2(1464, 1090)
 shape = SubResource("RectangleShape2D_pl11u")
 
 [node name="Cosmetics" parent="." instance=ExtResource("27_sww3w")]
+visible = false
 position = Vector2(489, 632)
 
 [node name="Hints" type="Control" parent="."]
@@ -228,9 +229,9 @@ rotation = 0.099483766
 
 [node name="Sprite2D2" type="Sprite2D" parent="End of Land"]
 z_index = 1
-position = Vector2(-609.5679, 432.97406)
+position = Vector2(-609.0884, 438.3467)
 rotation = 1.4817846
-scale = Vector2(0.419, -0.848)
+scale = Vector2(0.43182117, -0.848)
 texture = ExtResource("23_qnb83")
 region_enabled = true
 region_rect = Rect2(0, 21.977516, 362.767, 1036.2245)
