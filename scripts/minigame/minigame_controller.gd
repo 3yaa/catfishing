@@ -110,7 +110,7 @@ func _start_minigame():
 		_load_fish_textures(current_fish_rarity)
 	
 	# 
-	player_sprite.play("idle_ocean")
+	player_sprite.play("fishing")
 	# 
 	fish_sprite.texture = fish_neutral
 	status_label.text = "HIT OR STAND?"
