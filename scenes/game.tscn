@@ -116,10 +116,10 @@ z_index = -1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -1043.0
-offset_top = -388.0
-offset_right = 979.0
-offset_bottom = 448.0
+offset_left = -1052.0
+offset_top = -386.0
+offset_right = 970.0
+offset_bottom = 450.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -131,30 +131,27 @@ background_night = ExtResource("12_bhx41")
 metadata/_edit_group_ = true
 
 [node name="UpgradeShop" parent="." instance=ExtResource("19_264po")]
-visible = false
 z_index = 300
 offset_left = 472.0
-offset_top = 802.0
+offset_top = 717.0
 offset_right = 748.31
-offset_bottom = 1052.0
+offset_bottom = 967.0
 metadata/_edit_use_anchors_ = true
 
 [node name="FishShop" parent="." instance=ExtResource("21_5newe")]
-visible = false
 z_index = 300
 offset_left = 588.0
-offset_top = 799.0
+offset_top = 779.0
 offset_right = 897.0
-offset_bottom = 984.0
+offset_bottom = 964.0
 metadata/_edit_use_anchors_ = true
 
 [node name="CosmeticsShop" parent="." instance=ExtResource("25_suyxu")]
-visible = false
 z_index = 300
 offset_left = 307.0
-offset_top = 765.0
+offset_top = 728.0
 offset_right = 605.0
-offset_bottom = 1003.0
+offset_bottom = 966.0
 
 [node name="land" type="StaticBody2D" parent="."]
 

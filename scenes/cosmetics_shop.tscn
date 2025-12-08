@@ -1,97 +1,162 @@
-[gd_scene load_steps=7 format=3 uid="uid://br6meobo0il5m"]
+[gd_scene load_steps=10 format=3 uid="uid://br6meobo0il5m"]
 
 [ext_resource type="Script" uid="uid://c5qafcnwqo7k4" path="res://scripts/cosmetics_shop_manager.gd" id="1_pn7ka"]
 [ext_resource type="Texture2D" uid="uid://b7kisih3tshpc" path="res://assets/background/shopBackground.png" id="1_wwxib"]
+[ext_resource type="FontFile" uid="uid://bautrqaskm40v" path="res://assets/font/Chewy,Margarine,Schoolbell/Margarine/Margarine-Regular.ttf" id="3_font"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_05kp5"]
 texture = ExtResource("1_wwxib")
 
-[sub_resource type="Theme" id="Theme_05kp5"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_close"]
+bg_color = Color(0.8, 0.2, 0.2, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wwxib"]
-bg_color = Color(0.69803923, 0.13333334, 0.13333334, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_close_hover"]
+bg_color = Color(0.95, 0.3, 0.3, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
-[sub_resource type="Theme" id="Theme_wwxib"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button"]
+bg_color = Color(0.6, 0.4, 0.2, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_hover"]
+bg_color = Color(0.75, 0.55, 0.35, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_disabled"]
+bg_color = Color(0.4, 0.4, 0.4, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="CosmeticsShop" type="Panel"]
-offset_left = 140.0
-offset_top = 141.0
-offset_right = 438.0
-offset_bottom = 448.0
+offset_left = 400.0
+offset_top = 120.0
+offset_right = 800.0
+offset_bottom = 420.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_05kp5")
 script = ExtResource("1_pn7ka")
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 29.0
-offset_top = 21.0
-offset_right = 271.0
-offset_bottom = 63.0
-theme = SubResource("Theme_05kp5")
-theme_override_colors/font_color = Color(0.011764706, 0.011764706, 0.011764706, 1)
-theme_override_font_sizes/font_size = 30
-text = "IKEA"
-horizontal_alignment = 1
-
 [node name="Close" type="Button" parent="."]
 layout_mode = 0
-offset_left = 265.0
-offset_right = 296.0
-offset_bottom = 31.0
-scale = Vector2(1.035, 1.035)
-theme_override_styles/normal = SubResource("StyleBoxFlat_wwxib")
-text = "X"
+offset_left = 269.0
+offset_top = -2.0
+offset_right = 299.0
+offset_bottom = 28.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_close")
+theme_override_styles/hover = SubResource("StyleBoxFlat_close_hover")
+text = "✕"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 29.0
+offset_right = 237.0
+offset_bottom = 73.0
+theme_override_colors/font_color = Color(0.3, 0.2, 0.1, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 32
+text = "IKEA"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -98.0
-offset_top = -47.5
-offset_right = 98.0
-offset_bottom = 47.5
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
+offset_left = 34.0
+offset_top = 94.0
+offset_right = 374.0
+offset_bottom = 304.0
+scale = Vector2(0.7, 0.7)
 horizontal_scroll_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
 layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
+size_flags_horizontal = 3
+theme_override_constants/separation = 15
 
 [node name="House" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/House"]
+custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
-size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.3, 0.2, 0.1, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 20
 text = "House"
 
 [node name="Buy" type="Button" parent="ScrollContainer/VBoxContainer/House"]
+custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
-theme = SubResource("Theme_wwxib")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_button_disabled")
 
 [node name="CatTree" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/CatTree"]
+custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
-size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.3, 0.2, 0.1, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 20
 text = "Cat Tree"
 
 [node name="Buy" type="Button" parent="ScrollContainer/VBoxContainer/CatTree"]
+custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_button_disabled")
 
 [node name="Chair" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Chair"]
+custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
-size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.3, 0.2, 0.1, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 20
 text = "Chair"
 
 [node name="Buy" type="Button" parent="ScrollContainer/VBoxContainer/Chair"]
+custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_button_disabled")
