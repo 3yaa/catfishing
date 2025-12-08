@@ -46,7 +46,11 @@ class Fish:
 		
 		
 func _ready():
-	pass
+	# connect to minigame manager's caught_fish signal
+	var mg_manager = get_node("/root/Game/MinigameContainer/Minigame/MinigameManager")
+	if mg_manager:
+		mg_manager.caught_fish.connect(_on_minigame_won)
+		print("Connected to minigame caught_fish signal")
 
 func _process(_delta):
 	if player.is_fishing and not tutorial.tutorial_ongoing:
@@ -64,15 +68,20 @@ func _process(_delta):
 				print(roll)
 				print(reel_chance)
 				if reel_chance > roll:
-					# probably do some probability algorithm where reeling chance is calculated
-					# use that reeling chance and if it lands, send the fish caught signal
+					# trigger minigame
 					player.fish_reeled.emit()
-					print(current_fish.stringify())
-					add_fish_to_inventory(current_fish)
+					print("Fish hooked: ", current_fish.stringify())
 					player.is_fishing = false
 					any_fish = false
 				else:
 					reel_chance += 10.0
+
+func _on_minigame_won():
+	# only add fish to inventory when minigame is won
+	if current_fish:
+		add_fish_to_inventory(current_fish)
+		print("Fish caught and added to inventory!")
+		current_fish = null
 
 func add_fish_to_inventory(fish: Fish):
 	fish_inventory.append(fish)
