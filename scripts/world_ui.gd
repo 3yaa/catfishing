@@ -1,6 +1,9 @@
 extends CanvasLayer
 
-@export var dev_mode: bool = false
+# dev_mode:
+# true: no tutorial
+# false: yes tutorial
+@export var dev_mode: bool = true
 
 @onready var total_fish_label = $FishCounter/Total
 @onready var common_fish_label = $FishCounter/Common
