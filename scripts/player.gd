@@ -127,7 +127,7 @@ func exit_ocean():
 
 # When stay too late in ocean: pass out, get teleported back, lose some fish
 func handle_late_in_ocean():
-	if not tutorial.tutorial_ongoing and is_in_ocean and not clock.is_day and clock.get_remaining_time() < 5.0:
+	if not tutorial.tutorial_ongoing and is_in_ocean and not clock.is_day and clock.get_remaining_time() < 0.5 * clock.night_duration:
 		global_position = spawn_position
 		is_late.emit()
 		
