@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dtipbmymq13e1"]
+[gd_scene load_steps=25 format=3 uid="uid://dtipbmymq13e1"]
 
 [ext_resource type="Script" uid="uid://do84ogts0xyuy" path="res://scripts/minigame/minigame_controller.gd" id="1_hwsak"]
 [ext_resource type="Script" uid="uid://w8tkfa0u1tsp" path="res://scripts/minigame/minigame_manager.gd" id="2_0dp5x"]
@@ -13,7 +13,14 @@
 [ext_resource type="Texture2D" uid="uid://cd8oim1pijogi" path="res://assets/Black Jack/stand_button.png" id="7_stand"]
 [ext_resource type="Texture2D" uid="uid://brk6ye5hikcwq" path="res://assets/Black Jack/allIn_button.png" id="8_allin"]
 [ext_resource type="Texture2D" uid="uid://caohlvuio2uk5" path="res://assets/Black Jack/redChip.png" id="9_chip"]
-[ext_resource type="Script" uid="uid://dutm8b8esjhd4" path="res://scripts/rules.gd" id="14_8e78p"]
+[ext_resource type="Script" path="res://scripts/rules.gd" id="14_8e78p"]
+[ext_resource type="AudioStream" uid="uid://bk0xqy0y7hyrc" path="res://assets/Sounds/Black Jack/Incorrect.mp3" id="15_3u4ns"]
+[ext_resource type="AudioStream" uid="uid://b1ccwfvjuwntj" path="res://assets/Sounds/Black Jack/correct.mp3" id="15_okghe"]
+[ext_resource type="AudioStream" uid="uid://wfg3v7gweuyo" path="res://assets/Sounds/Black Jack/CardDeal.mp3" id="17_tumst"]
+[ext_resource type="AudioStream" uid="uid://dpxq4nth3p4sa" path="res://assets/Sounds/Black Jack/FishCaught.mp3" id="18_0mihh"]
+[ext_resource type="AudioStream" uid="uid://b376ntpcinpwb" path="res://assets/Sounds/Cat Sounds/Losing/SadCat3.mp3" id="18_4spdj"]
+[ext_resource type="AudioStream" uid="uid://13th3qa40jju" path="res://assets/Sounds/Black Jack/buttonPress.mp3" id="19_n0viv"]
+[ext_resource type="AudioStream" uid="uid://cgp8u3in6mlui" path="res://assets/Sounds/Black Jack/PokerChip.mp3" id="20_n0viv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bet_container"]
 bg_color = Color(0.1, 0.1, 0.15, 0.9)
@@ -628,3 +635,32 @@ theme = ExtResource("7_jbh4e")
 theme_override_font_sizes/normal_font_size = 30
 theme_override_font_sizes/bold_font_size = 40
 script = ExtResource("14_8e78p")
+
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="RoundWin" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("15_okghe")
+volume_db = 0.684
+
+[node name="RoundLose" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("15_3u4ns")
+
+[node name="Deal" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("17_tumst")
+volume_db = 2.736
+
+[node name="FishCaught" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("18_0mihh")
+
+[node name="CatCry" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("18_4spdj")
+volume_db = 1.368
+pitch_scale = 1.29
+
+[node name="Stand" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("19_n0viv")
+volume_db = 4.79
+
+[node name="PokerChip" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("20_n0viv")
+volume_db = 2.736
