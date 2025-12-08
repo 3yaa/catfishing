@@ -6,8 +6,8 @@ signal cycle_changed(is_day:bool)
 var timer: Timer
 
 var is_day:bool = true
-var day_duration:float = 30.0
-var night_duration:float = 15.0
+var day_duration:float = 180.0
+var night_duration:float = 90.0
 
 var is_paused = false
 var paused_at: float

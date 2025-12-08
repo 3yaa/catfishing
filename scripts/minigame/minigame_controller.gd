@@ -38,7 +38,7 @@ var fish_worried: Texture2D
 
 # fish type mapping by rarity
 var fish_types = {
-	0: "clown fish", # COMMON
+	0: ["clown fish", "Sea Bass"], # COMMON - randomly selected
 	1: "blue tang", # RARE
 	2: "shark" # SUPER_RARE
 }
@@ -164,7 +164,15 @@ func _initialize_score_labels():
 	player_score_label.text = "Player Hand: 0"
 
 func _load_fish_textures(rarity: int):
-	var fish_type = fish_types.get(rarity, "clown fish")
+	var fish_type_data = fish_types.get(rarity, "clown fish")
+	var fish_type = ""
+	
+	# handle common rarity with multiple fish types
+	if fish_type_data is Array:
+		fish_type = fish_type_data[randi() % fish_type_data.size()]
+	else:
+		fish_type = fish_type_data
+	
 	var base_path = "res://assets/fish/%s/" % fish_type
 	
 	# load the three emotion states
@@ -176,6 +184,10 @@ func _load_fish_textures(rarity: int):
 		fish_neutral = load(base_path + "clown1.png")
 		fish_annoyed = load(base_path + "clown2.png")
 		fish_worried = load(base_path + "clown3.png")
+	elif fish_type == "Sea Bass":
+		fish_neutral = load(base_path + "seaBass1.png")
+		fish_annoyed = load(base_path + "seaBass2.png")
+		fish_worried = load(base_path + "seaBass3.png")
 	elif fish_type == "shark":
 		fish_neutral = load(base_path + "shark1.png")
 		fish_annoyed = load(base_path + "shark2.png")
