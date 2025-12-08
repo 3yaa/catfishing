@@ -46,7 +46,6 @@ func _start_cycle():
 func switch_cycle():
 	is_day = !is_day
 	cycle_changed.emit(is_day)
-	
 	_start_cycle()
 	
 

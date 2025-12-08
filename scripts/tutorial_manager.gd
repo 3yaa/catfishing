@@ -159,7 +159,7 @@ func _fishing_guide():
 func _minigame_guide():
 	print("minigame start")
 	# static fish for tutorial purposes:
-	fish.current_fish = fish.Fish.new(10.0, 0, 10.0)
+	fish.current_fish = fish.Fish.new(10.0, 0, 100.0)
 	label.text = "Give it a try, beat the fish!"
 	await self.e_pressed
 	mini_label.visible = true
@@ -186,7 +186,7 @@ func _lost_fish():
 	
 func _day_night_cycle_guide():
 	print("cycle start")
-	clock.cycle_changed.emit(not clock.is_day)
+	# clock.cycle_changed.emit(not clock.is_day)
 	clock.is_day = false
 	label.text = "Looks like it's gotten late, we should return back"
 	await self.e_pressed
@@ -232,7 +232,7 @@ func _on_tutorial_end():
 	await self.e_pressed
 	label.visible = false
 	temporary_binding = false
-	clock.cycle_changed.emit(clock.is_day)
+	clock.cycle_changed.emit(not clock.is_day)
 	clock.is_day = true
 	tutorial_ongoing = false
 	text_manager.textbox_node.visible = false
