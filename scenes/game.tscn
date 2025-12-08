@@ -1,17 +1,21 @@
-[gd_scene load_steps=29 format=3 uid="uid://dlaaqsui6rtpr"]
+[gd_scene load_steps=33 format=3 uid="uid://dlaaqsui6rtpr"]
 
 [ext_resource type="Script" uid="uid://cuyhki8mlbgr0" path="res://scripts/main_game.gd" id="1_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://2pd4wty6nwsi" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://bom0hcsi6mb6s" path="res://assets/background/sky.jpeg" id="2_trtic"]
 [ext_resource type="Script" uid="uid://c4nlmna60i861" path="res://scripts/player.gd" id="2_yqjtg"]
 [ext_resource type="Script" uid="uid://bsj23fju2j7vg" path="res://scripts/lock_camera.gd" id="4_lbhrr"]
+[ext_resource type="Texture2D" uid="uid://bxyyav17bmlar" path="res://assets/background/fishStand.png" id="4_qnb83"]
 [ext_resource type="PackedScene" uid="uid://cwjnjn45by5b2" path="res://scenes/ui.tscn" id="6_p57ef"]
+[ext_resource type="Texture2D" uid="uid://tx77ht663mec" path="res://assets/background/itemsShop.png" id="6_suyxu"]
 [ext_resource type="Script" uid="uid://b2wgiegidtvun" path="res://scripts/clock.gd" id="7_u5sy4"]
 [ext_resource type="Script" uid="uid://b1phrbyh0srip" path="res://scripts/npc/npc_cosmetics_shop.gd" id="8_qnb83"]
+[ext_resource type="Texture2D" uid="uid://32ci5ber0j4r" path="res://assets/Npc Assests/buildingShop.png" id="8_sgl2t"]
 [ext_resource type="PackedScene" uid="uid://btx5m1k8bm1n8" path="res://scenes/ocean_area.tscn" id="9_dinhu"]
 [ext_resource type="Texture2D" uid="uid://c4ci4hew47e5g" path="res://assets/background/palmTree.png" id="9_pl11u"]
 [ext_resource type="Script" uid="uid://2yl1hfh0q3jn" path="res://scripts/fish_logic.gd" id="9_vtaks"]
 [ext_resource type="PackedScene" uid="uid://dtipbmymq13e1" path="res://scenes/minigame.tscn" id="10_dinhu"]
+[ext_resource type="Texture2D" uid="uid://dlth5ndw1qugm" path="res://assets/background/sky_night.jpeg" id="12_bhx41"]
 [ext_resource type="Script" uid="uid://cgq63vliv3xal" path="res://scripts/tutorial_manager.gd" id="13_kvuet"]
 [ext_resource type="Script" uid="uid://b5cpnl0hwso6k" path="res://scripts/cutscene_manager.gd" id="14_trtic"]
 [ext_resource type="PackedScene" uid="uid://ww7lhtqnbr0b" path="res://scenes/npc.tscn" id="15_rysoc"]
@@ -44,16 +48,35 @@ script = ExtResource("1_0tnpc")
 z_index = 100
 position = Vector2(1097, 1044)
 script = ExtResource("16_ssvqc")
+background_sprite = ExtResource("4_qnb83")
 
 [node name="Npc2" parent="." instance=ExtResource("15_rysoc")]
 z_index = 100
 position = Vector2(1340, 1045)
 script = ExtResource("17_264po")
+background_sprite = ExtResource("6_suyxu")
 
 [node name="Npc3" parent="." instance=ExtResource("15_rysoc")]
 z_index = 100
 position = Vector2(1671, 1047)
 script = ExtResource("8_qnb83")
+background_sprite = ExtResource("8_sgl2t")
+
+[node name="Tree" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Tree"]
+z_index = 1
+position = Vector2(149.99997, 905.00006)
+scale = Vector2(0.50633717, 0.5469208)
+texture = ExtResource("9_pl11u")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Tree"]
+z_index = 2
+z_as_relative = false
+position = Vector2(355, 918)
+rotation = 3.1415927
+scale = Vector2(0.40630943, -0.42951357)
+texture = ExtResource("9_pl11u")
 
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
 z_index = 200
@@ -85,16 +108,15 @@ script = ExtResource("13_kvuet")
 script = ExtResource("14_trtic")
 
 [node name="Theme" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Theme"]
 z_index = -1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -680.0
-offset_top = 118.0
-offset_right = 956.0
+offset_left = -1043.0
+offset_top = -388.0
+offset_right = 979.0
 offset_bottom = 448.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -102,6 +124,8 @@ mouse_filter = 2
 color = Color(1, 1, 1, 0.003921569)
 script = ExtResource("18_ssvqc")
 day_color = Color(0.5372549, 0.49411765, 0.36862746, 0.19607843)
+background_day = ExtResource("2_trtic")
+background_night = ExtResource("12_bhx41")
 metadata/_edit_group_ = true
 
 [node name="UpgradeShop" parent="." instance=ExtResource("19_264po")]
@@ -154,22 +178,6 @@ shape = SubResource("SegmentShape2D_e1j6l")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="land/barrier"]
 position = Vector2(2029, 753)
 shape = SubResource("SegmentShape2D_e1j6l")
-
-[node name="Tree" type="StaticBody2D" parent="land"]
-
-[node name="Sprite2D" type="Sprite2D" parent="land/Tree"]
-z_index = 1
-position = Vector2(149.99997, 905.00006)
-scale = Vector2(0.50633717, 0.5469208)
-texture = ExtResource("9_pl11u")
-
-[node name="Sprite2D2" type="Sprite2D" parent="land/Tree"]
-z_index = 2
-z_as_relative = false
-position = Vector2(355, 918)
-rotation = 3.1415927
-scale = Vector2(0.40630943, -0.42951357)
-texture = ExtResource("9_pl11u")
 
 [node name="sea" type="StaticBody2D" parent="."]
 

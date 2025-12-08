@@ -20,6 +20,7 @@ signal mini_end
 @onready var fish = get_node("/root/Game/FishLogic")
 @onready var minigame = get_node("/root/Game/MinigameContainer/Minigame/MinigameManager")
 
+@onready var text_manager = get_node("/root/Game/Player/Text_Manager")
 @onready var label = get_node("/root/Game/Player/Text_Manager/Tutorial")
 @onready var mini_label = get_node("/root/Game/MinigameContainer/Minigame/MinigameUI/Rules")
 
@@ -100,6 +101,7 @@ func _movement_guide():
 	#player.animated_sprite.play("idle")
 	#await self.e_pressed
 	#game.allow_input = true
+	text_manager.textbox_node.visible = true
 	label.text = "Welcome to Catfishing! Press 'e' to continue!"
 	await self.e_pressed
 	label.text = "'e' will be the 'interact' button used to exhaust dialogue and talk to npcs!"
@@ -119,10 +121,8 @@ func _rescue_guide():
 	game.allow_input = false
 	label.text = "Oh no! Someone is drowning over there!"
 	await self.e_pressed
-	label.text = "Quick, go to that cat!"
-	await self.e_pressed
+	label.text = "Quick, go to that cat! Press e to save the cat!"
 	game.allow_input = true
-	label.text = "Press e to save the cat!"
 	while not npc1.rescued:
 		await get_tree().create_timer(0.5).timeout
 	game.allow_input = false
@@ -147,9 +147,9 @@ func _rescue_guide():
 # ensure player does not go back to ocean by setting a boundary idk?
 func _fishing_guide():
 	print("fishing start")
-	label.text = "Press 'F' to cast your reel!"
+	label.text = "Press 'F' once to cast your reel!"
 	await self.f_pressed
-	label.text = "Now we wait for a bite, it usually takes a bit"
+	label.text = "Now we wait for a bite, don't move or it will scare the fish!"
 	await get_tree().create_timer(3.0).timeout
 	label.text = "Oh, Looks like you got a bite!"
 	await self.e_pressed
@@ -159,7 +159,7 @@ func _fishing_guide():
 func _minigame_guide():
 	print("minigame start")
 	# static fish for tutorial purposes:
-	fish.current_fish = fish.Fish.new(10.0, 0, 10.0)
+	fish.current_fish = fish.Fish.new(10.0, 0, 100.0)
 	label.text = "Give it a try, beat the fish!"
 	await self.e_pressed
 	mini_label.visible = true
@@ -186,13 +186,13 @@ func _lost_fish():
 	
 func _day_night_cycle_guide():
 	print("cycle start")
-	clock.cycle_changed.emit(not clock.is_day)
+	# clock.cycle_changed.emit(not clock.is_day)
 	clock.is_day = false
 	label.text = "Looks like it's gotten late, we should return back"
 	await self.e_pressed
 	label.text = "We have to return back to the island at night, it's dangerous"
 	await self.e_pressed
-	label.text = "You will be rescued if you stay out too long"
+	label.text = "You will be rescued if you stay out too long and you might lose some fish you caught!"
 	game.allow_input = true
 	while player.is_in_ocean:
 		await get_tree().create_timer(0.5).timeout
@@ -232,7 +232,8 @@ func _on_tutorial_end():
 	await self.e_pressed
 	label.visible = false
 	temporary_binding = false
-	clock.cycle_changed.emit(clock.is_day)
+	clock.cycle_changed.emit(not clock.is_day)
 	clock.is_day = true
 	tutorial_ongoing = false
+	text_manager.textbox_node.visible = false
 	emit_signal("tutorial_end")
