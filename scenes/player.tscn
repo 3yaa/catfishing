@@ -184,7 +184,7 @@ theme_override_font_sizes/normal_font_size = 24
 
 [node name="Walking" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("24_31cv2")
-volume_db = 1.0
+volume_db = 1.3
 pitch_scale = 1.26
 
 [node name="Sailing" type="AudioStreamPlayer2D" parent="Audio"]
