@@ -1,12 +1,16 @@
-[gd_scene load_steps=25 format=3 uid="uid://2pd4wty6nwsi"]
+[gd_scene load_steps=31 format=3 uid="uid://2pd4wty6nwsi"]
 
-[ext_resource type="Script" uid="uid://bmdjrjuimsdxi" path="res://scenes/player.gd" id="1_4r5pv"]
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_4r5pv"]
 [ext_resource type="Texture2D" uid="uid://dg5t307dqvda6" path="res://assets/Main Player/Individual Sprite/idle/idle1.png" id="1_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://nh4aatvhppbx" path="res://assets/Main Player/Individual Sprite/idle/idle2.png" id="2_fjrip"]
 [ext_resource type="Texture2D" uid="uid://dhrukbscty44p" path="res://assets/Main Player/Individual Sprite/Fishing/Fishing1.png" id="2_i4ail"]
+[ext_resource type="Texture2D" uid="uid://dhkb8hw0u35ds" path="res://assets/Main Player/Individual Sprite/Casting/casting1.png" id="2_ke2ow"]
 [ext_resource type="Texture2D" uid="uid://dj4t2qwbesq8g" path="res://assets/Main Player/Individual Sprite/Fishing/fishingLarge.png" id="3_i4ail"]
 [ext_resource type="Texture2D" uid="uid://c4dfiikhlyqkk" path="res://assets/Main Player/Individual Sprite/idle/idle3.png" id="3_smehm"]
+[ext_resource type="Texture2D" uid="uid://dmd5w08llpk3k" path="res://assets/Main Player/Individual Sprite/Casting/casting2.png" id="3_ujl30"]
+[ext_resource type="Texture2D" uid="uid://dkkw4yid84u62" path="res://assets/Main Player/Individual Sprite/Casting/casting3.png" id="4_31cv2"]
 [ext_resource type="Texture2D" uid="uid://dp4gm1j1kqij5" path="res://assets/Main Player/Individual Sprite/idle/idle4.png" id="4_ur7pv"]
+[ext_resource type="Texture2D" uid="uid://bitw5wpapfowq" path="res://assets/Main Player/Individual Sprite/Casting/casting4.png" id="5_pf23h"]
 [ext_resource type="Texture2D" uid="uid://bniavjbn6l4ms" path="res://assets/Main Player/Individual Sprite/idle/idle5.png" id="5_y4r1p"]
 [ext_resource type="Texture2D" uid="uid://cvcs3c2n1wxxg" path="res://assets/Main Player/Individual Sprite/Boat Idle/boatIdle1.png" id="6_qfm1y"]
 [ext_resource type="Texture2D" uid="uid://c1vvjmy8qo308" path="res://assets/Main Player/Individual Sprite/Boat Idle/boatIdle2.png" id="7_fulsm"]
@@ -21,13 +25,27 @@
 [ext_resource type="FontFile" uid="uid://fl4gxokmbnqb" path="res://assets/font/Chewy,Margarine,Schoolbell/Chewy/Chewy-Regular.ttf" id="16_a8ls1"]
 [ext_resource type="Theme" uid="uid://bbi2aoes23tm3" path="res://main_menu_button_theme.tres" id="16_qfm1y"]
 [ext_resource type="AudioStream" uid="uid://dd5peo7nnxamt" path="res://assets/Sounds/Cat Sounds/Walking/walkingOnSand.mp3" id="19_60mlk"]
+[ext_resource type="AudioStream" uid="uid://bav5dagjq8gov" path="res://assets/Sounds/Cat Sounds/Boat/Sailing.mp3" id="26_ujl30"]
+[ext_resource type="AudioStream" uid="uid://blpaemg7kmi6g" path="res://assets/Sounds/Cat Sounds/Boat/GettingInBoat.mp3" id="27_31cv2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fjrip"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ke2ow")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ujl30")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_31cv2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_pf23h")
+}],
 "loop": true,
 "name": &"cast",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -140,7 +158,7 @@ z_index = 4
 position = Vector2(0, 2.000001)
 scale = Vector2(0.146658, 0.15779321)
 sprite_frames = SubResource("SpriteFrames_fjrip")
-animation = &"fishing"
+animation = &"cast"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
 
@@ -168,3 +186,9 @@ theme_override_font_sizes/normal_font_size = 24
 [node name="Walking" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("19_60mlk")
 pitch_scale = 1.39
+
+[node name="Sailing" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("26_ujl30")
+
+[node name="GettingInBoat" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("27_31cv2")

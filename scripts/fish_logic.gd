@@ -4,7 +4,7 @@ extends Node2D
 @onready var player = get_node("/root/Game/Player")
 @onready var tutorial = get_node("/root/Game/Tutorial_Manager")
 var any_fish = false
-
+var player_sprite: AnimatedSprite2D
 # size params
 var size_min: float = 1.0
 var size_max: float = 20.0
@@ -80,6 +80,7 @@ func _on_minigame_won():
 		add_fish_to_inventory(current_fish)
 		print("Fish caught and added to inventory!")
 		current_fish = null
+		#add sound
 
 func add_fish_to_inventory(fish: Fish):
 	fish_inventory.append(fish)

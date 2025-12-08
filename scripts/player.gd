@@ -44,6 +44,7 @@ func _process(delta: float) -> void:
 		speed = SPEED_OCEAN
 		# if "fishing button" pressed:
 		if (Input.is_action_just_pressed("fishing")):
+			animated_sprite.play("cast")
 			is_fishing = true
 			print("reeled")
 	else:
@@ -82,8 +83,11 @@ func _physics_process(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, 0, speed)
 			if is_in_ocean:
 				animated_sprite.play("idle_ocean")
+				$Audio/Sailing.play()
+				
 			else:
 				animated_sprite.play("idle")
+				$Audio/Sailing.stop()
 		
 		# Handle jump/fall animations
 		if not is_on_floor():
@@ -95,6 +99,7 @@ func _physics_process(delta: float) -> void:
 func enter_ocean():
 	print("Enter ocean")
 	is_in_ocean = true
+	$Audio/GettingInBoat.play()
 	
 	
 func exit_ocean():
