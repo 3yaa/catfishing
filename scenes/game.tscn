@@ -30,8 +30,8 @@
 size = Vector2(2219.5938, 20)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_e1j6l"]
-a = Vector2(0, 1)
-b = Vector2(4, 454)
+a = Vector2(-323, -72)
+b = Vector2(-289, 377)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pl11u"]
 size = Vector2(1157, 20)
@@ -72,7 +72,7 @@ target = NodePath("../Player")
 script = ExtResource("7_u5sy4")
 
 [node name="OceanArea" parent="." instance=ExtResource("9_dinhu")]
-position = Vector2(900.99994, 1126)
+position = Vector2(793, 1122)
 scale = Vector2(1.5, 1.5)
 
 [node name="FishLogic" type="Node2D" parent="."]
@@ -152,21 +152,21 @@ position = Vector2(-3, 686)
 shape = SubResource("SegmentShape2D_e1j6l")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="land/barrier"]
-position = Vector2(2038, 686)
+position = Vector2(2029, 753)
 shape = SubResource("SegmentShape2D_e1j6l")
 
 [node name="Tree" type="StaticBody2D" parent="land"]
 
 [node name="Sprite2D" type="Sprite2D" parent="land/Tree"]
 z_index = 1
-position = Vector2(213, 857)
+position = Vector2(149.99997, 905.00006)
 scale = Vector2(0.50633717, 0.5469208)
 texture = ExtResource("9_pl11u")
 
 [node name="Sprite2D2" type="Sprite2D" parent="land/Tree"]
 z_index = 2
 z_as_relative = false
-position = Vector2(289, 918)
+position = Vector2(355, 918)
 rotation = 3.1415927
 scale = Vector2(0.40630943, -0.42951357)
 texture = ExtResource("9_pl11u")
@@ -186,7 +186,6 @@ position = Vector2(1464, 1090)
 shape = SubResource("RectangleShape2D_pl11u")
 
 [node name="Cosmetics" parent="." instance=ExtResource("27_sww3w")]
-visible = false
 position = Vector2(489, 632)
 
 [node name="Hints" type="Control" parent="."]
@@ -208,13 +207,12 @@ metadata/_edit_use_anchors_ = true
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(-1775, -866)
-motion_scale = Vector2(0.1, 0.1)
-motion_mirroring = Vector2(1818, 0)
+position = Vector2(-1520, -920)
+motion_scale = Vector2(0.01, 0.01)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(2246, 1207)
-scale = Vector2(0.6, 0.6)
+position = Vector2(2001, 1206)
+scale = Vector2(0.6, 0.5949954)
 texture = ExtResource("2_trtic")
 
 [node name="End of Land" type="StaticBody2D" parent="."]
@@ -232,9 +230,10 @@ region_enabled = true
 region_rect = Rect2(0, 21.977516, 362.767, 1036.2245)
 
 [node name="tree unreachable" type="StaticBody2D" parent="."]
+position = Vector2(8, 40)
 
 [node name="Sprite2D" type="Sprite2D" parent="tree unreachable"]
 z_index = 2
-position = Vector2(-212, 823)
+position = Vector2(-465, 805)
 scale = Vector2(-0.8, 0.7)
 texture = ExtResource("9_pl11u")
