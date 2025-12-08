@@ -3,10 +3,12 @@ extends RichTextLabel
 func _ready():
 	visible = false
 	autowrap_mode = TextServer.AUTOWRAP_WORD
-	custom_minimum_size = Vector2(400, 800)
-	position = Vector2(60, 100)
+	custom_minimum_size = Vector2(380, 800)
+	position = Vector2(67.5, 160)
 	add_theme_color_override("default_color", Color(0.0, 0.0, 0.0, 1.0))
 	bbcode_enabled = true
+	z_index = 10
+	z_as_relative = false
 	text = "[b]Basics:[/b]
 1. Bet your score to reach the target threshold!
 2. Reach 0 score or the last round, lose the fish!

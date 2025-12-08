@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dtipbmymq13e1"]
+[gd_scene load_steps=27 format=3 uid="uid://dtipbmymq13e1"]
 
 [ext_resource type="Script" uid="uid://do84ogts0xyuy" path="res://scripts/minigame/minigame_controller.gd" id="1_hwsak"]
 [ext_resource type="Script" uid="uid://w8tkfa0u1tsp" path="res://scripts/minigame/minigame_manager.gd" id="2_0dp5x"]
@@ -13,9 +13,11 @@
 [ext_resource type="Texture2D" uid="uid://cd8oim1pijogi" path="res://assets/Black Jack/stand_button.png" id="7_stand"]
 [ext_resource type="Texture2D" uid="uid://brk6ye5hikcwq" path="res://assets/Black Jack/allIn_button.png" id="8_allin"]
 [ext_resource type="Texture2D" uid="uid://caohlvuio2uk5" path="res://assets/Black Jack/redChip.png" id="9_chip"]
-[ext_resource type="Script" path="res://scripts/rules.gd" id="14_8e78p"]
+[ext_resource type="Script" uid="uid://dutm8b8esjhd4" path="res://scripts/rules.gd" id="14_8e78p"]
 [ext_resource type="AudioStream" uid="uid://bk0xqy0y7hyrc" path="res://assets/Sounds/Black Jack/Incorrect.mp3" id="15_3u4ns"]
 [ext_resource type="AudioStream" uid="uid://b1ccwfvjuwntj" path="res://assets/Sounds/Black Jack/correct.mp3" id="15_okghe"]
+[ext_resource type="Texture2D" uid="uid://b7kisih3tshpc" path="res://assets/background/shopBackground.png" id="15_r6g4n"]
+[ext_resource type="Script" uid="uid://p2m2enf5qs8v" path="res://scripts/background.gd" id="16_5xdyt"]
 [ext_resource type="AudioStream" uid="uid://wfg3v7gweuyo" path="res://assets/Sounds/Black Jack/CardDeal.mp3" id="17_tumst"]
 [ext_resource type="AudioStream" uid="uid://dpxq4nth3p4sa" path="res://assets/Sounds/Black Jack/FishCaught.mp3" id="18_0mihh"]
 [ext_resource type="AudioStream" uid="uid://b376ntpcinpwb" path="res://assets/Sounds/Cat Sounds/Losing/SadCat3.mp3" id="18_4spdj"]
@@ -632,9 +634,16 @@ offset_top = 743.5
 offset_right = 1890.0
 offset_bottom = 743.5
 theme = ExtResource("7_jbh4e")
-theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/normal_font_size = 25
 theme_override_font_sizes/bold_font_size = 40
 script = ExtResource("14_8e78p")
+
+[node name="Background2" type="Sprite2D" parent="MinigameUI/Rules"]
+top_level = true
+position = Vector2(248, 433.5)
+scale = Vector2(0.58247423, 0.6351889)
+texture = ExtResource("15_r6g4n")
+script = ExtResource("16_5xdyt")
 
 [node name="Audio" type="Node2D" parent="."]
 

@@ -2,8 +2,8 @@ extends Node2D
 
 
 @onready var player = get_parent()
-@onready var textbox: Texture2D = load("res://assets/background/TitleBackground.png")
-@onready var hintbox: Texture2D = load("res://assets/background/TitleBackground.png")
+@onready var textbox: Texture2D = load("res://assets/background/LongWood.png")
+@onready var hintbox: Texture2D = load("res://assets/background/LongWood.png")
 
 
 var textbox_node
@@ -12,7 +12,7 @@ var hintbox_node
 func _ready():
 	textbox_node = Sprite2D.new()
 	textbox_node.texture = textbox
-	textbox_node.scale = Vector2(0.75, 0.1)
+	textbox_node.scale = Vector2(0.5, 0.3)
 	add_child(textbox_node)
 	textbox_node.visible = false
 	

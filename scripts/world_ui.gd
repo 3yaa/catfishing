@@ -76,9 +76,7 @@ func check_debt():
 	if debt_label.debt <= 0:
 		end_screen.visible = true
 		# this is to ensure other stuff stops
-		tutorial.tutorial_ongoing = true
-		allow_input = false
-		clock.is_paused = true
+		get_tree().paused = true
 
 
 func update_fish_display() -> void:
