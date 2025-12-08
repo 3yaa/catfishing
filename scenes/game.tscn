@@ -36,7 +36,7 @@ size = Vector2(2219.5938, 20)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_e1j6l"]
 a = Vector2(-323, -72)
-b = Vector2(-289, 377)
+b = Vector2(-330, 429)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pl11u"]
 size = Vector2(1157, 20)
@@ -174,15 +174,15 @@ position = Vector2(-3, 686)
 shape = SubResource("SegmentShape2D_e1j6l")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="land/barrier"]
-position = Vector2(2029, 753)
+position = Vector2(2368, 690)
 shape = SubResource("SegmentShape2D_e1j6l")
 
 [node name="sea" type="StaticBody2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="sea"]
 z_index = 150
-position = Vector2(1438.0001, 1103.0001)
-scale = Vector2(2.6503804, 0.8635702)
+position = Vector2(1926.1086, 1103.0001)
+scale = Vector2(4.8894105, 0.8635702)
 texture = ExtResource("24_e1j6l")
 region_enabled = true
 region_rect = Rect2(33.969208, 0, 436.61765, 500)
