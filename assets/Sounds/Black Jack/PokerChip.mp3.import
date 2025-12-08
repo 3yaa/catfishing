@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cgp8u3in6mlui"
+path="res://.godot/imported/PokerChip.mp3-f6909e796045ca74e5348b7624cab87e.mp3str"
+
+[deps]
+
+source_file="res://assets/Sounds/Black Jack/PokerChip.mp3"
+dest_files=["res://.godot/imported/PokerChip.mp3-f6909e796045ca74e5348b7624cab87e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

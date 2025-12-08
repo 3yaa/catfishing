@@ -51,6 +51,8 @@ func _process(delta):
 			night_bg.modulate.a = 1.0 - transition_progress
 
 func _on_play_button_pressed():
+	$Audio/ButtonPress.play()
+	await get_tree().create_timer(0.4).timeout
 	get_tree().change_scene_to_file("res://scenes/game.tscn")
 
 

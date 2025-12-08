@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bksfpeeyww0i1"]
+[gd_scene load_steps=12 format=3 uid="uid://bksfpeeyww0i1"]
 
 [ext_resource type="Texture2D" uid="uid://bom0hcsi6mb6s" path="res://assets/background/sky.jpeg" id="1_ekxnf"]
 [ext_resource type="Script" uid="uid://c61owka0ukdve" path="res://scripts/main_menu.gd" id="1_jk1qb"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://krh8n6qinybu" path="res://scripts/button.gd" id="7_jk1qb"]
 [ext_resource type="Texture2D" uid="uid://c4ci4hew47e5g" path="res://assets/background/palmTree.png" id="7_tbmy8"]
 [ext_resource type="PackedScene" uid="uid://2pd4wty6nwsi" path="res://scenes/player.tscn" id="8_jk1qb"]
+[ext_resource type="AudioStream" uid="uid://13th3qa40jju" path="res://assets/Sounds/Black Jack/buttonPress.mp3" id="11_lgwnu"]
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_jk1qb")
@@ -149,6 +150,11 @@ texture = ExtResource("7_tbmy8")
 [node name="Player" parent="." instance=ExtResource("8_jk1qb")]
 position = Vector2(-117, 996)
 scale = Vector2(3, 3)
+
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="ButtonPress" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("11_lgwnu")
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

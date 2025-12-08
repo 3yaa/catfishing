@@ -49,7 +49,8 @@ func _ready():
 	if mg_manager:
 		mg_manager.caught_fish.connect(_on_minigame_won)
 		print("Connected to minigame caught_fish signal")
-
+	
+	
 func _process(_delta):
 	if player.is_fishing and not tutorial.tutorial_ongoing:
 		fishing_timer -= _delta

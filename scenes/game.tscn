@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dlaaqsui6rtpr"]
+[gd_scene load_steps=34 format=3 uid="uid://dlaaqsui6rtpr"]
 
 [ext_resource type="Script" uid="uid://cuyhki8mlbgr0" path="res://scripts/main_game.gd" id="1_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://2pd4wty6nwsi" path="res://scenes/player.tscn" id="1_uwrxv"]
@@ -29,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://br6meobo0il5m" path="res://scenes/cosmetics_shop.tscn" id="25_suyxu"]
 [ext_resource type="Script" uid="uid://brn33aiyfow2q" path="res://scripts/hints.gd" id="26_bhx41"]
 [ext_resource type="PackedScene" uid="uid://diec6viabj66n" path="res://scenes/cosmetics.tscn" id="27_sww3w"]
+[ext_resource type="AudioStream" uid="uid://div5xliebslu1" path="res://assets/sound/Cat fishing.mp3" id="30_sgl2t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e1j6l"]
 size = Vector2(2219.5938, 20)
@@ -246,3 +247,9 @@ z_index = 2
 position = Vector2(-465, 805)
 scale = Vector2(-0.8, 0.7)
 texture = ExtResource("9_pl11u")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("30_sgl2t")
+volume_db = -24.632
+pitch_scale = 0.87
+autoplay = true

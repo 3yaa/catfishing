@@ -20,6 +20,10 @@ extends CanvasLayer
 @onready var ui_dialogue = $DialogueBox/Dialogue
 @onready var ui_money = $Money/MoneyCount
 
+@onready var passout = $PassOutMsg
+@onready var passout_msg = $PassOutMsg/Msg
+@onready var passout_close = $PassOutMsg/Close
+
 @onready var debt_label = $Debt
 @onready var end_screen = $End
 
@@ -53,6 +57,7 @@ func _ready() -> void:
 	update_fish_display()
 	update_clock_display()
 	
+	passout_close.pressed.connect(hide_passout)
 
 func _process(delta: float) -> void:
 	if not tutorial.tutorial_ongoing:
@@ -116,3 +121,25 @@ func update_warning_display() -> void:
 		
 func update_dialogue_display(text: String) -> void:
 	ui_dialogue.text = text
+	
+func display_passout(escaped_fish: Array):
+	var common = 0
+	var rare = 0
+	var super_rare = 0
+	var total_value = 0
+	
+	for fish in escaped_fish:
+		total_value += fish.value
+		if fish.fish_rarity == 0:
+			common += 1
+		elif fish.fish_rarity == 1:
+			rare += 1
+		elif fish.fish_rarity == 2:
+			super_rare += 1
+		
+	passout_msg.text = "Lost " + str(common) + " common fish, " + str(rare) + " rare fish, " + str(super_rare) + " super rare fish for $" + str(total_value)
+	passout.visible = true
+	
+func hide_passout():
+	passout.visible = false
+	
