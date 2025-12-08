@@ -5,6 +5,7 @@ extends Node2D
 @onready var minigame = $MinigameContainer/Minigame
 @onready var minigame_trigger_button = $WorldUI/MinigameTriggerButton
 @onready var player = get_node("/root/Game/Player")
+@onready var clock = $Clock
 
 func _ready() -> void:
 	# minigame initially hide
@@ -29,6 +30,7 @@ func _on_minigame_trigger_pressed() -> void:
 	
 	# pause game
 	get_tree().paused = true
+	clock.pause_clock()
 	
 	# starting score based on fish rarity
 	var fish_logic = get_node("/root/Game/FishLogic")
@@ -62,3 +64,4 @@ func _on_minigame_complete() -> void:
 	
 	# unpause the game
 	get_tree().paused = false
+	clock.resume_clock()
