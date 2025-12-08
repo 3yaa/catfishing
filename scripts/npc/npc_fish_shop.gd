@@ -17,6 +17,7 @@ func _process(delta: float) -> void:
 		rescue()
 	elif has_player and rescued and Input.is_action_just_pressed("interact"):
 		shop.enable_shop()
+		ui.update_dialogue_display("")
 	
 	
 func rescue():
