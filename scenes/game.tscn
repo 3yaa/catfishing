@@ -55,6 +55,22 @@ z_index = 100
 position = Vector2(1671, 1047)
 script = ExtResource("8_qnb83")
 
+[node name="Tree" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Tree"]
+z_index = 1
+position = Vector2(149.99997, 905.00006)
+scale = Vector2(0.50633717, 0.5469208)
+texture = ExtResource("9_pl11u")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Tree"]
+z_index = 2
+z_as_relative = false
+position = Vector2(355, 918)
+rotation = 3.1415927
+scale = Vector2(0.40630943, -0.42951357)
+texture = ExtResource("9_pl11u")
+
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
 z_index = 200
 position = Vector2(580, 1070)
@@ -154,22 +170,6 @@ shape = SubResource("SegmentShape2D_e1j6l")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="land/barrier"]
 position = Vector2(2029, 753)
 shape = SubResource("SegmentShape2D_e1j6l")
-
-[node name="Tree" type="StaticBody2D" parent="land"]
-
-[node name="Sprite2D" type="Sprite2D" parent="land/Tree"]
-z_index = 1
-position = Vector2(149.99997, 905.00006)
-scale = Vector2(0.50633717, 0.5469208)
-texture = ExtResource("9_pl11u")
-
-[node name="Sprite2D2" type="Sprite2D" parent="land/Tree"]
-z_index = 2
-z_as_relative = false
-position = Vector2(355, 918)
-rotation = 3.1415927
-scale = Vector2(0.40630943, -0.42951357)
-texture = ExtResource("9_pl11u")
 
 [node name="sea" type="StaticBody2D" parent="."]
 

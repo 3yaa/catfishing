@@ -94,7 +94,7 @@ func _reset_minigame_state():
 	print("Minigame state reset complete")
 
 func _start_minigame():
-	print("=== STARTING MINIGAME ===")
+	print("===STARTING MINIGAME===")
 	print("Current game num: ", mg_manager.cur_game_num)
 	print("Player score: ", mg_manager.player_score)
 	print("Target score: ", mg_manager.score_to_catch)
