@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dlaaqsui6rtpr"]
+[gd_scene load_steps=30 format=3 uid="uid://dlaaqsui6rtpr"]
 
 [ext_resource type="Script" uid="uid://cuyhki8mlbgr0" path="res://scripts/main_game.gd" id="1_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://2pd4wty6nwsi" path="res://scenes/player.tscn" id="1_uwrxv"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://c4ci4hew47e5g" path="res://assets/background/palmTree.png" id="9_pl11u"]
 [ext_resource type="Script" uid="uid://2yl1hfh0q3jn" path="res://scripts/fish_logic.gd" id="9_vtaks"]
 [ext_resource type="PackedScene" uid="uid://dtipbmymq13e1" path="res://scenes/minigame.tscn" id="10_dinhu"]
+[ext_resource type="Texture2D" uid="uid://dlth5ndw1qugm" path="res://assets/background/sky_night.jpeg" id="12_bhx41"]
 [ext_resource type="Script" uid="uid://cgq63vliv3xal" path="res://scripts/tutorial_manager.gd" id="13_kvuet"]
 [ext_resource type="Script" uid="uid://b5cpnl0hwso6k" path="res://scripts/cutscene_manager.gd" id="14_trtic"]
 [ext_resource type="PackedScene" uid="uid://ww7lhtqnbr0b" path="res://scenes/npc.tscn" id="15_rysoc"]
@@ -85,16 +86,15 @@ script = ExtResource("13_kvuet")
 script = ExtResource("14_trtic")
 
 [node name="Theme" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Theme"]
 z_index = -1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -680.0
-offset_top = 118.0
-offset_right = 956.0
+offset_left = -1043.0
+offset_top = -388.0
+offset_right = 979.0
 offset_bottom = 448.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -102,6 +102,8 @@ mouse_filter = 2
 color = Color(1, 1, 1, 0.003921569)
 script = ExtResource("18_ssvqc")
 day_color = Color(0.5372549, 0.49411765, 0.36862746, 0.19607843)
+background_day = ExtResource("2_trtic")
+background_night = ExtResource("12_bhx41")
 metadata/_edit_group_ = true
 
 [node name="UpgradeShop" parent="." instance=ExtResource("19_264po")]
