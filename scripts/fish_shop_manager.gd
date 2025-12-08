@@ -25,14 +25,48 @@ var debt_open = false
 func _ready() -> void:
 	modulate.a = 0
 	scale = Vector2(0.8, 0.8)
+	input.visible = false
+	scanner.visible = false
+	enter.visible = false
+	invalid.visible = false
+	invalid.add_theme_color_override("font_color", Color.RED)
 	
 	await get_tree().process_frame
 	hide()
 	
 	sell_btn.pressed.connect(sell)
 	close.pressed.connect(disable_shop)
+	debt_btn.pressed.connect(open_debt)
+	enter.pressed.connect(process_debt)
 	
 	_setup_button_hover_effects()
+
+
+func open_debt():
+	scanner.visible = true
+	input.visible = true
+	enter.visible = true
+	invalid.visible = false
+	scanner.position = Vector2(player.position.x, player.position.y - 900)
+	input.text = ""
+	
+func process_debt():
+	if input.text == "":
+		scanner.visible = false
+		return
+	
+	var number = int(input.text)
+	if number > player.money:
+		invalid.visible = true
+	else:
+		player.money -= number
+		debt.update_debt(number)
+		
+	scanner.visible = false
+	input.visible = false
+	enter.visible = false
+	debt_open = false
+
 
 func _setup_button_hover_effects():
 	if not sell_btn.mouse_entered.is_connected(_on_button_hover):
@@ -79,7 +113,7 @@ func disable_shop():
 	tween.set_trans(Tween.TRANS_BACK)
 	tween.tween_property(self, "scale", Vector2(0.8, 0.8), 0.3)
 	tween.parallel().tween_property(self, "modulate:a", 0.0, 0.3)
-	
+	scanner.visible = false
 	await tween.finished
 	hide()
 	world_ui.allow_input = true
@@ -104,7 +138,7 @@ func sell():
 	# animate the value increasing
 	_animate_value_increase(fish_value)
 	
-	debt.update_debt(fish_value)
+	#debt.update_debt(fish_value)
 	player.money += fish_value
 	fish_logic.fish_inventory.clear()
 	update_shop_ui()

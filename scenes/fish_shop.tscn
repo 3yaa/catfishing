@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bnclqcapf7vnm"]
+[gd_scene load_steps=10 format=3 uid="uid://bnclqcapf7vnm"]
 
 [ext_resource type="Texture2D" uid="uid://b7kisih3tshpc" path="res://assets/background/shopBackground.png" id="1_0lmfb"]
 [ext_resource type="Script" uid="uid://c44vs5batsyer" path="res://scripts/fish_shop_manager.gd" id="2_otyrg"]
 [ext_resource type="FontFile" uid="uid://bautrqaskm40v" path="res://assets/font/Chewy,Margarine,Schoolbell/Margarine/Margarine-Regular.ttf" id="3_font"]
+[ext_resource type="Theme" uid="uid://bbi2aoes23tm3" path="res://main_menu_button_theme.tres" id="4_g2ig4"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_otyrg"]
 texture = ExtResource("1_0lmfb")
@@ -122,13 +123,72 @@ text = "$0"
 
 [node name="Sell" type="Button" parent="."]
 layout_mode = 0
-offset_left = 199.0
-offset_top = 26.0
-offset_right = 269.0
-offset_bottom = 59.0
+offset_left = 194.0
+offset_top = 22.0
+offset_right = 264.0
+offset_bottom = 55.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("3_font")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_sell")
 theme_override_styles/hover = SubResource("StyleBoxFlat_sell_hover")
 text = "SELL"
+
+[node name="Scanner" type="Window" parent="."]
+oversampling_override = 1.0
+position = Vector2i(0, 36)
+size = Vector2i(800, 100)
+
+[node name="Input" type="LineEdit" parent="Scanner"]
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 599.0
+offset_bottom = 73.0
+
+[node name="Enter" type="Button" parent="Scanner"]
+offset_left = 615.0
+offset_top = 34.0
+offset_right = 781.0
+offset_bottom = 67.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_sell")
+theme_override_styles/hover = SubResource("StyleBoxFlat_sell_hover")
+text = "CONFIRM
+"
+
+[node name="Label" type="Label" parent="Scanner"]
+anchors_preset = -1
+anchor_right = 0.126
+anchor_bottom = 0.18800001
+offset_left = 34.0
+offset_top = -1.0
+offset_right = 254.2
+offset_bottom = 21.199999
+theme = ExtResource("4_g2ig4")
+theme_override_font_sizes/font_size = 24
+text = "Enter Payment to Make:"
+
+[node name="Invalid" type="Label" parent="."]
+layout_mode = 0
+offset_left = 81.0
+offset_top = -67.0
+offset_right = 229.0
+offset_bottom = 27.0
+text = "Insufficient Funds!
+"
+
+[node name="Debt" type="Button" parent="."]
+layout_mode = 0
+offset_left = 171.0
+offset_top = 62.0
+offset_right = 266.0
+offset_bottom = 95.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_font")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_sell")
+theme_override_styles/hover = SubResource("StyleBoxFlat_sell_hover")
+text = "PAY DEBT
+"
