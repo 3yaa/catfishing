@@ -212,8 +212,8 @@ position = Vector2(-1520, -920)
 motion_scale = Vector2(0.01, 0.01)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(1870.9999, 1169)
-scale = Vector2(0.417, 0.5)
+position = Vector2(2053, 1274)
+scale = Vector2(0.6, 0.8)
 texture = ExtResource("2_trtic")
 
 [node name="End of Land" type="StaticBody2D" parent="."]
