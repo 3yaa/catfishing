@@ -66,7 +66,7 @@ func _process(_delta):
 				print(roll)
 				print(reel_chance)
 				if reel_chance > roll:
-					# trigger minigame
+					# trigger minigame -- HELLO KYLIE 
 					player.fish_reeled.emit()
 					print("Fish hooked: ", current_fish.stringify())
 					player.is_fishing = false
