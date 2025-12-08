@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cwjnjn45by5b2"]
+[gd_scene load_steps=6 format=3 uid="uid://cwjnjn45by5b2"]
 
 [ext_resource type="Script" uid="uid://dddhcc8d6v41r" path="res://scripts/world_ui.gd" id="1_nt7q6"]
 [ext_resource type="Theme" uid="uid://bbi2aoes23tm3" path="res://main_menu_button_theme.tres" id="2_x4jx1"]
+[ext_resource type="Script" uid="uid://cixb5vn8kvgbw" path="res://scripts/debt.gd" id="3_yev5y"]
+[ext_resource type="Script" uid="uid://ccva7vj6wmdyf" path="res://scripts/end.gd" id="4_gdt2y"]
+[ext_resource type="Texture2D" uid="uid://bbyp0f6n531rf" path="res://assets/background/Debt_Paid.jpg" id="4_wm3ai"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_nt7q6")
@@ -150,3 +153,20 @@ offset_bottom = -116.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Start Fishing Minigame"
+
+[node name="Debt" type="Label" parent="."]
+offset_left = 15.0
+offset_top = 119.0
+offset_right = 55.0
+offset_bottom = 142.0
+theme = ExtResource("2_x4jx1")
+theme_override_font_sizes/font_size = 16
+text = "Debt
+"
+script = ExtResource("3_yev5y")
+
+[node name="End" type="Sprite2D" parent="."]
+position = Vector2(966, 544.00006)
+scale = Vector2(0.9732323, 0.60804725)
+texture = ExtResource("4_wm3ai")
+script = ExtResource("4_gdt2y")

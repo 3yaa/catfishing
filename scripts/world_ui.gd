@@ -20,6 +20,9 @@ extends CanvasLayer
 @onready var ui_dialogue = $DialogueBox/Dialogue
 @onready var ui_money = $Money/MoneyCount
 
+@onready var debt_label = $Debt
+@onready var end_screen = $End
+
 # this is for handling opening sequence + cutscene 
 var allow_input: bool = false
 
@@ -31,7 +34,7 @@ signal tutorial_start
 
 func _ready() -> void:
 	await get_tree().process_frame
-	
+	end_screen.visible = false
 	if dev_mode:
 		tutorial.tutorial_ongoing = false
 	else:
@@ -47,7 +50,6 @@ func _ready() -> void:
 	allow_input = true
 	# await tutorial end and whatnot
 	await get_tree().process_frame
-		
 	update_fish_display()
 	update_clock_display()
 	
@@ -58,6 +60,21 @@ func _process(delta: float) -> void:
 		update_warning_display()
 		update_money_display()
 		update_fish_display()
+		update_debt_display()
+		check_debt()
+
+
+func update_debt_display():
+	debt_label.text = "Debt: " + str(debt_label.debt)
+
+func check_debt():
+	if debt_label.debt <= 0:
+		end_screen.visible = true
+		# this is to ensure other stuff stops
+		tutorial.tutorial_ongoing = true
+		allow_input = false
+		clock.is_paused = true
+
 
 func update_fish_display() -> void:
 	var total = fish_logic.get_total_fish_count()

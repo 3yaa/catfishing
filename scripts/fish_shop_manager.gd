@@ -10,8 +10,11 @@ extends Panel
 @onready var sell_btn = $Sell
 @onready var close = $Close
 
+@onready var debt = get_node("/root/Game/WorldUI/Debt")
+
 signal shop_open
 signal shop_close
+signal sold
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -46,7 +49,7 @@ func update_shop_ui():
 func sell():
 	var fish_value = get_total_fish_value()
 	print("Sell for $", fish_value)
-	
+	debt.update_debt(fish_value)
 	player.money += fish_value
 	fish_logic.fish_inventory.clear()
 	update_shop_ui()

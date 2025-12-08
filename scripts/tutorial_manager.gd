@@ -108,6 +108,10 @@ func _movement_guide():
 	await self.e_pressed
 	label.text = "The movement controls are basic WASD and SPACE binding"
 	await self.e_pressed
+	label.text = "You have a lot of debt, you can see it on the top!"
+	await self.e_pressed
+	label.text = "The only way to pay that off is by fishing!"
+	await self.e_pressed
 	_rescue_guide()
 	
 
