@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://diec6viabj66n"]
 
-[ext_resource type="Script" uid="uid://cmsx63433dncj" path="res://scripts/cosmetics.gd" id="1_rhjr3"]
+[ext_resource type="Script" path="res://scripts/cosmetics.gd" id="1_rhjr3"]
 [ext_resource type="Texture2D" uid="uid://cbbhj1rtt4n4p" path="res://assets/cosmetics/game_house.png" id="2_g72wv"]
 [ext_resource type="Texture2D" uid="uid://c1ehfkivgq5c0" path="res://assets/cosmetics/cat_tree.jpg" id="3_7q0yd"]
-[ext_resource type="Texture2D" uid="uid://4kro55h6at07" path="res://assets/cosmetics/chair.jpg" id="4_jyvna"]
+[ext_resource type="Texture2D" uid="uid://ve8ypcljl5i" path="res://assets/background/chair.png" id="4_rhjr3"]
 
 [node name="Cosmetics" type="Node2D"]
 script = ExtResource("1_rhjr3")
@@ -22,6 +22,6 @@ texture = ExtResource("3_7q0yd")
 
 [node name="Chair" type="Sprite2D" parent="."]
 z_index = 100
-position = Vector2(-32.99997, 396.00003)
-scale = Vector2(0.445, 0.445)
-texture = ExtResource("4_jyvna")
+position = Vector2(-82.08562, 429.6575)
+scale = Vector2(0.11124996, 0.08580088)
+texture = ExtResource("4_rhjr3")

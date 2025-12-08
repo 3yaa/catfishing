@@ -168,7 +168,7 @@ rotation = 1.5707964
 scale = Vector2(0.43217885, 0.84835726)
 texture = ExtResource("23_qnb83")
 region_enabled = true
-region_rect = Rect2(0, 21.977516, 360.765, 1006.49854)
+region_rect = Rect2(0, 23.471252, 362.4981, 1005.0048)
 
 [node name="barrier" type="StaticBody2D" parent="land"]
 
@@ -195,7 +195,6 @@ position = Vector2(1464, 1090)
 shape = SubResource("RectangleShape2D_pl11u")
 
 [node name="Cosmetics" parent="." instance=ExtResource("27_sww3w")]
-visible = false
 position = Vector2(489, 632)
 
 [node name="Hints" type="Control" parent="."]
