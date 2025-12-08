@@ -48,6 +48,7 @@ func _process(delta: float) -> void:
 		# if "fishing button" pressed:
 		if (Input.is_action_just_pressed("fishing")):
 			animated_sprite.play("cast")
+			$Audio/Cast.play()
 			is_fishing = true
 			print("reeled")
 	else:
@@ -79,22 +80,34 @@ func _physics_process(delta: float) -> void:
 			velocity.x = direction * speed
 			animated_sprite.flip_h = direction < 0
 			if is_in_ocean:
+				$Audio/Walking.stop()
 				animated_sprite.play("swim")
 			else:
 				animated_sprite.play("run")
+				$Audio/Walking.stream.loop_begin = 1
+				$Audio/Walking.stream.loop_end = 2
+				if not $Audio/Walking.playing:
+					$Audio/Walking.play()
+			
+		
+				
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed)
 			if is_in_ocean:
+				$Audio/Walking.stop()
 				animated_sprite.play("idle_ocean")
 				$Audio/Sailing.play()
 				
 			else:
+				$Audio/Walking.stop()
 				animated_sprite.play("idle")
 				$Audio/Sailing.stop()
 		
 		# Handle jump/fall animations
 		if not is_on_floor():
+			$Audio/Jump.play()
 			animated_sprite.play("jump")
+			
 
 		move_and_slide()
 	

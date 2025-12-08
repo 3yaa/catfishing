@@ -1,5 +1,11 @@
 extends Node
-
+@onready var RoundWin = $Audio/RoundWin
+@onready var RoundLose = $Audio/RoundLose
+@onready var Deal = $Audio/Deal
+@onready var FishCaught = $Audio/FishCaught
+@onready var CatCry = $Audio/CatCry
+@onready var Stand = $Audio/Stand
+@onready var PokerChip = $Audio/PokerChip
 @onready var mg_manager = $MinigameManager
 @onready var hit_btn = $MinigameUI/HitButton
 @onready var stand_btn = $MinigameUI/StandButton
@@ -244,6 +250,7 @@ func _update_round_display():
 	round_label.text = "Round: %d/%d" % [mg_manager.cur_game_num, mg_manager.max_game_num]
 
 func _on_hit():
+	Deal.play()
 	print("HIT BUTTON PRESSED!")
 	_button_press_animation(hit_btn)
 	mg_manager.current_game.hit()
@@ -255,6 +262,7 @@ func _on_hit():
 		mg_manager.finish_game()
 
 func _on_stand():
+	Stand.play()
 	print("STAND BUTTON PRESSED!")
 	_button_press_animation(stand_btn)
 	mg_manager.current_game.stand(fish)
@@ -273,10 +281,14 @@ func _on_game_finished(score: int, total_score: int, winner: String):
 	# 
 	match winner:
 		"player":
+	
 			result_message = "YOU WIN!"
 			_update_fish_emotion()
+			RoundWin.play()
+			
 		"dealer":
 			result_message = "DEALER WINS"
+			RoundLose.play()
 		"push":
 			result_message = "PUSH - TIE"
 	# 
@@ -311,6 +323,7 @@ func _on_game_finished(score: int, total_score: int, winner: String):
 		_show_betting_ui()
 
 func _on_caught_fish():
+	FishCaught.play()
 	print("CAUGHT FISH - YOU WIN!")
 	
 	# immediately hide the minigame
@@ -336,6 +349,9 @@ func _on_caught_fish():
 
 
 func _on_lost_fish():
+	CatCry.play()
+	
+	
 	print("LOST FISH - GAME OVER")
 	
 	# immediately hide the minigame to prevent any further interaction
@@ -572,6 +588,7 @@ func _on_action_button_unhover(button: Control):
 	tween.tween_property(button, "scale", Vector2(1.0, 1.0), 0.2)
 
 func _on_bet_selected(bet_amount: int):
+	PokerChip.play()
 	print("Bet selected: ", bet_amount)
 	
 	# validate bet amount
