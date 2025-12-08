@@ -42,17 +42,17 @@ script = ExtResource("1_0tnpc")
 
 [node name="Npc1" parent="." instance=ExtResource("15_rysoc")]
 z_index = 100
-position = Vector2(1099, 1029)
+position = Vector2(1097, 1044)
 script = ExtResource("16_ssvqc")
 
 [node name="Npc2" parent="." instance=ExtResource("15_rysoc")]
 z_index = 100
-position = Vector2(1340, 1033)
+position = Vector2(1340, 1045)
 script = ExtResource("17_264po")
 
 [node name="Npc3" parent="." instance=ExtResource("15_rysoc")]
 z_index = 100
-position = Vector2(1669, 1029)
+position = Vector2(1671, 1047)
 script = ExtResource("8_qnb83")
 
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
@@ -72,7 +72,7 @@ target = NodePath("../Player")
 script = ExtResource("7_u5sy4")
 
 [node name="OceanArea" parent="." instance=ExtResource("9_dinhu")]
-position = Vector2(901, 1125)
+position = Vector2(900.99994, 1126)
 scale = Vector2(1.5, 1.5)
 
 [node name="FishLogic" type="Node2D" parent="."]
@@ -105,6 +105,7 @@ day_color = Color(0.5372549, 0.49411765, 0.36862746, 0.19607843)
 metadata/_edit_group_ = true
 
 [node name="UpgradeShop" parent="." instance=ExtResource("19_264po")]
+visible = false
 z_index = 300
 offset_left = 472.0
 offset_top = 802.0
@@ -113,6 +114,7 @@ offset_bottom = 1052.0
 metadata/_edit_use_anchors_ = true
 
 [node name="FishShop" parent="." instance=ExtResource("21_5newe")]
+visible = false
 z_index = 300
 offset_left = 588.0
 offset_top = 799.0
@@ -121,6 +123,7 @@ offset_bottom = 984.0
 metadata/_edit_use_anchors_ = true
 
 [node name="CosmeticsShop" parent="." instance=ExtResource("25_suyxu")]
+visible = false
 z_index = 300
 offset_left = 307.0
 offset_top = 765.0
@@ -135,7 +138,7 @@ shape = SubResource("RectangleShape2D_e1j6l")
 
 [node name="Sprite2D" type="Sprite2D" parent="land"]
 z_index = 1
-position = Vector2(434.00003, 1085)
+position = Vector2(434, 1100.0001)
 rotation = 1.5707964
 scale = Vector2(0.4193952, 0.84835726)
 texture = ExtResource("23_qnb83")
@@ -172,7 +175,7 @@ texture = ExtResource("9_pl11u")
 
 [node name="Sprite2D" type="Sprite2D" parent="sea"]
 z_index = 150
-position = Vector2(1438.0001, 1089)
+position = Vector2(1438.0001, 1103.0001)
 scale = Vector2(2.6503804, 0.8635702)
 texture = ExtResource("24_e1j6l")
 region_enabled = true
@@ -221,7 +224,7 @@ rotation = 0.099483766
 
 [node name="Sprite2D2" type="Sprite2D" parent="End of Land"]
 z_index = 1
-position = Vector2(-611.52765, 417.80255)
+position = Vector2(-609.5679, 432.97406)
 rotation = 1.4817846
 scale = Vector2(0.419, -0.848)
 texture = ExtResource("23_qnb83")
