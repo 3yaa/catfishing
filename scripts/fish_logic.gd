@@ -46,14 +46,33 @@ class Fish:
 		
 		
 func _ready():
-	# connect to fish_reeled signal to create fish when player catches one
-	player.fish_reeled.connect(_on_fish_reeled)
+	pass
 
-func _on_fish_reeled():
-	# create a new fish when player reels
-	current_fish = make_fish()
-	print(current_fish.stringify())
-	add_fish_to_inventory(current_fish)
+func _process(_delta):
+	if player.is_fishing and not tutorial.tutorial_ongoing:
+		fishing_timer -= _delta
+		if fishing_timer <= 0:
+			fishing_timer = fishing_cooldown
+			if not any_fish:
+				current_fish = make_fish()
+				any_fish = true
+				# reset the reel_chance
+				reel_chance = player.reel_skill
+			# when we implement player stats:
+			else:
+				var roll = randf() * 100
+				print(roll)
+				print(reel_chance)
+				if reel_chance > roll:
+					# probably do some probability algorithm where reeling chance is calculated
+					# use that reeling chance and if it lands, send the fish caught signal
+					player.fish_reeled.emit()
+					print(current_fish.stringify())
+					add_fish_to_inventory(current_fish)
+					player.is_fishing = false
+					any_fish = false
+				else:
+					reel_chance += 10.0
 
 func add_fish_to_inventory(fish: Fish):
 	fish_inventory.append(fish)
