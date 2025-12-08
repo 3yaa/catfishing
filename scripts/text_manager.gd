@@ -26,7 +26,7 @@ func _ready():
 func _process(delta):
 	if hintbox_node.visible:
 		$Hint.position = Vector2(-$Hint.get_minimum_size().x / 2, -400)
-		hintbox_node.position = Vector2($Hint.position.x + 150, $Hint.position.y + 10)
+		hintbox_node.position = Vector2($Hint.position.x + 200, $Hint.position.y + 10)
 		hintbox_node.z_index = $Hint.z_index - 1	
 	if textbox_node.visible:
 		$Tutorial.position = Vector2(-$Tutorial.size.x / 2, -400)
