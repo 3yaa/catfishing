@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dtipbmymq13e1"]
+[gd_scene load_steps=26 format=3 uid="uid://dtipbmymq13e1"]
 
 [ext_resource type="Script" uid="uid://do84ogts0xyuy" path="res://scripts/minigame/minigame_controller.gd" id="1_hwsak"]
 [ext_resource type="Script" uid="uid://w8tkfa0u1tsp" path="res://scripts/minigame/minigame_manager.gd" id="2_0dp5x"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cd8oim1pijogi" path="res://assets/Black Jack/stand_button.png" id="7_stand"]
 [ext_resource type="Texture2D" uid="uid://brk6ye5hikcwq" path="res://assets/Black Jack/allIn_button.png" id="8_allin"]
 [ext_resource type="Texture2D" uid="uid://caohlvuio2uk5" path="res://assets/Black Jack/redChip.png" id="9_chip"]
+[ext_resource type="Texture2D" uid="uid://dxrfb1wruei3p" path="res://assets/Black Jack/double.png" id="10_havpp"]
 [ext_resource type="Script" uid="uid://dutm8b8esjhd4" path="res://scripts/rules.gd" id="14_8e78p"]
 [ext_resource type="AudioStream" uid="uid://bk0xqy0y7hyrc" path="res://assets/Sounds/Black Jack/Incorrect.mp3" id="15_3u4ns"]
 [ext_resource type="AudioStream" uid="uid://b1ccwfvjuwntj" path="res://assets/Sounds/Black Jack/correct.mp3" id="15_okghe"]
@@ -203,10 +204,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 130.0
-offset_top = 316.0
-offset_right = 294.5
-offset_bottom = 397.0
+offset_left = 155.0
+offset_top = 318.0
+offset_right = 319.5
+offset_bottom = 399.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("6_hit")
@@ -221,13 +222,31 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -298.0
-offset_top = 314.0
-offset_right = -157.0
-offset_bottom = 393.0
+offset_left = -309.0
+offset_top = 317.0
+offset_right = -168.0
+offset_bottom = 396.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("7_stand")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="DoubleButton" type="TextureButton" parent="MinigameUI"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = 308.0
+offset_right = 78.5
+offset_bottom = 417.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("10_havpp")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -302,10 +321,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -1056.0
-offset_top = 878.0
-offset_right = -876.0
-offset_bottom = 964.0
+offset_left = -452.0
+offset_top = 743.0
+offset_right = -272.0
+offset_bottom = 829.0
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_bet_container")
 
@@ -422,9 +441,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -205.0
+offset_left = -204.0
 offset_top = 57.0
-offset_right = 195.0
+offset_right = 196.0
 offset_bottom = 357.0
 grow_horizontal = 2
 grow_vertical = 2

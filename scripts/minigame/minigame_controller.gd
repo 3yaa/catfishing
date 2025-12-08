@@ -9,6 +9,7 @@ extends Node
 @onready var mg_manager = $MinigameManager
 @onready var hit_btn = $MinigameUI/HitButton
 @onready var stand_btn = $MinigameUI/StandButton
+@onready var double_btn = $MinigameUI/DoubleButton
 @onready var minigame_ui = $MinigameUI
 @onready var player_hand_container = $MinigameUI/PlayerHand
 @onready var dealer_hand_container = $MinigameUI/DealerHand
@@ -28,6 +29,7 @@ extends Node
 @onready var fish_sprite = $MinigameUI/Control/FishSprite
 @onready var fish = get_node("/root/Game/FishLogic")
 @onready var rarity_label = $MinigameUI/RarityLabel
+@onready var player = get_node("/root/Game/Player")
 
 var card_scene = preload("res://scenes/card_display.tscn")
 
@@ -66,6 +68,7 @@ func _ready():
 	
 	hit_btn.pressed.connect(_on_hit)
 	stand_btn.pressed.connect(_on_stand)
+	double_btn.pressed.connect(_on_double)
 	
 	# connect betting buttons
 	bet_10_btn.pressed.connect(func(): _on_bet_selected(10))
@@ -93,6 +96,7 @@ func _reset_minigame_state():
 	current_bet_container.visible = false
 	hit_btn.visible = false
 	stand_btn.visible = false
+	double_btn.visible = false
 	
 	# clear hands
 	_clear_hands()
@@ -283,6 +287,28 @@ func _on_stand():
 	await get_tree().create_timer(1.0).timeout
 	mg_manager.finish_game()
 
+func _on_double():
+	PokerChip.play()
+	print("DOUBLE BUTTON PRESSED!")
+	_button_press_animation(double_btn)
+	
+	# double bet
+	var new_bet = mg_manager.cur_game_bet * 2
+	mg_manager.cur_game_bet = new_bet
+	
+	# update bet display
+	current_bet_label.text = str(new_bet)
+	
+	# animate
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_ELASTIC)
+	tween.tween_property(current_bet_container, "scale", Vector2(1.2, 1.2), 0.3)
+	tween.tween_property(current_bet_container, "scale", Vector2(1.0, 1.0), 0.3)
+	
+	# hide --- single use per round
+	double_btn.visible = false
+
 func _button_press_animation(button: Control):
 	var tween = create_tween()
 	tween.tween_property(button, "scale", Vector2(0.9, 0.9), 0.1)
@@ -293,7 +319,6 @@ func _on_game_finished(score: int, total_score: int, winner: String):
 	# 
 	match winner:
 		"player":
-	
 			result_message = "YOU WIN!"
 			_update_fish_emotion()
 			RoundWin.play()
@@ -331,7 +356,7 @@ func _on_game_finished(score: int, total_score: int, winner: String):
 	mg_manager.new_game()
 	
 	# show betting ui
-	if mg_manager.player_score > 0 && mg_manager.player_score < mg_manager.score_to_catch && mg_manager.cur_game_num <= mg_manager.max_game_num:
+	if mg_manager.player_score > 0 and mg_manager.player_score < mg_manager.score_to_catch and mg_manager.cur_game_num <= mg_manager.max_game_num:
 		_show_betting_ui()
 
 func _on_caught_fish():
@@ -414,7 +439,10 @@ func _display_hand(hand: Array, container: Container, score_label: Label, show_s
 		var card_display = card_scene.instantiate()
 		container.add_child(card_display)
 		
-		if card.visible:
+		# Check if Card Peek powerup is active for dealer's hidden card
+		var should_reveal = card.visible or (is_dealer and player.power_ups.power1)
+		
+		if should_reveal:
 			card_display.set_card(card.suit, card.rank)
 		else:
 			card_display.set_card_hidden()
@@ -456,7 +484,7 @@ func _display_hand(hand: Array, container: Container, score_label: Label, show_s
 			has_hidden_cards = true
 	
 	# adj for aces
-	while visible_score > 21 && visible_aces > 0:
+	while visible_score > 21 and visible_aces > 0:
 		visible_score -= 10
 		visible_aces -= 1
 	
@@ -464,9 +492,26 @@ func _display_hand(hand: Array, container: Container, score_label: Label, show_s
 	if show_score:
 		score_label.text = "%sHand: %d" % [label_prefix, visible_score]
 	else:
-		# dealer with hidden cards, show visible score + ?
-		if is_dealer && has_hidden_cards:
-			score_label.text = "%sHand: %d + ?" % [label_prefix, visible_score]
+		# dealer with hidden cards
+		if is_dealer and has_hidden_cards:
+			# If Card Peek powerup is active, show full score
+			if player.power_ups.power1:
+				var full_score = 0
+				var full_aces = 0
+				for card in hand:
+					if card.rank == "A":
+						full_score += 11
+						full_aces += 1
+					else:
+						full_score += card.value
+				
+				while full_score > 21 and full_aces > 0:
+					full_score -= 10
+					full_aces -= 1
+				
+				score_label.text = "%sHand: %d" % [label_prefix, full_score]
+			else:
+				score_label.text = "%sHand: %d + ?" % [label_prefix, visible_score]
 		else:
 			score_label.text = "%sHand: ?" % label_prefix
 
@@ -479,15 +524,18 @@ func _clear_hands():
 func _disable_buttons():
 	hit_btn.disabled = true
 	stand_btn.disabled = true
+	double_btn.disabled = true
 
 func _enable_buttons():
 	hit_btn.disabled = false
 	stand_btn.disabled = false
+	double_btn.disabled = false
 
 func _show_betting_ui():
 	betting_panel.visible = true
 	hit_btn.visible = false
 	stand_btn.visible = false
+	double_btn.visible = false
 	_clear_hands()
 	
 	# reset score labels
@@ -564,10 +612,13 @@ func _hide_betting_ui():
 	# animate action buttons
 	hit_btn.visible = true
 	stand_btn.visible = true
+	double_btn.visible = true
 	hit_btn.modulate.a = 0
 	stand_btn.modulate.a = 0
+	double_btn.modulate.a = 0
 	hit_btn.scale = Vector2(0.8, 0.8)
 	stand_btn.scale = Vector2(0.8, 0.8)
+	double_btn.scale = Vector2(0.8, 0.8)
 	
 	var button_tween = create_tween()
 	button_tween.set_parallel(true)
@@ -578,6 +629,8 @@ func _hide_betting_ui():
 	button_tween.tween_property(hit_btn, "scale", Vector2(1.0, 1.0), 0.4).set_delay(0.1)
 	button_tween.tween_property(stand_btn, "modulate:a", 1.0, 0.4).set_delay(0.2)
 	button_tween.tween_property(stand_btn, "scale", Vector2(1.0, 1.0), 0.4).set_delay(0.2)
+	button_tween.tween_property(double_btn, "modulate:a", 1.0, 0.4).set_delay(0.15)
+	button_tween.tween_property(double_btn, "scale", Vector2(1.0, 1.0), 0.4).set_delay(0.15)
 	# 
 	_setup_action_button_hover()
 
@@ -587,6 +640,8 @@ func _setup_action_button_hover():
 		hit_btn.mouse_exited.connect(_on_action_button_unhover.bind(hit_btn))
 		stand_btn.mouse_entered.connect(_on_action_button_hover.bind(stand_btn))
 		stand_btn.mouse_exited.connect(_on_action_button_unhover.bind(stand_btn))
+		double_btn.mouse_entered.connect(_on_action_button_hover.bind(double_btn))
+		double_btn.mouse_exited.connect(_on_action_button_unhover.bind(double_btn))
 
 func _on_action_button_hover(button: Control):
 	if not button.disabled:

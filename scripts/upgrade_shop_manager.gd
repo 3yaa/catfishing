@@ -8,7 +8,7 @@ extends Panel
 @onready var luck_level = $ScrollContainer/VBoxContainer/Luck/Level
 @onready var salesman_level = $ScrollContainer/VBoxContainer/Salesman/Level
 
-@onready var reel_skill_buy =$ScrollContainer/VBoxContainer/ReelSkill/Buy
+@onready var reel_skill_buy = $ScrollContainer/VBoxContainer/ReelSkill/Buy
 @onready var luck_buy = $ScrollContainer/VBoxContainer/Luck/Buy
 @onready var salesman_buy = $ScrollContainer/VBoxContainer/Salesman/Buy
 @onready var power1_buy = $ScrollContainer/VBoxContainer/Power1/Buy
@@ -21,9 +21,9 @@ var prices = {
 	reel_skill = 200.0,
 	luck = 200.0,
 	salesman = 300.0,
-	power1 = 500.0,
+	power1 = 350.0,
 	power2 = 500.0,
-	power3 = 500.0,
+	power3 = 700.0,
 }
 
 signal shop_open

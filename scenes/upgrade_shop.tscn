@@ -202,7 +202,7 @@ size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.3, 0.2, 0.1, 1)
 theme_override_fonts/font = ExtResource("3_font")
 theme_override_font_sizes/font_size = 18
-text = "Power Up 1:"
+text = "Card Peek:"
 
 [node name="Spacer" type="Control" parent="ScrollContainer/VBoxContainer/Power1"]
 custom_minimum_size = Vector2(50, 0)
@@ -229,7 +229,7 @@ size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.3, 0.2, 0.1, 1)
 theme_override_fonts/font = ExtResource("3_font")
 theme_override_font_sizes/font_size = 18
-text = "Power Up 2:"
+text = "Lose 21:"
 
 [node name="Spacer" type="Control" parent="ScrollContainer/VBoxContainer/Power2"]
 custom_minimum_size = Vector2(50, 0)
@@ -256,7 +256,7 @@ size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.3, 0.2, 0.1, 1)
 theme_override_fonts/font = ExtResource("3_font")
 theme_override_font_sizes/font_size = 18
-text = "Power Up 3:"
+text = "Not Care:"
 
 [node name="Spacer" type="Control" parent="ScrollContainer/VBoxContainer/Power3"]
 custom_minimum_size = Vector2(50, 0)
