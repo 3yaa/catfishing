@@ -18,7 +18,7 @@ func _ready():
 	
 	hintbox_node = Sprite2D.new()
 	hintbox_node.texture = hintbox
-	hintbox_node.scale = Vector2(0.5, 0.05)
+	hintbox_node.scale = Vector2(0.4, 0.1)
 	add_child(hintbox_node)
 	hintbox_node.visible = false
 	
