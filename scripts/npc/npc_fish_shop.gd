@@ -2,9 +2,12 @@ class_name NPCFishShop
 extends NPC
 
 @onready var shop = $"../FishShop"
+@onready var background = $"Sprite2D"
+
+@export var background_sprite = Texture2D
 
 const position_ocean = Vector2(1200, 1070)
-const position_island = Vector2(700, 1070)
+const position_island = Vector2(700, 1050)
 
 
 func _ready() -> void:
@@ -23,6 +26,8 @@ func _process(delta: float) -> void:
 func rescue():
 	rescued = true
 	global_position = position_island
+	background.texture = background_sprite
+	background.visible = true
 	
 
 # Overwrite prompt

@@ -42,6 +42,9 @@ shape = SubResource("RectangleShape2D_7n8xq")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_4wlns")
-animation = &"drowning"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -14)
+scale = Vector2(0.1, 0.1)

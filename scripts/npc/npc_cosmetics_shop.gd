@@ -4,7 +4,10 @@ extends NPC
 @onready var shop = $"../CosmeticsShop"
 
 const position_ocean = Vector2(1700, 1070)
-const position_island = Vector2(400, 1070)
+const position_island = Vector2(400, 1050)
+@onready var background = $"Sprite2D"
+
+@export var background_sprite = Texture2D
 
 
 func _ready() -> void:
@@ -23,6 +26,8 @@ func _process(delta: float) -> void:
 func rescue():
 	rescued = true
 	global_position = position_island
+	background.texture = background_sprite
+	background.visible = true
 	
 
 # Overwrite prompt

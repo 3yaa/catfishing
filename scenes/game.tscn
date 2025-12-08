@@ -1,13 +1,16 @@
-[gd_scene load_steps=30 format=3 uid="uid://dlaaqsui6rtpr"]
+[gd_scene load_steps=33 format=3 uid="uid://dlaaqsui6rtpr"]
 
 [ext_resource type="Script" uid="uid://cuyhki8mlbgr0" path="res://scripts/main_game.gd" id="1_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://2pd4wty6nwsi" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://bom0hcsi6mb6s" path="res://assets/background/sky.jpeg" id="2_trtic"]
 [ext_resource type="Script" uid="uid://c4nlmna60i861" path="res://scripts/player.gd" id="2_yqjtg"]
 [ext_resource type="Script" uid="uid://bsj23fju2j7vg" path="res://scripts/lock_camera.gd" id="4_lbhrr"]
+[ext_resource type="Texture2D" uid="uid://bxyyav17bmlar" path="res://assets/background/fishStand.png" id="4_qnb83"]
 [ext_resource type="PackedScene" uid="uid://cwjnjn45by5b2" path="res://scenes/ui.tscn" id="6_p57ef"]
+[ext_resource type="Texture2D" uid="uid://tx77ht663mec" path="res://assets/background/itemsShop.png" id="6_suyxu"]
 [ext_resource type="Script" uid="uid://b2wgiegidtvun" path="res://scripts/clock.gd" id="7_u5sy4"]
 [ext_resource type="Script" uid="uid://b1phrbyh0srip" path="res://scripts/npc/npc_cosmetics_shop.gd" id="8_qnb83"]
+[ext_resource type="Texture2D" uid="uid://32ci5ber0j4r" path="res://assets/Npc Assests/buildingShop.png" id="8_sgl2t"]
 [ext_resource type="PackedScene" uid="uid://btx5m1k8bm1n8" path="res://scenes/ocean_area.tscn" id="9_dinhu"]
 [ext_resource type="Texture2D" uid="uid://c4ci4hew47e5g" path="res://assets/background/palmTree.png" id="9_pl11u"]
 [ext_resource type="Script" uid="uid://2yl1hfh0q3jn" path="res://scripts/fish_logic.gd" id="9_vtaks"]
@@ -45,16 +48,19 @@ script = ExtResource("1_0tnpc")
 z_index = 100
 position = Vector2(1097, 1044)
 script = ExtResource("16_ssvqc")
+background_sprite = ExtResource("4_qnb83")
 
 [node name="Npc2" parent="." instance=ExtResource("15_rysoc")]
 z_index = 100
 position = Vector2(1340, 1045)
 script = ExtResource("17_264po")
+background_sprite = ExtResource("6_suyxu")
 
 [node name="Npc3" parent="." instance=ExtResource("15_rysoc")]
 z_index = 100
 position = Vector2(1671, 1047)
 script = ExtResource("8_qnb83")
+background_sprite = ExtResource("8_sgl2t")
 
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
 z_index = 200
