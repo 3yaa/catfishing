@@ -10,6 +10,8 @@ var is_fishing = false
 var speed = SPEED_LAND
 var spawn_position = Vector2()
 
+var fish_escape_flag = false
+
 # Stats?
 var reel_skill: float = 10.0 # reel_skill indicates how fast the fish hooks
 var luck: float = 10.0 # luck indicates how likely you are to get rarer fish
@@ -31,6 +33,7 @@ signal is_late # Triggered when stay too late in ocean and got teleport back
 @onready var clock = $"../Clock"
 @onready var game = get_node("/root/Game/WorldUI")
 @onready var tutorial = get_node("/root/Game/Tutorial_Manager")
+@onready var fish = $"../FishLogic"
 
 func _ready():
 	var ui = get_node("/root/Game/WorldUI")
@@ -98,6 +101,9 @@ func _physics_process(delta: float) -> void:
 	
 func enter_ocean():
 	print("Enter ocean")
+	if not is_in_ocean:
+		fish_escape_flag = false
+	
 	is_in_ocean = true
 	$Audio/GettingInBoat.play()
 	
@@ -107,7 +113,19 @@ func exit_ocean():
 	is_in_ocean = false
 	
 
+# When stay too late in ocean: pass out, get teleported back, lose some fish
 func handle_late_in_ocean():
 	if not tutorial.tutorial_ongoing and is_in_ocean and not clock.is_day and clock.get_remaining_time() < 5.0:
 		global_position = spawn_position
 		is_late.emit()
+		
+		if not fish_escape_flag:
+			var escaped_fish: Array = []
+			for i in range(fish.fish_inventory.size() - 1, 0, -1):
+				if i % 2 == 1:
+					escaped_fish.append(fish.fish_inventory[i])
+					fish.fish_inventory.remove_at(i)
+				
+			fish_escape_flag = true
+			
+			game.display_passout(escaped_fish)
