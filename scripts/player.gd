@@ -43,25 +43,13 @@ func _process(delta: float) -> void:
 	if is_in_ocean:
 		speed = SPEED_OCEAN
 		# if "fishing button" pressed:
-		if (Input.is_action_just_pressed("fishing")) and not is_fishing:
-			_start_fishing()
+		if (Input.is_action_just_pressed("fishing")):
+			is_fishing = true
+			print("reeled")
 	else:
 		speed = SPEED_LAND
 		
 	handle_late_in_ocean()
-
-func _start_fishing():
-	is_fishing = true
-	
-	# stop player movement
-	velocity = Vector2.ZERO
-	
-	# wait second for "fishing animation" --- TEMP UNTIL WE HAVE ANIMATION
-	await get_tree().create_timer(1.0).timeout
-	
-	# trigger the fish 
-	fish_reeled.emit()
-	is_fishing = false
 	
 
 func _physics_process(delta: float) -> void:
@@ -78,10 +66,9 @@ func _physics_process(delta: float) -> void:
 
 		# Get the input direction and handle the movement/deceleration.
 		var direction := Input.get_axis("ui_left", "ui_right")
-		
-		# disable movement while fishing
-		if is_fishing:
-			direction = 0
+		# any movement while fishing should "cancel" the reel
+		if direction != 0:
+			is_fishing = false
 		
 		if direction:
 			#fish_caught.emit()
