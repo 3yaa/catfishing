@@ -23,7 +23,7 @@ var power_ups = {
 	power3 = false,
 }
 
-var money: float = 100.0
+var money: float = 50000.0
 
 signal fish_caught
 signal fish_reeled
@@ -90,7 +90,6 @@ func _physics_process(delta: float) -> void:
 					$Audio/Walking.play()
 			
 		
-				
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed)
 			if is_in_ocean:

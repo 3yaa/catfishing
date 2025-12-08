@@ -29,6 +29,7 @@ extends Node
 @onready var fish_sprite = $MinigameUI/Control/FishSprite
 @onready var fish = get_node("/root/Game/FishLogic")
 @onready var rarity_label = $MinigameUI/RarityLabel
+@onready var player = get_node("/root/Game/Player")
 
 var card_scene = preload("res://scenes/card_display.tscn")
 
@@ -291,21 +292,21 @@ func _on_double():
 	print("DOUBLE BUTTON PRESSED!")
 	_button_press_animation(double_btn)
 	
-	# Double the bet
+	# double bet
 	var new_bet = mg_manager.cur_game_bet * 2
 	mg_manager.cur_game_bet = new_bet
 	
-	# Update the bet display
+	# update bet display
 	current_bet_label.text = str(new_bet)
 	
-	# Animate the bet label to show it changed
+	# animate
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_ELASTIC)
 	tween.tween_property(current_bet_container, "scale", Vector2(1.2, 1.2), 0.3)
 	tween.tween_property(current_bet_container, "scale", Vector2(1.0, 1.0), 0.3)
 	
-	# Hide the double button (single use per round)
+	# hide --- single use per round
 	double_btn.visible = false
 
 func _button_press_animation(button: Control):
@@ -318,7 +319,6 @@ func _on_game_finished(score: int, total_score: int, winner: String):
 	# 
 	match winner:
 		"player":
-	
 			result_message = "YOU WIN!"
 			_update_fish_emotion()
 			RoundWin.play()
@@ -356,7 +356,7 @@ func _on_game_finished(score: int, total_score: int, winner: String):
 	mg_manager.new_game()
 	
 	# show betting ui
-	if mg_manager.player_score > 0 && mg_manager.player_score < mg_manager.score_to_catch && mg_manager.cur_game_num <= mg_manager.max_game_num:
+	if mg_manager.player_score > 0 and mg_manager.player_score < mg_manager.score_to_catch and mg_manager.cur_game_num <= mg_manager.max_game_num:
 		_show_betting_ui()
 
 func _on_caught_fish():
@@ -439,7 +439,10 @@ func _display_hand(hand: Array, container: Container, score_label: Label, show_s
 		var card_display = card_scene.instantiate()
 		container.add_child(card_display)
 		
-		if card.visible:
+		# Check if Card Peek powerup is active for dealer's hidden card
+		var should_reveal = card.visible or (is_dealer and player.power_ups.power1)
+		
+		if should_reveal:
 			card_display.set_card(card.suit, card.rank)
 		else:
 			card_display.set_card_hidden()
@@ -481,7 +484,7 @@ func _display_hand(hand: Array, container: Container, score_label: Label, show_s
 			has_hidden_cards = true
 	
 	# adj for aces
-	while visible_score > 21 && visible_aces > 0:
+	while visible_score > 21 and visible_aces > 0:
 		visible_score -= 10
 		visible_aces -= 1
 	
@@ -489,9 +492,26 @@ func _display_hand(hand: Array, container: Container, score_label: Label, show_s
 	if show_score:
 		score_label.text = "%sHand: %d" % [label_prefix, visible_score]
 	else:
-		# dealer with hidden cards, show visible score + ?
-		if is_dealer && has_hidden_cards:
-			score_label.text = "%sHand: %d + ?" % [label_prefix, visible_score]
+		# dealer with hidden cards
+		if is_dealer and has_hidden_cards:
+			# If Card Peek powerup is active, show full score
+			if player.power_ups.power1:
+				var full_score = 0
+				var full_aces = 0
+				for card in hand:
+					if card.rank == "A":
+						full_score += 11
+						full_aces += 1
+					else:
+						full_score += card.value
+				
+				while full_score > 21 and full_aces > 0:
+					full_score -= 10
+					full_aces -= 1
+				
+				score_label.text = "%sHand: %d" % [label_prefix, full_score]
+			else:
+				score_label.text = "%sHand: %d + ?" % [label_prefix, visible_score]
 		else:
 			score_label.text = "%sHand: ?" % label_prefix
 
