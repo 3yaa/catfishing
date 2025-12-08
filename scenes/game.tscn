@@ -90,6 +90,7 @@ script = ExtResource("4_lbhrr")
 target = NodePath("../Player")
 
 [node name="WorldUI" parent="." instance=ExtResource("6_p57ef")]
+visible = false
 
 [node name="Clock" type="Node2D" parent="."]
 script = ExtResource("7_u5sy4")
