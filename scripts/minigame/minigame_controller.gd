@@ -9,6 +9,7 @@ extends Node
 @onready var mg_manager = $MinigameManager
 @onready var hit_btn = $MinigameUI/HitButton
 @onready var stand_btn = $MinigameUI/StandButton
+@onready var double_btn = $MinigameUI/DoubleButton
 @onready var minigame_ui = $MinigameUI
 @onready var player_hand_container = $MinigameUI/PlayerHand
 @onready var dealer_hand_container = $MinigameUI/DealerHand
@@ -66,6 +67,7 @@ func _ready():
 	
 	hit_btn.pressed.connect(_on_hit)
 	stand_btn.pressed.connect(_on_stand)
+	double_btn.pressed.connect(_on_double)
 	
 	# connect betting buttons
 	bet_10_btn.pressed.connect(func(): _on_bet_selected(10))
@@ -93,6 +95,7 @@ func _reset_minigame_state():
 	current_bet_container.visible = false
 	hit_btn.visible = false
 	stand_btn.visible = false
+	double_btn.visible = false
 	
 	# clear hands
 	_clear_hands()
@@ -282,6 +285,28 @@ func _on_stand():
 	_disable_buttons()
 	await get_tree().create_timer(1.0).timeout
 	mg_manager.finish_game()
+
+func _on_double():
+	PokerChip.play()
+	print("DOUBLE BUTTON PRESSED!")
+	_button_press_animation(double_btn)
+	
+	# Double the bet
+	var new_bet = mg_manager.cur_game_bet * 2
+	mg_manager.cur_game_bet = new_bet
+	
+	# Update the bet display
+	current_bet_label.text = str(new_bet)
+	
+	# Animate the bet label to show it changed
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_ELASTIC)
+	tween.tween_property(current_bet_container, "scale", Vector2(1.2, 1.2), 0.3)
+	tween.tween_property(current_bet_container, "scale", Vector2(1.0, 1.0), 0.3)
+	
+	# Hide the double button (single use per round)
+	double_btn.visible = false
 
 func _button_press_animation(button: Control):
 	var tween = create_tween()
@@ -479,15 +504,18 @@ func _clear_hands():
 func _disable_buttons():
 	hit_btn.disabled = true
 	stand_btn.disabled = true
+	double_btn.disabled = true
 
 func _enable_buttons():
 	hit_btn.disabled = false
 	stand_btn.disabled = false
+	double_btn.disabled = false
 
 func _show_betting_ui():
 	betting_panel.visible = true
 	hit_btn.visible = false
 	stand_btn.visible = false
+	double_btn.visible = false
 	_clear_hands()
 	
 	# reset score labels
@@ -564,10 +592,13 @@ func _hide_betting_ui():
 	# animate action buttons
 	hit_btn.visible = true
 	stand_btn.visible = true
+	double_btn.visible = true
 	hit_btn.modulate.a = 0
 	stand_btn.modulate.a = 0
+	double_btn.modulate.a = 0
 	hit_btn.scale = Vector2(0.8, 0.8)
 	stand_btn.scale = Vector2(0.8, 0.8)
+	double_btn.scale = Vector2(0.8, 0.8)
 	
 	var button_tween = create_tween()
 	button_tween.set_parallel(true)
@@ -578,6 +609,8 @@ func _hide_betting_ui():
 	button_tween.tween_property(hit_btn, "scale", Vector2(1.0, 1.0), 0.4).set_delay(0.1)
 	button_tween.tween_property(stand_btn, "modulate:a", 1.0, 0.4).set_delay(0.2)
 	button_tween.tween_property(stand_btn, "scale", Vector2(1.0, 1.0), 0.4).set_delay(0.2)
+	button_tween.tween_property(double_btn, "modulate:a", 1.0, 0.4).set_delay(0.15)
+	button_tween.tween_property(double_btn, "scale", Vector2(1.0, 1.0), 0.4).set_delay(0.15)
 	# 
 	_setup_action_button_hover()
 
@@ -587,6 +620,8 @@ func _setup_action_button_hover():
 		hit_btn.mouse_exited.connect(_on_action_button_unhover.bind(hit_btn))
 		stand_btn.mouse_entered.connect(_on_action_button_hover.bind(stand_btn))
 		stand_btn.mouse_exited.connect(_on_action_button_unhover.bind(stand_btn))
+		double_btn.mouse_entered.connect(_on_action_button_hover.bind(double_btn))
+		double_btn.mouse_exited.connect(_on_action_button_unhover.bind(double_btn))
 
 func _on_action_button_hover(button: Control):
 	if not button.disabled:
