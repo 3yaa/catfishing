@@ -3,6 +3,7 @@ extends Control
 @onready var tutorial = get_node("/root/Game/Tutorial_Manager")
 @onready var camera = get_node("/root/Game/Camera2D")
 @onready var label = get_node("/root/Game/Player/Text_Manager/Hint")
+@onready var textbox = get_node("/root/Game/Player/Text_Manager")
 
 var hints = [
 	"Rescue cats to unlock shops!",
@@ -45,7 +46,9 @@ func _show_hint():
 	hint_no = randi() % hints.size()
 	label.text = "Hint: " + hints[hint_no]
 	label.visible = true
+	textbox.hintbox_node.visible = true
 	await get_tree().create_timer(10.0).timeout
 	label.visible = false
+	textbox.hintbox_node.visible = false
 	await get_tree().create_timer(20.0).timeout
 	ongoing_hint = false

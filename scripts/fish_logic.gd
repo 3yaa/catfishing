@@ -10,7 +10,7 @@ var size_min: float = 1.0
 var size_max: float = 20.0
 
 # base fish price, limit to 2 decimal points
-var base_price: float = 10.00
+var base_price: float = 150.00
 
 var reel_chance: float
 

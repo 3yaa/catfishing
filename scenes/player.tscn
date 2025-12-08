@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://c0wmx3n4t7gwu" path="res://assets/Main Player/Individual Sprite/walk/walk3.png" id="10_a8ls1"]
 [ext_resource type="Texture2D" uid="uid://bttw6l270edeg" path="res://assets/Main Player/Individual Sprite/Boat Idle/boatIdle5.png" id="10_i4ail"]
 [ext_resource type="Texture2D" uid="uid://dw6qxqce6tmrh" path="res://assets/Main Player/Individual Sprite/walk/walk4.png" id="11_qfm1y"]
-[ext_resource type="Script" path="res://scripts/text_manager.gd" id="15_oprun"]
+[ext_resource type="Script" uid="uid://b0jlg0jh7s6jl" path="res://scripts/text_manager.gd" id="15_oprun"]
 [ext_resource type="FontFile" uid="uid://fl4gxokmbnqb" path="res://assets/font/Chewy,Margarine,Schoolbell/Chewy/Chewy-Regular.ttf" id="16_a8ls1"]
 [ext_resource type="Theme" uid="uid://bbi2aoes23tm3" path="res://main_menu_button_theme.tres" id="16_qfm1y"]
 
@@ -145,7 +145,6 @@ offset_right = 40.0
 offset_bottom = 23.0
 theme = ExtResource("16_qfm1y")
 theme_override_font_sizes/font_size = 16
-text = "EWFOHWEFOIHWEOIFW"
 
 [node name="Tutorial" type="RichTextLabel" parent="Text_Manager"]
 offset_right = 40.0
