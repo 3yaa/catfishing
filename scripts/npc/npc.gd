@@ -38,7 +38,10 @@ func get_interact_prompt():
 func play_sprite_animation():
 	if not rescued:
 		animated_sprite.play("drowning")
+		animated_sprite.sprite_frames.set_animation_speed("drowning", 6.0)
 	else:
 		animated_sprite.play("default")
+		animated_sprite.sprite_frames.set_animation_speed("default", 2.0)
+		
 		
 		
