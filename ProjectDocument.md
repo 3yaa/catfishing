@@ -74,6 +74,11 @@ Our game includes a day/night cycle to encourage player to return to the island 
 - [*Staying late in ocean*](https://github.com/3yaa/catfishing/blob/658e5dfbbf2c341ce6b17bd8107e8072f4b1f74b/scripts/player.gd#L129): If player hasn't returned by halfway through the night `clock.get_remaining_time() < 0.5 * clock.night_duration`, they will be teleported back to the island and lose some of their fish. For simplicity, they would lose half of the fish in their inventory, which are the ones located at the odd indices for the sense of "randomness". With more time, I wish to make a true random selection with a random amount as well.
 - [*Visual*](https://github.com/3yaa/catfishing/blob/658e5dfbbf2c341ce6b17bd8107e8072f4b1f74b/scripts/day_night_theme.gd): The main background is swapped based on day or night. A color filter is also applied through `ColorRect` on top of the game to make other assests in the foreground appear darker at night.
 
+|  |  |
+:-------------------------:|:-------------------------:
+![Game Economy](./document_images/day.png) | ![Game Economy](./document_images/night.png)
+
+
 ### NPCs System ###
 
 The game includes NPCs that spawn as drowning cats for the player to rescue, after which they would become shopskeepers on the island. This rescuing gameplay was designed to encourage player to go further into the ocean and explore more if the game scales up, giving player more incentive to buy upgrades.
@@ -83,9 +88,28 @@ There is a [NPC](https://github.com/3yaa/catfishing/blob/5a17f738dc10ffede2887f3
 
 ### Shoping System ###
 
-There are 3 shops in the game. Fish Shop allows player to sell the fish they caught to earn money and pay their debt. Upgrade Shop allows player to buy upgrades to increase their stats. Cosmetic Shop allows player to buy cosmetic items on the island. 
+There are 3 shops in the game. Fish Shop allows player to sell the fish they caught to earn money and pay their debt. Upgrade Shop allows player to buy upgrades to increase their stats. Cosmetic Shop allows player to buy cosmetic items for the island. 
 
-![Game Economy](document_images/game_economy.png)
+(Buttons animation was done by Taef)
+
+![Game Economy](./document_images/game_economy.png)
+
+#### Fish Shop ####
+
+When player opens the shop, they would be able to see the number of fish in their inventory as well as their total value. There is one Sell button that allows player to sell all of their fish at once. In [the selling process](https://github.com/3yaa/catfishing/blob/cce26d3bf1e058d89f71f988fb39006d5b8a7127/scripts/fish_shop_manager.gd#L127), that amount of money would be added to `player.money`, their inventory `fish_logic.fish_inventory` would be cleared, and the display of the shop would be updated.
+
+![Game Economy](./document_images/shop_selling.png)
+
+#### Upgrade Shop ####
+
+In this shop, there are 2 types of upgrades that player can buy: stats upgrades and minigame power-ups. These upgrades are kept track by variables in `player.gd`. Stats upgrades help player with the main game with things like increasing their chance of getting higher quality fish or earning money faster. They are point-based system where player can keep buying to increase their stats. (e.g. [`buy_luck()`](https://github.com/3yaa/catfishing/blob/cce26d3bf1e058d89f71f988fb39006d5b8a7127/scripts/upgrade_shop_manager.gd#L139)) Power-ups are abilities that can be used in the minigame. They are one-time purchases that player can buy to unlock forever. (e.g. [`buy_power1()`](https://github.com/3yaa/catfishing/blob/cce26d3bf1e058d89f71f988fb39006d5b8a7127/scripts/upgrade_shop_manager.gd#L159)). When the shop is opened and after each buy, the [shop display is updated](https://github.com/3yaa/catfishing/blob/cce26d3bf1e058d89f71f988fb39006d5b8a7127/scripts/upgrade_shop_manager.gd#L101) to reflect the latest stats of player. If a power-up is already bought, its button would be disabled and marked as "Owned".
+
+![Game Economy](./document_images/shop_upgrades.png)
+
+
+#### Cosmetic Shop ####
+
+For cosmetic, we decided to use pre-set items because of time constraint. Each item is a `Sprite2D` node that is arranged on the island, all contained within the `Cosmetics` scene. At the start of the game, all of these item would be hidden away. When an item is purchased, its visibility would then be turned on. 
 
 
 ## Main Roles ##
