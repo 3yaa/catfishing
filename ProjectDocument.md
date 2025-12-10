@@ -92,7 +92,7 @@ There are 3 shops in the game. Fish Shop allows player to sell the fish they cau
 
 (Buttons animation was done by Taef)
 
-![Game Economy](./document_images/game_economy.png)
+![Game Economy](./document_images/game_economy.PNG)
 
 #### Fish Shop ####
 
