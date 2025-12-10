@@ -2,7 +2,12 @@
 
 ## Summary ##
 
-**A paragraph-length pitch for your game.**
+Catfishing is a single-player game meant to capture the essence of fishing... and rationality... 
+Jack, the cat you play as, is sent to an island to pay off his enormous debt and in order to do so he takes up fishing. However, to catch the fish you must 
+best them in blackjack, some fish more competent than others. Fight powerful adversaries such as clownfish, sea bass, and sharks, and rescue drowning cats in the ocean
+to unlock new features to aid in paying off your debt such as leveling up player stats! Remain rational to avoid busting while securing a high hand against your foes, 
+and budget your earnings towards your powerups, and also your incredible debt. But who says cats in debt can't have nice things? You can spend
+some money on cosmetics to improve your island! Make sure to spend responsibly though! Fully pay off your debt to win the game!
 
 ## Project Resources
 
