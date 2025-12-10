@@ -65,6 +65,21 @@ Add addition contributions int he Other Contributions section.
 
 ### Main Role 1: Level and World Designer ###
 
+#### Day/Night Cycle ####
+
+Our game includes a day/night cycle to encourage players to return to the island and interact with it. When it is night time, player would not be able to enter the ocean from the island. If they are already in the ocean and it is becoming late, with the inspiration from Stardew Valley, the players would "pass out", get teleported back to the island, and lose half of the fish they are carrying.
+
+- [*Main game clock*](https://github.com/3yaa/catfishing/blob/658e5dfbbf2c341ce6b17bd8107e8072f4b1f74b/scripts/ocean_area.gd#L27): The clock is a `Timer` alternating between 2 different durations for day and night that can be individually adjusted for game feel. It can also be paused, using `pause_clock()` and `resume_clock()`, for cases like when player entering minigame.
+- [*One-way barrier*](https://github.com/3yaa/catfishing/blob/658e5dfbbf2c341ce6b17bd8107e8072f4b1f74b/scripts/ocean_area.gd#L27): A barrier that is raised at night when player is on the island, preventing them from entering the ocean while still allowing them to return to the island. It is implemented by enabling/disabling a `CollisionShape2D` depending on position and time logic. 
+- [*Staying late in ocean*](https://github.com/3yaa/catfishing/blob/658e5dfbbf2c341ce6b17bd8107e8072f4b1f74b/scripts/player.gd#L129): If player hasn't returned by halfway through the night, they will be teleported back to the island and lose half of the fish in their inventory.
+- [*Visual*](https://github.com/3yaa/catfishing/blob/658e5dfbbf2c341ce6b17bd8107e8072f4b1f74b/scripts/day_night_theme.gd): The main background is changed based on day or night. A color filter is also applied through `ColorRect` on top of the game to make other assests in the foreground appear darker at night.
+
+#### NPCs System ####
+
+#### Shoping System ####
+
+
+
 
 
 ## Main Roles ##

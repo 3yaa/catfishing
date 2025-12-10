@@ -6,8 +6,8 @@ signal cycle_changed(is_day:bool)
 var timer: Timer
 
 var is_day:bool = true
-var day_duration:float = 180.0
-var night_duration:float = 90.0
+@export var day_duration:float = 180.0
+@export var night_duration:float = 90.0
 
 var is_paused = false
 var paused_at: float
@@ -29,8 +29,6 @@ func _ready():
 		_start_cycle()
 	
 
-# idea is to call this function from the main script:
-# main script should await the signal "cycle" before calling again
 func _start_cycle():
 	var duration: float
 	if is_day:
@@ -43,6 +41,7 @@ func _start_cycle():
 	timer.start(duration)
 	
 
+# Keep running the cycle alternating between day and night
 func switch_cycle():
 	is_day = !is_day
 	cycle_changed.emit(is_day)
@@ -58,6 +57,7 @@ func get_remaining_time():
 		return 0.0
 		
 
+# Use to pause day/night cycle clock
 func pause_clock():
 	if timer and not is_paused:
 		is_paused = true
@@ -65,6 +65,7 @@ func pause_clock():
 		timer.stop()
 	
 
+# Use to resume day/night cycle clock
 func resume_clock():
 	if is_paused:
 		is_paused = false
