@@ -1,6 +1,6 @@
 extends Label
 
-@onready var debt:float = 10000.00
+@onready var debt: float = 7000.00
 
 func _ready():
 	visible = true
