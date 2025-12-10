@@ -65,7 +65,7 @@ Add addition contributions int he Other Contributions section.
 
 ### Main Role 1: Level and World Designer ###
 
-#### Day/Night Cycle ####
+### Day/Night Cycle ###
 
 Our game includes a day/night cycle to encourage player to return to the island and interact with it. When it is night time, player would not be able to enter the ocean from the island. If they are already in the ocean and it is becoming late, with the inspiration from Stardew Valley, the player would "pass out", get teleported back to the island, and lose half of the fish they are carrying.
 
@@ -74,17 +74,18 @@ Our game includes a day/night cycle to encourage player to return to the island 
 - [*Staying late in ocean*](https://github.com/3yaa/catfishing/blob/658e5dfbbf2c341ce6b17bd8107e8072f4b1f74b/scripts/player.gd#L129): If player hasn't returned by halfway through the night `clock.get_remaining_time() < 0.5 * clock.night_duration`, they will be teleported back to the island and lose some of their fish. For simplicity, they would lose half of the fish in their inventory, which are the ones located at the odd indices for the sense of "randomness". With more time, I wish to make a true random selection with a random amount as well.
 - [*Visual*](https://github.com/3yaa/catfishing/blob/658e5dfbbf2c341ce6b17bd8107e8072f4b1f74b/scripts/day_night_theme.gd): The main background is swapped based on day or night. A color filter is also applied through `ColorRect` on top of the game to make other assests in the foreground appear darker at night.
 
-#### NPCs System ####
+### NPCs System ###
 
 The game includes NPCs that spawn as drowning cats for the player to rescue, after which they would become shopskeepers on the island. This rescuing gameplay was designed to encourage player to go further into the ocean and explore more if the game scales up, giving player more incentive to buy upgrades.
 
 There is a [NPC](https://github.com/3yaa/catfishing/blob/5a17f738dc10ffede2887f316b9a12b835bbd458/scripts/npc/npc.gd) class that each NPC can extend from. NPC is of type `Area2D` to check for player proximity via `_on_body_entered()` before allowing interaction. Player can interact with NPC by pressing the (E) key. Depending on the state `npc.rescued`, the interaction would either be rescuing the NPC or opening up their equivalent shop. This state also determines the NPC's location on the game, the different animations to used, and the dialogue shown to player when they are nearby. An example: [Fish Shop NPC](https://github.com/3yaa/catfishing/blob/5a17f738dc10ffede2887f316b9a12b835bbd458/scripts/npc/npc_fish_shop.gd)
 
 
-#### Shoping System ####
+### Shoping System ###
 
+There are 3 shops in the game. Fish Shop allows player to sell the fish they caught to earn money and pay their debt. Upgrade Shop allows player to buy upgrades to increase their stats. Cosmetic Shop allows player to buy cosmetic items on the island. 
 
-
+![Game Economy](document_images/game_economy.png)
 
 
 ## Main Roles ##
