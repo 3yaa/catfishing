@@ -106,6 +106,7 @@ grow_vertical = 0
 texture = ExtResource("4_802es")
 
 [node name="Player" parent="MinigameUI" instance=ExtResource("5_802es")]
+z_index = -1
 position = Vector2(217, 895.00006)
 scale = Vector2(3, 3)
 

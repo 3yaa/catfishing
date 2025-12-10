@@ -35,9 +35,21 @@ signal is_late # Triggered when stay too late in ocean and got teleport back
 @onready var tutorial = get_node("/root/Game/Tutorial_Manager")
 @onready var fish = $"../FishLogic"
 
+# Store the base scale for animations
+var base_scale: Vector2
+# Fishing animation variables
+var fishing_time: float = 0.0
+var base_fishing_position: Vector2
+
 func _ready():
 	var ui = get_node("/root/Game/WorldUI")
 	fish_caught.connect(ui.caught_fish)
+	
+	# store base scale
+	base_scale = animated_sprite.scale
+	
+	# connect animation finished signal to transition from cast to fishing
+	animated_sprite.animation_finished.connect(_on_animation_finished)
 	
 	spawn_position = global_position
 	
@@ -48,13 +60,52 @@ func _process(delta: float) -> void:
 		# if "fishing button" pressed:
 		if (Input.is_action_just_pressed("fishing")):
 			animated_sprite.play("cast")
+			# scale up cast animation 
+			animated_sprite.scale = base_scale * 2.8
 			$Audio/Cast.play()
 			is_fishing = true
-			print("reeled")
+			print("casting")
 	else:
 		speed = SPEED_LAND
+	
+	# 'animate' fishing sprite rocking
+	if is_fishing and animated_sprite.animation == "fishing":
+		fishing_time += delta
+		_animate_fishing_rock()
 		
 	handle_late_in_ocean()
+
+func _on_animation_finished():
+	# when cast animation finishes, transition to fishing animation
+	if is_fishing and animated_sprite.animation == "cast":
+		animated_sprite.play("fishing")
+		# scale down fishing animation by 5%
+		animated_sprite.scale = base_scale * 0.75
+		# store base position for rocking animation
+		base_fishing_position = animated_sprite.position
+		fishing_time = 0.0
+		print("now fishing")
+
+func _animate_fishing_rock():
+	# Create gentle rocking motion
+	var rock_y = sin(fishing_time * 1.5) * 3.0 # ver bobbing
+	var rock_x = cos(fishing_time * 0.8) * 2.0 # hor sway
+	var rock_rotation = sin(fishing_time * 1.2) * 0.03 # rotation
+	
+	animated_sprite.position = base_fishing_position + Vector2(rock_x, rock_y)
+	animated_sprite.rotation = rock_rotation
+
+func _cancel_fishing():
+	# reset fishing state and progress
+	is_fishing = false
+	fish.any_fish = false
+	fish.reel_chance = reel_skill
+	# reset sprite scale and position to normal
+	animated_sprite.scale = base_scale
+	animated_sprite.position = Vector2(0, 2.000001)
+	animated_sprite.rotation = 0.0
+	fishing_time = 0.0
+	print("fishing cancelled")
 	
 
 func _physics_process(delta: float) -> void:
@@ -72,8 +123,8 @@ func _physics_process(delta: float) -> void:
 		# Get the input direction and handle the movement/deceleration.
 		var direction := Input.get_axis("ui_left", "ui_right")
 		# any movement while fishing should "cancel" the reel
-		if direction != 0:
-			is_fishing = false
+		if direction != 0 and is_fishing:
+			_cancel_fishing()
 		
 		if direction:
 			#fish_caught.emit()
@@ -94,7 +145,9 @@ func _physics_process(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, 0, speed)
 			if is_in_ocean:
 				$Audio/Walking.stop()
-				animated_sprite.play("idle_ocean")
+				# Don't override fishing animation
+				if not is_fishing:
+					animated_sprite.play("idle_ocean")
 				$Audio/Sailing.play()
 				
 			else:

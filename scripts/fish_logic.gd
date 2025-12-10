@@ -23,7 +23,7 @@ enum Rarity {
 	SUPER_RARE
 }
 
-var fishing_cooldown = 0.5
+var fishing_cooldown = 1.0
 var fishing_timer = 0.0
 	
 class Fish:
@@ -72,8 +72,10 @@ func _process(_delta):
 					print("Fish hooked: ", current_fish.stringify())
 					player.is_fishing = false
 					any_fish = false
+					# reset reel_chance after successful catch
+					reel_chance = player.reel_skill
 				else:
-					reel_chance += 10.0
+					reel_chance += 5.0
 
 func _on_minigame_won():
 	# only add fish to inventory when minigame is won

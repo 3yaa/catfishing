@@ -43,14 +43,11 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("5_pf23h")
 }],
-"loop": true,
+"loop": false,
 "name": &"cast",
 "speed": 8.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_i4ail")
-}, {
 "duration": 1.0,
 "texture": ExtResource("3_i4ail")
 }],

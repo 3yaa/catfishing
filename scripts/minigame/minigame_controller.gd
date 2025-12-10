@@ -48,9 +48,11 @@ var fish_types = {
 var current_fish_rarity: int = 0
 
 var fish_idle_time: float = 0.0
+var player_idle_time: float = 0.0
 var top_panel: ColorRect
 var bottom_panel: ColorRect
 var player_sprite: AnimatedSprite2D
+var player_base_position: Vector2
 var waiting_for_click: bool = false
 
 func _ready():
@@ -65,6 +67,7 @@ func _ready():
 	var player_node = $MinigameUI/Player
 	if player_node and player_node.has_node("AnimatedSprite2D"):
 		player_sprite = player_node.get_node("AnimatedSprite2D")
+		player_base_position = player_sprite.position
 	
 	hit_btn.pressed.connect(_on_hit)
 	stand_btn.pressed.connect(_on_stand)
@@ -84,6 +87,7 @@ func _ready():
 func _process(delta: float):
 	if minigame_ui.visible:
 		_animate_fish(delta)
+		_animate_player(delta)
 
 func _reset_minigame_state():
 	# cancel any pending click waits
@@ -160,6 +164,17 @@ func _animate_fish(delta: float):
 	fish_sprite.position.x = base_x + float_offset_x
 	fish_sprite.position.y = base_y + float_offset_y
 	fish_sprite.rotation = rotation_offset
+
+func _animate_player(delta: float):
+	if player_sprite:
+		player_idle_time += delta
+		# rocking motion
+		var rock_y = sin(player_idle_time * 1.3) * 2.5
+		var rock_x = cos(player_idle_time * 0.9) * 1.5
+		var rock_rotation = sin(player_idle_time * 1.1) * 0.02
+		
+		player_sprite.position = player_base_position + Vector2(rock_x, rock_y)
+		player_sprite.rotation = rock_rotation
 
 # init dealer with fish
 func _initialize_score_labels():
