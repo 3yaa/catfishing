@@ -70,8 +70,8 @@ func _process(_delta):
 					# trigger minigame -- HELLO KYLIE 
 					player.fish_reeled.emit()
 					print("Fish hooked: ", current_fish.stringify())
-					player.is_fishing = false
-					any_fish = false
+					# reset scale and state
+					player._cancel_fishing()
 					# reset reel_chance after successful catch
 					reel_chance = player.reel_skill
 				else:

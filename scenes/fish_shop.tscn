@@ -40,6 +40,8 @@ corner_radius_bottom_left = 15
 shadow_size = 4
 shadow_offset = Vector2(0, 3)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_focus"]
+
 [node name="FishShop" type="Panel"]
 offset_left = 400.0
 offset_top = 120.0
@@ -60,6 +62,7 @@ theme_override_fonts/font = ExtResource("3_font")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_close")
 theme_override_styles/hover = SubResource("StyleBoxFlat_close_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
 text = "✕"
 
 [node name="Label" type="Label" parent="."]
@@ -132,6 +135,7 @@ theme_override_fonts/font = ExtResource("3_font")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_sell")
 theme_override_styles/hover = SubResource("StyleBoxFlat_sell_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
 text = "SELL"
 
 [node name="Scanner" type="Window" parent="."]
@@ -155,6 +159,7 @@ theme_override_fonts/font = ExtResource("3_font")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_sell")
 theme_override_styles/hover = SubResource("StyleBoxFlat_sell_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
 text = "CONFIRM
 "
 
@@ -190,5 +195,6 @@ theme_override_fonts/font = ExtResource("3_font")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_sell")
 theme_override_styles/hover = SubResource("StyleBoxFlat_sell_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
 text = "PAY DEBT
 "

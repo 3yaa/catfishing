@@ -23,7 +23,7 @@ var power_ups = {
 	power3 = false,
 }
 
-var money: float = 50000.0
+var money: float = 0.0
 
 signal fish_caught
 signal fish_reeled
@@ -171,17 +171,28 @@ func enter_ocean():
 	
 	is_in_ocean = true
 	$Audio/GettingInBoat.play()
+	# scale is reset
+	if not is_fishing:
+		animated_sprite.scale = base_scale
+		animated_sprite.position = Vector2(0, 2.000001)
+		animated_sprite.rotation = 0.0
 	
 	
 func exit_ocean():
 	print("Exit ocean")
 	is_in_ocean = false
+	# cancel fishing when exiting ocean to reset scale
+	if is_fishing:
+		_cancel_fishing()
 	
 
 # When stay too late in ocean (halfway through the night): pass out, get teleported back, lose some fish
 func handle_late_in_ocean():
 	if not tutorial.tutorial_ongoing and is_in_ocean and not clock.is_day and clock.get_remaining_time() < 0.5 * clock.night_duration:
 		global_position = spawn_position
+		# cancel fishing when teleported back
+		if is_fishing:
+			_cancel_fishing()
 		is_late.emit()
 		
 		# Losing half the fish
