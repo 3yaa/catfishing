@@ -92,9 +92,8 @@ There are 3 shops in the game. Fish Shop allows player to sell the fish they cau
 
 ### Main Role: AI and Behavior Designer ###
 
-### Design Deliverable: ###
 
-[*Fish reeling logic*]:
+### Fish reeling logic: ###
 The fish has three field variables that are essential to its behavior, fish_rarity, size, and value.
 
 fish_rarity:
@@ -110,7 +109,8 @@ COMMON = [100 - (3 * player.luck)]\%
 
 The fish rarity formula is bound to the player’s luck stat which can be upgraded to increase the chances of rarer fish appearing. To replicate this optimization problem, we roll a random integer between 1 and 100, and if the roll falls under the thresholds, roll < player.luck\%, roll < player.luck * 3, and everything else for SUPER_RARE, RARE, and COMMON respectively, that is what it will be assigned to. I used elif statements to ensure the behavior reflects this formula. 
 
-reeling: For the actual reeling, based on the player’s reel_skill, a conditional is used to determine if each instance reeled a fish or not. The conditional used is: 
+reeling: 
+For the actual reeling, based on the player’s reel_skill, a conditional is used to determine if each instance reeled a fish or not. The conditional used is: 
 	
 if reel_chance > roll:
 
@@ -118,19 +118,20 @@ roll is just a random float between 0 and 100, so the chance to reel in a fish e
 
 [Reel Logic:]([https://github.com/3yaa/catfishing/blob/main/scripts/fish_logic.gd](https://github.com/3yaa/catfishing/blob/ee1cbe05b00215d02373b8d100fc9a1afdb8c774/scripts/fish_logic.gd#L29-L76))
 
-[*Fish creation/value logic*]:
-size: The size is a float that is randomly assigned between size_min and size_max, two variables that never change during runtime. 
+##Fish creation/value logic:##
+size: 
+The size is a float that is randomly assigned between size_min and size_max, two variables that never change during runtime. 
 
-value: The value is calculated based on the previous two fields, the rarity and the size. The formulas is as follows:
+value: 
+The value is calculated based on the previous two fields, the rarity and the size. The formulas is as follows:
 
 value = (base_price + size)  * player.salesman * (rarity + 1)
 
 The base_price refers to just a normal base_price of the fish that can be modified by the developer. This is to ensure that the scalars work as intended. I.e. it would be unreasonable for a common fish with a large size to be more expensive than a very small super rare fish. The size is the base “value” of the fish which is multiplied by two scalars to get the final value. The first scalar, player.salesman is another player stat that determines how much the fish will sell for on top of its size (like bargaining to sell for more). The (rarity + 1) scalar refers to any integer between 1 and 3. The enum Rarity has 3 elements, and to determine the enum randomly, we choose a random integer between 0 and 2. Thus, the scalar would be this random integer + 1 so the rarity scalar would be between 1 and 3. The rarity largely dictates how much rarer the fish truly is. 
 
-
 [Fish Creation Logic:](https://github.com/3yaa/catfishing/blob/ee1cbe05b00215d02373b8d100fc9a1afdb8c774/scripts/fish_logic.gd#L101-L127)
 
-[*Blackjack fish AI*]:
+### Blackjack fish AI: ###
 The target score for blackjack is set to max_val, which may change due to powerups/modifiers, and there are also two variables, common_offset and rare_offset. For the purpose of explaining the AI however, please assume that the max_val is 21and the common_offset and rare_offset are 7 and 4 respectively.
 
 Common fish:
@@ -178,21 +179,21 @@ The general strategy against the Super Rare fish is to have a high sum (19-21), 
 
 [Blackjack Logic](https://github.com/3yaa/catfishing/blob/ee1cbe05b00215d02373b8d100fc9a1afdb8c774/scripts/minigame/blackjack.gd#L104-L155)
 
-Behavior Tree:
+#### Behavior Tree: ####
 
 Reeling Logic:
-![Reeling_logic](project_contribution_visuals/IMG_0460.jpg)
+![Reeling_logic](document_images/IMG_0460.jpg)
 
 Common Fish Behavior:
-![Common fish](project_contribution_visuals/IMG_0461.jpg)
+![Common fish](document_images/IMG_0461.jpg)
 
 Rare Fish Behavior:
-![Rare fish](project_contribution_visuals/IMG_0462.jpg)
+![Rare fish](document_images/IMG_0462.jpg)
 
 Super Rare Fish Behavior:
-![Super Rare fish](project_contribution_visuals/IMG_0463.jpg)
+![Super Rare fish](document_images/IMG_0463.jpg)
 
-Tuning Table
+#### Tuning ####
 fish_logic.gd:
 size_min, size_max, they can be changed to any float so long as size_min < size_max. 
 base_price, it is the base price of any fish, this can be changed to any float so long as the decimal points are to the hundredths place. 
@@ -201,10 +202,10 @@ fishing_cooldown is the intervals between each “check” to see if the fish wa
 [Variables](https://github.com/3yaa/catfishing/blob/ee1cbe05b00215d02373b8d100fc9a1afdb8c774/scripts/fish_logic.gd#L9-L13)
 
 
-Sub-Role: Player Onboarding and Tutorial Design
+### Sub-Role: Player Onboarding and Tutorial Design ###
 Documentation for Sub-Role
     
-[*Tutorial Design*]:
+### Tutorial Design: ###
 The tutorial starts in the beginning, and it should walk the player through the basic core mechanics. The player should walk to the ocean, and save a cat who will later buy your fish for money used for progression. Then, the player should learn to fish, which will prompt a minigame when a fish “bites.” The minigame is blackjack, and the basic rules and features will be explained to the player. After successfully catching the fish (or failing to catch the fish, the result is unimportant), the player will be told that during night, the player must return back to the island. Once the player is back on the island, they will be prompted to talk to the cat that they saved earlier and can sell the fish by interacting with the NPC. This should mark the end of the tutorial, it covers the core mechanics: movement, fishing, rescuing npcs, blackjack, and progression. There are intentionally “unexplored” aspects of the game such as the uses of money, (which will later be revealed to upgrade skills or buy cosmetics from NPCs). This was done to give the player some freedom to discover the game as well. Showing everything in the tutorial may discourage the player to explore and enjoy the game; ending on somewhat of a cliffhanger intends to motivate the player to explore the game to find other aspects. 
 
 The tutorial itself is largely based on signal logic, with signals being awaited and button presses (or other conditions) emitting completion signals. Most of the tutorial can be progressed through by pressing the interact button “E” which will emit the respective signal and continue. Some other conditions may be pressing other buttons such as the fishing button or awaiting the player to reach the ocean or land. 
@@ -213,7 +214,7 @@ The learning curve in general should not be very high, which is also why the tut
 
 [Tutorial](https://github.com/3yaa/catfishing/blob/ee1cbe05b00215d02373b8d100fc9a1afdb8c774/scripts/tutorial_manager.gd#L32-L188)
 
-[*Hint Design*]:
+### Hint Design: ###
 There will be random hints after the tutorial on the top of the screen to explain some unintuitive facts about the game, especially features (such as stat upgrades and what each stat does) that are introduced after the tutorial. These were moved to hints instead of being integrated into the tutorial to avoid redundancy and give the player the chance to explore and learn more about the game themselves. The hints should try and offset the omission of features from the tutorial. Things that may seem unintuitive to players should eventually be revealed to them in the form of hints. 
 
 The hints should appear for 10 seconds and disappear for another 20, leading to 2 hints per minute. This should be enough time to read each hint and be frequent enough to provide any useful information without overloading the player with more information. I opted for 2 hints per minute so there should be about 10 hints in 5~ minutes, which should get through most or all of the hints in the timeframe.
@@ -221,10 +222,16 @@ The hints should appear for 10 seconds and disappear for another 20, leading to 
 [Hints](https://github.com/3yaa/catfishing/blob/ee1cbe05b00215d02373b8d100fc9a1afdb8c774/scripts/hints.gd#L22-L54)
 
 
-Other contributions
-[*Debt Paid asset*] : Drew the "Debt Paid" asset that is shown when the debt is fully paid off. 
-[*Music*] : Made the music played in the main theme and quietly in the background within the game (Not to be confused with the sound effects).
-[*Debt*] : Helped implement debt payments within one of the NPCs. 
+## Other contributions ## 
+### Debt Paid asset: ### 
+Drew the "Debt Paid" asset that is shown when the debt is fully paid off. 
+
+### Music: ###
+Made the music played in the main theme and quietly in the background within the game (Not to be confused with the sound effects).
+
+### Debt: ###
+Implement debt payments within one of the NPCs. 
+
 [Main Debt related code](https://github.com/3yaa/catfishing/blob/ee1cbe05b00215d02373b8d100fc9a1afdb8c774/scripts/fish_shop_manager.gd#L45-L68)
 [Debt gd](https://github.com/3yaa/catfishing/blob/ee1cbe05b00215d02373b8d100fc9a1afdb8c774/scripts/debt.gd#L1-L9)
 
