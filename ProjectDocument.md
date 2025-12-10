@@ -76,7 +76,7 @@ Our game includes a day/night cycle to encourage player to return to the island 
 
 |  |  |
 :-------------------------:|:-------------------------:
-![Game Economy](./document_images/day.png) | ![Game Economy](./document_images/night.png)
+![Day](./document_images/day.png) | ![Night](./document_images/night.png)
 
 
 ### NPCs System ###
@@ -98,7 +98,18 @@ There are 3 shops in the game. Fish Shop allows player to sell the fish they cau
 
 When player opens the shop, they would be able to see the number of fish in their inventory as well as their total value. There is one Sell button that allows player to sell all of their fish at once. In [the selling process](https://github.com/3yaa/catfishing/blob/cce26d3bf1e058d89f71f988fb39006d5b8a7127/scripts/fish_shop_manager.gd#L127), that amount of money would be added to `player.money`, their inventory `fish_logic.fish_inventory` would be cleared, and the display of the shop would be updated.
 
-![Game Economy](document_images/game_economy.PNG)
+![Fish Shop](./document_images/shop_selling.png)
+
+#### Upgrade Shop ####
+
+In this shop, there are 2 types of upgrades that player can buy: stats upgrades and minigame power-ups. These upgrades are kept track by variables in `player.gd`. Stats upgrades help player with the main game with things like increasing their chance of getting higher quality fish or earning money faster. They are point-based system where player can keep buying to increase their stats. (e.g. [`buy_luck()`](https://github.com/3yaa/catfishing/blob/cce26d3bf1e058d89f71f988fb39006d5b8a7127/scripts/upgrade_shop_manager.gd#L139)) Power-ups are abilities that can be used in the minigame. They are one-time purchases that player can buy to unlock forever. (e.g. [`buy_power1()`](https://github.com/3yaa/catfishing/blob/cce26d3bf1e058d89f71f988fb39006d5b8a7127/scripts/upgrade_shop_manager.gd#L159)). When the shop is opened and after each buy, the [shop display is updated](https://github.com/3yaa/catfishing/blob/cce26d3bf1e058d89f71f988fb39006d5b8a7127/scripts/upgrade_shop_manager.gd#L101) to reflect the latest stats of player. If a power-up is already bought, its button would be disabled and marked as "Owned".
+
+![Upgrade Shop](./document_images/shop_upgrades.png)
+
+
+#### Cosmetic Shop ####
+
+For cosmetic, we decided to use pre-set items because of time constraint. Each item is a `Sprite2D` node that is arranged on the island, all contained within the `Cosmetics` scene. At the start of the game, all of these item would be hidden away. When an item is purchased, its visibility would then be turned on. 
 
 
 ## Jamie Jang ##
