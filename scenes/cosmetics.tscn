@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://diec6viabj66n"]
 
 [ext_resource type="Script" path="res://scripts/cosmetics.gd" id="1_rhjr3"]
-[ext_resource type="Texture2D" uid="uid://cbbhj1rtt4n4p" path="res://assets/cosmetics/game_house.png" id="2_g72wv"]
-[ext_resource type="Texture2D" uid="uid://c1ehfkivgq5c0" path="res://assets/cosmetics/cat_tree.jpg" id="3_7q0yd"]
+[ext_resource type="Texture2D" uid="uid://d5ppc4x6gs2u" path="res://assets/background/home.png" id="2_rhjr3"]
+[ext_resource type="Texture2D" uid="uid://dvt3yadfvqbjp" path="res://assets/background/betterCatTree.png" id="3_g72wv"]
 [ext_resource type="Texture2D" uid="uid://ve8ypcljl5i" path="res://assets/background/chair.png" id="4_rhjr3"]
 
 [node name="Cosmetics" type="Node2D"]
@@ -10,18 +10,18 @@ script = ExtResource("1_rhjr3")
 
 [node name="House" type="Sprite2D" parent="."]
 z_index = 100
-position = Vector2(-359.00003, 321.00003)
-scale = Vector2(0.525, 0.525)
-texture = ExtResource("2_g72wv")
+position = Vector2(-246, 329.41406)
+scale = Vector2(0.33333337, 0.2908181)
+texture = ExtResource("2_rhjr3")
 
 [node name="CatTree" type="Sprite2D" parent="."]
 z_index = 100
-position = Vector2(-181, 388)
-scale = Vector2(0.08, 0.08)
-texture = ExtResource("3_7q0yd")
+position = Vector2(-550.00006, 370)
+scale = Vector2(-0.20580468, 0.22357109)
+texture = ExtResource("3_g72wv")
 
 [node name="Chair" type="Sprite2D" parent="."]
 z_index = 100
-position = Vector2(-82.08562, 429.6575)
-scale = Vector2(0.11124996, 0.08580088)
+position = Vector2(-373, 411)
+scale = Vector2(0.12240184, 0.08331968)
 texture = ExtResource("4_rhjr3")
