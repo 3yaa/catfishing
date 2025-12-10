@@ -125,12 +125,13 @@ func exit_ocean():
 	is_in_ocean = false
 	
 
-# When stay too late in ocean: pass out, get teleported back, lose some fish
+# When stay too late in ocean (halfway through the night): pass out, get teleported back, lose some fish
 func handle_late_in_ocean():
 	if not tutorial.tutorial_ongoing and is_in_ocean and not clock.is_day and clock.get_remaining_time() < 0.5 * clock.night_duration:
 		global_position = spawn_position
 		is_late.emit()
 		
+		# Losing half the fish
 		if not fish_escape_flag:
 			var escaped_fish: Array = []
 			for i in range(fish.fish_inventory.size() - 1, 0, -1):

@@ -16,6 +16,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	# Player interaction - E key
 	if has_player and not rescued and Input.is_action_just_pressed("interact"):
 		rescue()
 	elif has_player and rescued and Input.is_action_just_pressed("interact"):
@@ -31,6 +32,6 @@ func rescue():
 	play_sprite_animation()
 
 
-# Overwrite prompt
+# Overwrite parent dialogue
 func get_interact_prompt():
 	return "Press E to buy upgrades"
