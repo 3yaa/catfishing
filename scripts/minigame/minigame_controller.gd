@@ -439,8 +439,8 @@ func _display_hand(hand: Array, container: Container, score_label: Label, show_s
 		var card_display = card_scene.instantiate()
 		container.add_child(card_display)
 		
-		# Check if Card Peek powerup is active for dealer's hidden card
-		var should_reveal = card.visible or (is_dealer and player.power_ups.power1)
+		# if card peek powerup
+		var should_reveal = card.visible or (is_dealer and player.power_ups.power3)
 		
 		if should_reveal:
 			card_display.set_card(card.suit, card.rank)
@@ -494,8 +494,8 @@ func _display_hand(hand: Array, container: Container, score_label: Label, show_s
 	else:
 		# dealer with hidden cards
 		if is_dealer and has_hidden_cards:
-			# If Card Peek powerup is active, show full score
-			if player.power_ups.power1:
+			# card peak->show full score
+			if player.power_ups.power3:
 				var full_score = 0
 				var full_aces = 0
 				for card in hand:

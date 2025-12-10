@@ -1,8 +1,10 @@
 class_name MinigameManager
 extends Node
 
-@export var max_game_num: int = 5
+@export var base_max_game_num: int = 5
 @onready var player = get_node("/root/Game/Player")
+
+var max_game_num: int = 5
 
 var score_to_catch: int = 500
 var starting_score: int = 100
@@ -19,7 +21,26 @@ signal score_updated(current_score: int, target_score: int)
 func initialize_minigame(target_score: int, start_score: int):
 	score_to_catch = target_score
 	starting_score = start_score
-	player_score = starting_score
+	
+	# head start - boost starting score by 10% of target
+	if player.power_ups.power1:
+		player_score = starting_score + int(target_score * 0.1)
+	else:
+		player_score = starting_score
+	
+	# all day long - extra rounds based on fish rarity
+	max_game_num = base_max_game_num
+	if player.power_ups.power2:
+		var fish_logic = get_node("/root/Game/FishLogic")
+		if fish_logic.current_fish:
+			match fish_logic.current_fish.fish_rarity:
+				0: # COMMON
+					max_game_num = base_max_game_num + 1
+				1: # RARE
+					max_game_num = base_max_game_num + 2
+				2: # SUPER_RARE
+					max_game_num = base_max_game_num + 2
+	
 	cur_game_num = 0
 	score_updated.emit(player_score, score_to_catch)
 
