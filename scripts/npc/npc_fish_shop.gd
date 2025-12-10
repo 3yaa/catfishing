@@ -6,7 +6,7 @@ extends NPC
 
 @export var background_sprite = Texture2D
 
-const position_ocean = Vector2(1200, 1070)
+const position_ocean = Vector2(900, 1070)
 const position_island = Vector2(700, 1050)
 
 

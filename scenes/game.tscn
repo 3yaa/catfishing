@@ -47,19 +47,19 @@ script = ExtResource("1_0tnpc")
 
 [node name="Npc1" parent="." instance=ExtResource("15_rysoc")]
 z_index = 100
-position = Vector2(1097, 1044)
+position = Vector2(955, 1044)
 script = ExtResource("16_ssvqc")
 background_sprite = ExtResource("4_qnb83")
 
 [node name="Npc2" parent="." instance=ExtResource("15_rysoc")]
 z_index = 100
-position = Vector2(1340, 1045)
+position = Vector2(1340, 1047)
 script = ExtResource("17_264po")
 background_sprite = ExtResource("6_suyxu")
 
 [node name="Npc3" parent="." instance=ExtResource("15_rysoc")]
 z_index = 100
-position = Vector2(1671, 1047)
+position = Vector2(1812, 1047)
 script = ExtResource("8_qnb83")
 background_sprite = ExtResource("8_sgl2t")
 
@@ -173,7 +173,7 @@ region_rect = Rect2(0, 23.471252, 362.4981, 1005.0048)
 [node name="barrier" type="StaticBody2D" parent="land"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="land/barrier"]
-position = Vector2(90, 690)
+position = Vector2(-10, 690)
 shape = SubResource("SegmentShape2D_e1j6l")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="land/barrier"]
@@ -193,6 +193,15 @@ region_rect = Rect2(33.969208, 0, 436.61765, 500)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sea"]
 position = Vector2(1464, 1090)
 shape = SubResource("RectangleShape2D_pl11u")
+
+[node name="Sprite2D2" type="Sprite2D" parent="sea"]
+z_index = 150
+position = Vector2(2889.0002, 1109.0001)
+rotation = 3.1415927
+scale = Vector2(3.100419, 0.8890907)
+texture = ExtResource("24_e1j6l")
+region_enabled = true
+region_rect = Rect2(33.969208, 0, 436.61765, 500)
 
 [node name="Cosmetics" parent="." instance=ExtResource("27_sww3w")]
 position = Vector2(489, 632)

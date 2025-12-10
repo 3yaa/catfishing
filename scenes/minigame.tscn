@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dtipbmymq13e1"]
+[gd_scene load_steps=28 format=3 uid="uid://dtipbmymq13e1"]
 
 [ext_resource type="Script" uid="uid://do84ogts0xyuy" path="res://scripts/minigame/minigame_controller.gd" id="1_hwsak"]
 [ext_resource type="Script" uid="uid://w8tkfa0u1tsp" path="res://scripts/minigame/minigame_manager.gd" id="2_0dp5x"]
