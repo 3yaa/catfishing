@@ -142,9 +142,9 @@ For the actual reeling, based on the player’s reel_skill, a conditional is use
 	
 if reel_chance > roll:
 
-roll is just a random float between 0 and 100, so the chance to reel in a fish each interval is roughly player.reel_skill \%. reel_chance is initially the player’s reel_skill at the start of every fishing attempt. However, each interval will increase this chance by 10.0, making it so any subsequent interval should increase the likelihood of reeling a fish in. Upgrading your reel_skill should essentially lead to less intervals passing, meaning that you should have to wait less. 
+roll is just a random float between 0 and 100, so the chance to reel in a fish each interval is roughly player.reel_skill \%. reel_chance is initially the player’s reel_skill at the start of every fishing attempt. However, each interval will increase this chance by 5.0, making it so any subsequent interval should increase the likelihood of reeling a fish in. Upgrading your reel_skill should essentially lead to less intervals passing, meaning that you should have to wait less. 
 
-[Reel Logic:]([https://github.com/3yaa/catfishing/blob/main/scripts/fish_logic.gd](https://github.com/3yaa/catfishing/blob/ee1cbe05b00215d02373b8d100fc9a1afdb8c774/scripts/fish_logic.gd#L29-L76))
+[Reel Logic:]([(https://github.com/3yaa/catfishing/blob/ee1cbe05b00215d02373b8d100fc9a1afdb8c774/scripts/fish_logic.gd#L29-L76)](https://github.com/3yaa/catfishing/blob/bed68d80eb7c32776e23a9246e994226bfb822a9/scripts/fish_logic.gd#L54-L79))
 
 ## Fish creation/value logic: ##
 size: 
