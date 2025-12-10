@@ -85,13 +85,12 @@ There is a [NPC](https://github.com/3yaa/catfishing/blob/5a17f738dc10ffede2887f3
 
 There are 3 shops in the game. Fish Shop allows player to sell the fish they caught to earn money and pay their debt. Upgrade Shop allows player to buy upgrades to increase their stats. Cosmetic Shop allows player to buy cosmetic items on the island. 
 
-![Game Economy](document_images/game_economy.png)
+![Game Economy](document_images/game_economy.PNG)
 
 
 ## Jamie Jang ##
 
 ### Main Role: AI and Behavior Designer ###
-
 
 ### Fish reeling logic: ###
 The fish has three field variables that are essential to its behavior, fish_rarity, size, and value.
@@ -118,7 +117,7 @@ roll is just a random float between 0 and 100, so the chance to reel in a fish e
 
 [Reel Logic:]([https://github.com/3yaa/catfishing/blob/main/scripts/fish_logic.gd](https://github.com/3yaa/catfishing/blob/ee1cbe05b00215d02373b8d100fc9a1afdb8c774/scripts/fish_logic.gd#L29-L76))
 
-##Fish creation/value logic:##
+## Fish creation/value logic: ##
 size: 
 The size is a float that is randomly assigned between size_min and size_max, two variables that never change during runtime. 
 
