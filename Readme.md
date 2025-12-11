@@ -332,4 +332,4 @@ Implemeted the world builds, like the trees, sand, ocean, set up collison barrie
 
 Helped schdule and faccliate team meetings to ideate concepts for our game.
 
-Set up presentaation slide and QR code.
+Set up presentaation slide and QR code and set up inital game on itch.io, helped debug itch.io publication. 
