@@ -11,7 +11,7 @@ some money on cosmetics to improve your island! Make sure to spend responsibly t
 
 ## Project Resources
 
-[Web-playable version of your game.](https://itch.io/)  
+[Web-playable version of your game.](https://lctnguyen.itch.io/catfishing)  
 [Trailor](https://youtube.com)  
 [Press Kit](https://dopresskit.com/)  
 [Proposal: make your own copy of the linked doc.](https://docs.google.com/document/d/1qwWCpMwKJGOLQ-rRJt8G8zisCa2XHFhv6zSWars0eWM/edit?usp=sharing)
@@ -32,14 +32,15 @@ After you have the upgrades, especially with the purpose of "Card Peek", winning
 
 # External Code, Ideas, and Structure
 
-https://youtu.be/5Hog6a0EYa0?si=fGqzHoZAGaBU3IeQ
-https://youtu.be/ftJQdMJa6BI?si=kXGpR2tTRl2boqz_
+- https://youtu.be/5Hog6a0EYa0?si=fGqzHoZAGaBU3IeQ
+- https://youtu.be/ftJQdMJa6BI?si=kXGpR2tTRl2boqz_
+- [colorblind_filter.gdshader](https://github.com/3yaa/catfishing/blob/08b673dd362266e6993edad63d1630cc84d42b41/scripts/colorblind_filter.gdshader) - AI generated. Used for Material/MaterialShader to change pixel colors based on colorblind mode
 
 # Team Member Contributions
 
 ## Loc Nguyen
 
-### Main Role 1: Level and World Designer
+### Main Role: Level and World Designer
 
 ### Day/Night Cycle
 
@@ -83,6 +84,20 @@ In this shop, there are 2 types of upgrades that player can buy: stats upgrades 
 #### Cosmetic Shop
 
 For cosmetic, we decided to use pre-set items because of time constraint. Each item is a `Sprite2D` node that is arranged on the island, all contained within the `Cosmetics` scene. At the start of the game, all of these item would be hidden away. When an item is purchased, its visibility would then be turned on.
+
+### Sub-Role: Accessibility and Usability
+
+The home page contains a settings menu, allowing player to change the volume of the game and select different colorblind modes if needed. I did get help from LLMs to learn about the technical tools that Godot provides and how to set up the setting config file.
+
+- [*Colorblind*](https://github.com/3yaa/catfishing/blob/2cc5065b45e9545554060e1205df30240d0911ec/scripts/colorblind_manager.gd): Player can choose between 4 modes from a [`MenuButton`](https://github.com/3yaa/catfishing/blob/2cc5065b45e9545554060e1205df30240d0911ec/scripts/colorblind_btn.gd): Normal, Protanopia (Red-Blind), Deuteranopia (Green-Blind), and Tritanopia (Blue-Blind). Using `ColorRect`, a filter is applied on top of the game to change its colors depending on the selected mode. I implemented the menu UI and selection logic, while the AI-generated `Shader` is used to calculated the colors.
+
+|                                   |                                       |
+| :-------------------------------: | :-----------------------------------: |
+| ![Day](./document_images/colorblind_setting.png) | ![Night](./document_images/colorblind.png) |
+
+- [*Volume Control*](https://github.com/3yaa/catfishing/blob/1076568c5ead1ad071d053cfebbf60a66520566b/scripts/volume_manager.gd): There is a slider that lets player adjust the volume of the game. It uses AudioServer and access the Master bus to adjust the volume with Godot provided functions `set_bus_mute()` and `set_bus_volume_linear()`
+
+- [*Setting Persistence*](https://github.com/3yaa/catfishing/blob/1076568c5ead1ad071d053cfebbf60a66520566b/scripts/settings_manager.gd): Used a autoload script to access and generate a `settings.cfg` file to store the settings preferences of player.
 
 ## Jamie Jang
 
