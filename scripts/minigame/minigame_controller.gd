@@ -140,7 +140,7 @@ func _start_minigame():
 func _animate_panels_in():
 	# start panels off-screen
 	top_panel.position.y = - top_panel.size.y
-	bottom_panel.position.y = get_viewport().size.y
+	bottom_panel.position.y = 1080
 	# animate top panel sliding down
 	var tween = create_tween()
 	tween.set_parallel(true)
@@ -148,7 +148,7 @@ func _animate_panels_in():
 	tween.set_trans(Tween.TRANS_BACK)
 	# 
 	tween.tween_property(top_panel, "position:y", 0, 0.6)
-	tween.tween_property(bottom_panel, "position:y", get_viewport().size.y - bottom_panel.size.y, 0.6)
+	tween.tween_property(bottom_panel, "position:y", 1080 - bottom_panel.size.y, 0.6)
 
 func _animate_fish(delta: float):
 	fish_idle_time += delta
