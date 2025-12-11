@@ -11,7 +11,7 @@ some money on cosmetics to improve your island! Make sure to spend responsibly t
 
 ## Project Resources
 
-[Web-playable version.](https://itch.io/)  
+[Web-playable version.](https://lctnguyen.itch.io/catfishing)  
 [Proposal](https://docs.google.com/document/d/1TRNl5-x32T2aJ9PQkQaI7YmUFVqYSk3rwORqI4DvXf8/edit?usp=sharing)
 
 ## Gameplay Explanation
