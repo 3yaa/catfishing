@@ -285,7 +285,7 @@ Implement debt payments within one of the NPCs.
 
 ### Other Contributions
 
-- **Card Asset Integration**: Integrated the custom deck assets into the minigame by preloading the card display scene and instantiating cards dynamically during gameplay (assets created by Kylie). [Card Display](https://github.com/3yaa/catfishing/blob/3e9281d17b1eb7fb8c31840b310f675a8fd77d98/scripts/minigame/card_display.gd)
+- **Card Asset Integration**: Integrated the custom deck assets into the minigame by preloading the card display scene and instantiating cards dynamically during gameplay (card assets sourced by Kylie). [Card Display](https://github.com/3yaa/catfishing/blob/3e9281d17b1eb7fb8c31840b310f675a8fd77d98/scripts/minigame/card_display.gd)
 - **Fish Asset Integration**: Integrated different fish types and their rarities (Clown Fish, Sea Bass, Blue Tang, Angler, Shark) into the minigame by creating fish type mapping system and dynamic texture loading based on rarity (assets created by Kylie | fish creation logic created by Jamie). [Fish Loading](https://github.com/3yaa/catfishing/blob/3e9281d17b1eb7fb8c31840b310f675a8fd77d98/scripts/minigame/minigame_controller.gd)
 - **Project Configuration**: Set up the initial Godot project structure and configuration settings.
 - **Producer Stand-in**: Helped with design decisions and project coordination in absence of dedicated producer, including feature tracking and GitHub setup/support
