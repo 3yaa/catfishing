@@ -36,12 +36,12 @@ var card_scene = preload("res://scenes/card_display.tscn")
 # fish textures - dynamically loaded based on rarity
 var fish_neutral: Texture2D
 var fish_annoyed: Texture2D
-var fish_worried: Texture2D
+var fish_angry: Texture2D
 
 # fish type mapping by rarity
 var fish_types = {
-	0: ["clown fish", "Sea Bass"], # COMMON - randomly selected
-	1: "blue tang", # RARE
+	0: ["clown fish", "Sea Bass"], # COMMON
+	1: ["blue tang", "angler"], # RARE
 	2: "shark" # SUPER_RARE
 }
 
@@ -198,19 +198,23 @@ func _load_fish_textures(rarity: int):
 	if fish_type == "blue tang":
 		fish_neutral = load(base_path + "blueTang1.png")
 		fish_annoyed = load(base_path + "blueTang2.png")
-		fish_worried = load(base_path + "blueTang3.png")
+		fish_angry = load(base_path + "blueTang3.png")
+	elif fish_type == "angler":
+		fish_neutral = load(base_path + "angler1.png")
+		fish_annoyed = load(base_path + "angler2.png")
+		fish_angry = load(base_path + "angler3.png")
 	elif fish_type == "clown fish":
 		fish_neutral = load(base_path + "clown1.png")
 		fish_annoyed = load(base_path + "clown2.png")
-		fish_worried = load(base_path + "clown3.png")
+		fish_angry = load(base_path + "clown3.png")
 	elif fish_type == "Sea Bass":
 		fish_neutral = load(base_path + "seaBass1.png")
 		fish_annoyed = load(base_path + "seaBass2.png")
-		fish_worried = load(base_path + "seaBass3.png")
+		fish_angry = load(base_path + "seaBass3.png")
 	elif fish_type == "shark":
 		fish_neutral = load(base_path + "shark1.png")
 		fish_annoyed = load(base_path + "shark2.png")
-		fish_worried = load(base_path + "shark3.png")
+		fish_angry = load(base_path + "shark3.png")
 
 func _get_fish_name() -> String:
 	if fish_neutral and fish_neutral.resource_path:
@@ -385,7 +389,7 @@ func _on_caught_fish():
 	status_label.text = "YOU CAUGHT THE FISH!"
 	result_text.text = "VICTORY!\nYou caught the fish!\n\nClick to continue"
 	result_panel.visible = true
-	fish_sprite.texture = fish_worried
+	fish_sprite.texture = fish_angry
 	_disable_buttons()
 	
 	# make result panel visible
@@ -710,7 +714,7 @@ func _on_score_updated(current_score: int, target_score: int):
 	
 	# add pulsing effect when close to winning
 	var progress_percent = float(current_score) / float(target_score)
-	if progress_percent >= 0.8:
+	if progress_percent >= 0.65:
 		_pulse_progress_bar(progress_bar)
 	
 	_update_fish_emotion()
@@ -725,7 +729,7 @@ func _update_fish_emotion():
 	var progress_percent = float(mg_manager.player_score) / float(mg_manager.score_to_catch)
 	
 	if progress_percent >= 0.8:
-		fish_sprite.texture = fish_worried
+		fish_sprite.texture = fish_angry
 	else:
 		fish_sprite.texture = fish_neutral
 
