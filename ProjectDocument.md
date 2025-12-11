@@ -30,8 +30,9 @@ After you have the upgrades, especially with the purpose of "Card Peek", winning
 
 # External Code, Ideas, and Structure
 
-https://youtu.be/5Hog6a0EYa0?si=fGqzHoZAGaBU3IeQ
-https://youtu.be/ftJQdMJa6BI?si=kXGpR2tTRl2boqz_
+Provided a lot of good information for how to make good UI in godot and utilizing different godot nodes.
+[link1](https://youtu.be/5Hog6a0EYa0?si=fGqzHoZAGaBU3IeQ)
+[link2](https://youtu.be/ftJQdMJa6BI?si=kXGpR2tTRl2boqz)
 
 # Team Member Contributions
 
