@@ -45,9 +45,9 @@ After you have the upgrades, especially with the purpose of "Card Peek", winning
 
 Our game includes a day/night cycle to encourage player to return to the island and interact with it. When it is night time, player would not be able to enter the ocean from the island. If they are already in the ocean and it is becoming late, with the inspiration from Stardew Valley, the player would "pass out", get teleported back to the island, and lose half of the fish they are carrying.
 
-- [_Main game clock_](https://github.com/3yaa/catfishing/blob/658e5dfbbf2c341ce6b17bd8107e8072f4b1f74b/scripts/ocean_area.gd#L27): The clock is a `Timer` alternating between 2 different durations for day and night that can be individually adjusted for game feel. For other components that depends on the clock, they can access the signal `clock.cycle_changed` or check the boolean variable `clock.is_day`. It can also be paused, using `pause_clock()` and `resume_clock()`, for cases like when player entering minigame.
-- [_One-way barrier_](https://github.com/3yaa/catfishing/blob/658e5dfbbf2c341ce6b17bd8107e8072f4b1f74b/scripts/ocean_area.gd#L27): A barrier that is raised at night when player is on the island, preventing them from entering the ocean while still allowing them to return to the island. It is implemented by enabling/disabling a `CollisionShape2D` depending on the player's position and time logic.
-- [_Staying late in ocean_](https://github.com/3yaa/catfishing/blob/658e5dfbbf2c341ce6b17bd8107e8072f4b1f74b/scripts/player.gd#L129): If player hasn't returned by halfway through the night `clock.get_remaining_time() < 0.5 * clock.night_duration`, they will be teleported back to the island and lose some of their fish. For simplicity, they would lose half of the fish in their inventory, which are the ones located at the odd indices for the sense of "randomness". With more time, I wish to make a true random selection with a random amount as well.
+- [_Main game clock_](https://github.com/3yaa/catfishing/blob/658e5dfbbf2c341ce6b17bd8107e8072f4b1f74b/scripts/ocean_area.gd#L27): The clock is a `Timer` alternating between 2 different durations for day and night that can be individually adjusted for game feel. Any other component that depends on the clock can access the signal `clock.cycle_changed` or check the boolean variable `clock.is_day` and use them for its behavior logic. The clock can also be paused, using `pause_clock()` and `resume_clock()`, for cases like when player entering the minigame.
+- [_One-way barrier_](https://github.com/3yaa/catfishing/blob/658e5dfbbf2c341ce6b17bd8107e8072f4b1f74b/scripts/ocean_area.gd#L27): A barrier that is raised at night when player is on the island, preventing them from entering the ocean while still allowing them to return to the island. It is implemented by enabling/disabling a `CollisionShape2D` depending on the player's position and time logic. An `Area2D` node [`OceanArea`](https://github.com/3yaa/catfishing/blob/aba8775a0fb951407a8558a9f63ad5db9d1ad691/scripts/ocean_area.gd) that covers the whole ocean is used to determine if the player is in the ocean or not via `_on_body_entered()` and `_on_body_exited()`.
+- [_Staying late in ocean_](https://github.com/3yaa/catfishing/blob/658e5dfbbf2c341ce6b17bd8107e8072f4b1f74b/scripts/player.gd#L129): If player hasn't returned by halfway through the night `clock.get_remaining_time() < 0.5 * clock.night_duration`, they will be teleported back to the island and lose some of their fish. For code simplicity, they would lose half of the fish in their inventory, which are the ones located at the odd indices for the sense of "randomness". With more time, I wish to make a true random selection with a random amount as well.
 - [_Visual_](https://github.com/3yaa/catfishing/blob/658e5dfbbf2c341ce6b17bd8107e8072f4b1f74b/scripts/day_night_theme.gd): The main background is swapped based on day or night. A color filter is also applied through `ColorRect` on top of the game to make other assests in the foreground appear darker at night.
 
 |                                   |                                       |
@@ -60,7 +60,7 @@ The game includes NPCs that spawn as drowning cats for the player to rescue, aft
 
 There is a [NPC](https://github.com/3yaa/catfishing/blob/5a17f738dc10ffede2887f316b9a12b835bbd458/scripts/npc/npc.gd) class that each NPC can extend from. NPC is of type `Area2D` to check for player proximity via `_on_body_entered()` before allowing interaction. Player can interact with NPC by pressing the (E) key. Depending on the state `npc.rescued`, the interaction would either be rescuing the NPC or opening up their equivalent shop. This state also determines the NPC's location on the game, the different animations to used, and the dialogue shown to player when they are nearby. An example: [Fish Shop NPC](https://github.com/3yaa/catfishing/blob/5a17f738dc10ffede2887f316b9a12b835bbd458/scripts/npc/npc_fish_shop.gd)
 
-### Shoping System
+### Shopping System
 
 There are 3 shops in the game. Fish Shop allows player to sell the fish they caught to earn money and pay their debt. Upgrade Shop allows player to buy upgrades to increase their stats. Cosmetic Shop allows player to buy cosmetic items for the island.
 
@@ -76,27 +76,32 @@ When player opens the shop, they would be able to see the number of fish in thei
 
 #### Upgrade Shop
 
-In this shop, there are 2 types of upgrades that player can buy: stats upgrades and minigame power-ups. These upgrades are kept track by variables in `player.gd`. Stats upgrades help player with the main game with things like increasing their chance of getting higher quality fish or earning money faster. They are point-based system where player can keep buying to increase their stats. (e.g. [`buy_luck()`](https://github.com/3yaa/catfishing/blob/cce26d3bf1e058d89f71f988fb39006d5b8a7127/scripts/upgrade_shop_manager.gd#L139)) Power-ups are abilities that can be used in the minigame. They are one-time purchases that player can buy to unlock forever. (e.g. [`buy_power1()`](https://github.com/3yaa/catfishing/blob/cce26d3bf1e058d89f71f988fb39006d5b8a7127/scripts/upgrade_shop_manager.gd#L159)). When the shop is opened and after each buy, the [shop display is updated](https://github.com/3yaa/catfishing/blob/cce26d3bf1e058d89f71f988fb39006d5b8a7127/scripts/upgrade_shop_manager.gd#L101) to reflect the latest stats of player. If a power-up is already bought, its button would be disabled and marked as "Owned".
+In this shop, there are 2 types of upgrades that player can buy: stats upgrades and minigame power-ups. These upgrades are kept track by variables in `player.gd`. Stats upgrades help player in the main game with things like increasing their chance of getting higher quality fish or earning money faster. They are point-based system where player can keep buying to increase their stats. (e.g. [`buy_luck()`](https://github.com/3yaa/catfishing/blob/cce26d3bf1e058d89f71f988fb39006d5b8a7127/scripts/upgrade_shop_manager.gd#L139)) Power-ups are abilities that can be used in the minigame. They are one-time purchases that player can buy to unlock forever. (e.g. [`buy_power1()`](https://github.com/3yaa/catfishing/blob/cce26d3bf1e058d89f71f988fb39006d5b8a7127/scripts/upgrade_shop_manager.gd#L159)). When the shop is opened or after each buy, the [shop display is updated](https://github.com/3yaa/catfishing/blob/cce26d3bf1e058d89f71f988fb39006d5b8a7127/scripts/upgrade_shop_manager.gd#L101) to reflect the latest stats of player. If a power-up is already bought, its button would be disabled and marked as "Owned".
 
 ![Upgrade Shop](./document_images/shop_upgrades.png)
 
 #### Cosmetic Shop
 
-For cosmetic, we decided to use pre-set items because of time constraint. Each item is a `Sprite2D` node that is arranged on the island, all contained within the `Cosmetics` scene. At the start of the game, all of these item would be hidden away. When an item is purchased, its visibility would then be turned on.
+For cosmetic, we decided to use pre-set items because of time constraint. Each item is a `Sprite2D` node that is arranged with a fixed position on the island, all contained within the `Cosmetics` scene. At the start of the game, all of these item would be hidden away. When an item is purchased, its visibility would then be turned on.
 
 ### Sub-Role: Accessibility and Usability
 
 The home page contains a settings menu, allowing player to change the volume of the game and select different colorblind modes if needed. I did get help from LLMs to learn about the technical tools that Godot provides and how to set up the setting config file.
 
-- [*Colorblind*](https://github.com/3yaa/catfishing/blob/2cc5065b45e9545554060e1205df30240d0911ec/scripts/colorblind_manager.gd): Player can choose between 4 modes from a [`MenuButton`](https://github.com/3yaa/catfishing/blob/2cc5065b45e9545554060e1205df30240d0911ec/scripts/colorblind_btn.gd): Normal, Protanopia (Red-Blind), Deuteranopia (Green-Blind), and Tritanopia (Blue-Blind). Using `ColorRect`, a filter is applied on top of the game to change its colors depending on the selected mode. I implemented the menu UI and selection logic, while the AI-generated `Shader` is used to calculated the colors.
+- [*Colorblind*](https://github.com/3yaa/catfishing/blob/2cc5065b45e9545554060e1205df30240d0911ec/scripts/colorblind_manager.gd): Player can choose between 4 modes from a dropdown [`MenuButton`](https://github.com/3yaa/catfishing/blob/2cc5065b45e9545554060e1205df30240d0911ec/scripts/colorblind_btn.gd): Normal, Protanopia (Red-Blind), Deuteranopia (Green-Blind), and Tritanopia (Blue-Blind). Using `ColorRect`, a filter is applied on top of the game to change its colors depending on the selected mode. I implemented the settings UI and selection logic, while the AI-generated `Shader`, imported in the node's Material, is used to calculated the colors.
 
 |                                   |                                       |
 | :-------------------------------: | :-----------------------------------: |
 | ![Day](./document_images/colorblind_setting.png) | ![Night](./document_images/colorblind.png) |
 
-- [*Volume Control*](https://github.com/3yaa/catfishing/blob/1076568c5ead1ad071d053cfebbf60a66520566b/scripts/volume_manager.gd): There is a slider that lets player adjust the volume of the game. It uses AudioServer and access the Master bus to adjust the volume with Godot provided functions `set_bus_mute()` and `set_bus_volume_linear()`
+- [*Volume Control*](https://github.com/3yaa/catfishing/blob/1076568c5ead1ad071d053cfebbf60a66520566b/scripts/volume_manager.gd): There is a slider that lets player adjust the volume of the game. It uses AudioServer and access the Master bus to change the volume with Godot provided functions `set_bus_mute()` and `set_bus_volume_linear()`
 
 - [*Setting Persistence*](https://github.com/3yaa/catfishing/blob/1076568c5ead1ad071d053cfebbf60a66520566b/scripts/settings_manager.gd): Used a autoload script to access and generate a `settings.cfg` file to store the settings preferences of player.
+
+### Other Contributions
+
+- **Player Movement**: Different movement behaviors between on land and in water for game feel. Player moves slower in the ocean and can't jump.
+- **Polishing**: Debugging. Adjusting assets and nodes for positions, size, and fitting the game screen.
 
 ## Jamie Jang
 
