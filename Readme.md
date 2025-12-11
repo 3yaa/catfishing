@@ -16,13 +16,13 @@ some money on cosmetics to improve your island! Make sure to spend responsibly t
 
 ## Gameplay Explanation
 
-After getting into the game world, the player should go out to the sea, there the player will see npc that will need their help. The first npc that you will save will allow you to save the fish you capture and also pay off the massive debt. The second npc you rescue will open up a shop where you will be gain upgrades. The third npc you rescue will open up a shop where you can buy decorations.
+After getting into the game world, the player should go out to the sea, there the player will see npc that will need their help. The first npc that you save will allow you to sell the fish you capture and also pay off the massive debt. The second npc you rescue will open up a shop where you will purchase upgrades. The third npc you rescue will open up a shop where you can buy decorations.
 
-Now while rescuing the NPC, you should press "F" to fish, after doing the fishing animation you will have to wait a second or two before you get a fish. To catch a fish you just play blackjack. Each rarity of fish has a threshold player must reach in order to catch them.
+Now while in the ocean, you should press "F" to fish, after doing the fishing animation you will have to wait a second or two before you get a fish. To catch a fish you just play blackjack. Each rarity of fish has a threshold player must reach in order to catch them.
 
 If you have a good hand that you will know for sure is going to win you the round you can hit the "Double" button during betting phase which will double the bet you placed at the beginning. This pairs very well with the upgrade "Card Peek" which lets you see the fish's hand as you play, allowing you to know what the outcome will be before the round finishes.
 
-During the minigame the world clock will be paused, but as you see the world go into darkness, make sure you go back to the island to interact with the NPC that you had rescued. They will open up shop, the most important one you have to interact with is the first shop closest to the sea; where you will be able to sell the fishes you have just captured. After selling, your money will increase.
+During the minigame the world clock will be paused, but as you see the world go into darkness, make sure you go back to the island before you pass out and lose some of your hard earned fish that day. On the island, you can interact with the NPC that you had rescued. They will open up shop, the most important one you have to interact with is the first shop closest to the sea; where you will be able to sell the fishes you have just captured. After selling, your money will increase.
 
 At first try to save up enough to buy the upgrades, and then if you want you can also buy up the decorations. Whilist also trying to save up some money to start buying back your debt little by little.
 
@@ -30,15 +30,16 @@ After you have the upgrades, especially with the purpose of "Card Peek", winning
 
 # External Code, Ideas, and Structure
 
-Provided a lot of good information for how to make good UI in godot and utilizing different godot nodes.
-[link1](https://youtu.be/5Hog6a0EYa0?si=fGqzHoZAGaBU3IeQ)
-[link2](https://youtu.be/ftJQdMJa6BI?si=kXGpR2tTRl2boqz)
+- Provided a lot of good information for how to make good UI in godot and utilizing different godot nodes.
+  - [link1](https://youtu.be/5Hog6a0EYa0?si=fGqzHoZAGaBU3IeQ)
+  - [link2](https://youtu.be/ftJQdMJa6BI?si=kXGpR2tTRl2boqz)
+- [colorblind_filter.gdshader](https://github.com/3yaa/catfishing/blob/08b673dd362266e6993edad63d1630cc84d42b41/scripts/colorblind_filter.gdshader) - AI generated. Used for Material/MaterialShader to change pixel colors based on colorblind mode
 
 # Team Member Contributions
 
 ## Loc Nguyen
 
-### Main Role 1: Level and World Designer
+### Main Role: Level and World Designer
 
 ### Day/Night Cycle
 
@@ -82,6 +83,20 @@ In this shop, there are 2 types of upgrades that player can buy: stats upgrades 
 #### Cosmetic Shop
 
 For cosmetic, we decided to use pre-set items because of time constraint. Each item is a `Sprite2D` node that is arranged on the island, all contained within the `Cosmetics` scene. At the start of the game, all of these item would be hidden away. When an item is purchased, its visibility would then be turned on.
+
+### Sub-Role: Accessibility and Usability
+
+The home page contains a settings menu, allowing player to change the volume of the game and select different colorblind modes if needed. I did get help from LLMs to learn about the technical tools that Godot provides and how to set up the setting config file.
+
+- [*Colorblind*](https://github.com/3yaa/catfishing/blob/2cc5065b45e9545554060e1205df30240d0911ec/scripts/colorblind_manager.gd): Player can choose between 4 modes from a [`MenuButton`](https://github.com/3yaa/catfishing/blob/2cc5065b45e9545554060e1205df30240d0911ec/scripts/colorblind_btn.gd): Normal, Protanopia (Red-Blind), Deuteranopia (Green-Blind), and Tritanopia (Blue-Blind). Using `ColorRect`, a filter is applied on top of the game to change its colors depending on the selected mode. I implemented the menu UI and selection logic, while the AI-generated `Shader` is used to calculated the colors.
+
+|                                   |                                       |
+| :-------------------------------: | :-----------------------------------: |
+| ![Day](./document_images/colorblind_setting.png) | ![Night](./document_images/colorblind.png) |
+
+- [*Volume Control*](https://github.com/3yaa/catfishing/blob/1076568c5ead1ad071d053cfebbf60a66520566b/scripts/volume_manager.gd): There is a slider that lets player adjust the volume of the game. It uses AudioServer and access the Master bus to adjust the volume with Godot provided functions `set_bus_mute()` and `set_bus_volume_linear()`
+
+- [*Setting Persistence*](https://github.com/3yaa/catfishing/blob/1076568c5ead1ad071d053cfebbf60a66520566b/scripts/settings_manager.gd): Used a autoload script to access and generate a `settings.cfg` file to store the settings preferences of player.
 
 ## Jamie Jang
 
