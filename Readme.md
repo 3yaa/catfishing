@@ -277,12 +277,19 @@ Implement debt payments within one of the NPCs.
 
 ## Kylie Lallak
 
-### Main Role 1: Animation and Visuals 
+### Main Role 1: Animation and Visuals
+
 I was fully responsible for all of the visual design and implementation in the game. Every visual element, from the earliest concept art to the final in game assets was created entirely by me (with the exception of the playing cards). I hand drew all characters, environments, props, and UI elements, then digitally cleaned, refined, and exported them as polished PNGs. I imported all assets into Godot as Sprite2D nodes and set up the complete visual pipeline on my own.
 
-I also created and implemented every animation in the game ( except for the fish moving, I did drawings for the framesbut did not make the fish float .)This included the player’s full animation set: the walking cycle, idle animation, sailing animation, idle sailing animation, fishing animation, and the frames for the fish experssions. I animated everything frame by frame and wired it all together using Godot’s AnimationPlayer system. All movement, character expression, and moment to moment visual polish came from the animation work I did.
+I also created and implemented every animation in the game ( except for the fish moving, I did drawings for the framesbut did not make the fish float .)This included the player’s full animation set: the walking cycle, idle animation, sailing animation, idle sailing animation, fishing animation, and the frames for the fish experssions. Each animated charater also has animation sheets. I animated everything frame by frame and wired it all together using Godot’s AnimationPlayer system. All movement, character expression, and moment to moment visual polish came from the animation work I did.
+
+![Animation Sheet1](Drawings1.png)
+![Animation Sheet2](Animations2.png)
+![Assets 1](assets1.png)
+![Assets 2](assets2.png)
 
 ### Sub Role: Audio
+
 In addition to visuals, I handled all audio implementation for the project. I sourced all sound effects (except for the songs Jamie composed) and brought them into Godot. I implemented background music, menu music, and all in-game sound effects. This included:
 
 Walking and jumping
@@ -299,4 +306,11 @@ Winning the game, losing the game
 
 I set up all audio triggers and made sure the game felt reactive, polished, and alive through its sound design.
 
+### Other Contributions:
 
+Debugged and reset up the parralx background.
+Implemeted the world builds, like the trees, sand, ocean, set up collison barriers so player can not leave set area, debugged world buld so player can not see outside of intented areas.
+
+Helped schdule and faccliate team meetings to ideate concepts for our game.
+
+Set up presentaation slide and QR code.
