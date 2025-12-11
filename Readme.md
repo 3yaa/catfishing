@@ -16,13 +16,13 @@ some money on cosmetics to improve your island! Make sure to spend responsibly t
 
 ## Gameplay Explanation
 
-After getting into the game world, the player should go out to the sea, there the player will see npc that will need their help. The first npc that you will save will allow you to save the fish you capture and also pay off the massive debt. The second npc you rescue will open up a shop where you will be gain upgrades. The third npc you rescue will open up a shop where you can buy decorations.
+After getting into the game world, the player should go out to the sea, there the player will see npc that will need their help. The first npc that you save will allow you to sell the fish you capture and also pay off the massive debt. The second npc you rescue will open up a shop where you will purchase upgrades. The third npc you rescue will open up a shop where you can buy decorations.
 
-Now while rescuing the NPC, you should press "F" to fish, after doing the fishing animation you will have to wait a second or two before you get a fish. To catch a fish you just play blackjack. Each rarity of fish has a threshold player must reach in order to catch them.
+Now while in the ocean, you should press "F" to fish, after doing the fishing animation you will have to wait a second or two before you get a fish. To catch a fish you just play blackjack. Each rarity of fish has a threshold player must reach in order to catch them.
 
 If you have a good hand that you will know for sure is going to win you the round you can hit the "Double" button during betting phase which will double the bet you placed at the beginning. This pairs very well with the upgrade "Card Peek" which lets you see the fish's hand as you play, allowing you to know what the outcome will be before the round finishes.
 
-During the minigame the world clock will be paused, but as you see the world go into darkness, make sure you go back to the island to interact with the NPC that you had rescued. They will open up shop, the most important one you have to interact with is the first shop closest to the sea; where you will be able to sell the fishes you have just captured. After selling, your money will increase.
+During the minigame the world clock will be paused, but as you see the world go into darkness, make sure you go back to the island before you pass out and lose some of your hard earned fish that day. On the island, you can interact with the NPC that you had rescued. They will open up shop, the most important one you have to interact with is the first shop closest to the sea; where you will be able to sell the fishes you have just captured. After selling, your money will increase.
 
 At first try to save up enough to buy the upgrades, and then if you want you can also buy up the decorations. Whilist also trying to save up some money to start buying back your debt little by little.
 
@@ -31,8 +31,8 @@ After you have the upgrades, especially with the purpose of "Card Peek", winning
 # External Code, Ideas, and Structure
 
 - Provided a lot of good information for how to make good UI in godot and utilizing different godot nodes.
-[link1](https://youtu.be/5Hog6a0EYa0?si=fGqzHoZAGaBU3IeQ)
-[link2](https://youtu.be/ftJQdMJa6BI?si=kXGpR2tTRl2boqz)
+  - [link1](https://youtu.be/5Hog6a0EYa0?si=fGqzHoZAGaBU3IeQ)
+  - [link2](https://youtu.be/ftJQdMJa6BI?si=kXGpR2tTRl2boqz)
 - [colorblind_filter.gdshader](https://github.com/3yaa/catfishing/blob/08b673dd362266e6993edad63d1630cc84d42b41/scripts/colorblind_filter.gdshader) - AI generated. Used for Material/MaterialShader to change pixel colors based on colorblind mode
 
 # Team Member Contributions
