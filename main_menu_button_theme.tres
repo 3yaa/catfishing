@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=6 format=3 uid="uid://bbi2aoes23tm3"]
 
-[ext_resource type="FontFile" uid="uid://bautrqaskm40v" path="res://assets/font/Chewy,Margarine,Schoolbell/Margarine/Margarine-Regular.ttf" id="1_yxg01"]
+[ext_resource type="FontFile" uid="uid://mti3iuo6sh3" path="res://assets/font/Chewy,Margarine,Schoolbell/Margarine/Margarine-Regular.ttf" id="1_yxg01"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vue75"]
 

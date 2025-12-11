@@ -23,7 +23,7 @@ var power_ups = {
 	power3 = false,
 }
 
-var money: float = 0.0
+var money: float = 50000.0
 
 signal fish_caught
 signal fish_reeled

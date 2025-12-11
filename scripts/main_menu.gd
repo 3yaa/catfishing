@@ -4,6 +4,10 @@ extends CanvasLayer
 @onready var player = $Player
 @onready var sprite = $Player/AnimatedSprite2D
 
+@onready var setting_btn = $Setting
+@onready var setting_menu = $SettingMenu
+@onready var setting_btn_close = $SettingMenu/Close
+
 var screen_width = 1920
 var walk_duration = 20.0 # seconds to cross screen
 # 
@@ -19,6 +23,9 @@ func _ready():
 	player.position.y = 1000
 	sprite.play("idle_ocean")
 	start_walking()
+	
+	setting_btn.pressed.connect(open_setting_menu)
+	setting_btn_close.pressed.connect(close_setting_menu)
 
 func start_walking():
 	walk_right()
@@ -71,3 +78,10 @@ func walk_left():
 	var tween = create_tween()
 	tween.tween_property(player, "position:x", 0, walk_duration)
 	tween.tween_callback(walk_right)
+	
+func open_setting_menu():
+	setting_menu.visible = true
+	
+func close_setting_menu():
+	setting_menu.visible = false
+	
