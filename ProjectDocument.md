@@ -18,53 +18,24 @@ some money on cosmetics to improve your island! Make sure to spend responsibly t
 
 ## Gameplay Explanation
 
-**In this section, explain how the game should be played. Treat this as a manual within a game. Explaining the button mappings and the most optimal gameplay strategy is encouraged.**
+After getting into the game world, the player should go out to the sea, there the player will see npc that will need their help. The first npc that you will save will allow you to save the fish you capture and also pay off the massive debt. The second npc you rescue will open up a shop where you will be gain upgrades. The third npc you rescue will open up a shop where you can buy decorations.
 
-**Add it here if you did work that should be factored into your grade but does not fit easily into the proscribed roles! Please include links to resources and descriptions of game-related material that does not fit into roles here.**
+Now while rescuing the NPC, you should press "F" to fish, after doing the fishing animation you will have to wait a second or two before you get a fish. To catch a fish you just play blackjack. Each rarity of fish has a threshold player must reach in order to catch them.
+
+If you have a good hand that you will know for sure is going to win you the round you can hit the "Double" button during betting phase which will double the bet you placed at the beginning. This pairs very well with the upgrade "Card Peek" which lets you see the fish's hand as you play, allowing you to know what the outcome will be before the round finishes.
+
+During the minigame the world clock will be paused, but as you see the world go into darkness, make sure you go back to the island to interact with the NPC that you had rescued. They will open up shop, the most important one you have to interact with is the first shop closest to the sea; where you will be able to sell the fishes you have just captured. After selling, your money will increase.
+
+At first try to save up enough to buy the upgrades, and then if you want you can also buy up the decorations. Whilist also trying to save up some money to start buying back your debt little by little.
+
+After you have the upgrades, especially with the purpose of "Card Peek", winning against fishes should be easier; allowing you to work your way towards the 7k debt, which if you do end up getting to, the game will end and Jack will be able to reunite with his friends and family and live happily ever after, he definitely won't try to go back to a casino...
 
 # External Code, Ideas, and Structure
 
-If your project contains code that: 1) your team did not write, and 2) does not fit cleanly into a role, please document it in this section. Please include the author of the code, where to find the code, and note which scripts, folders, or other files that comprise the external contribution. Additionally, include the license for the external code that permits you to use it. You do not need to include the license for code provided by the instruction team.
-
-If you used tutorials or other intellectual guidance to create aspects of your project, include reference to that information as well.
+https://youtu.be/5Hog6a0EYa0?si=fGqzHoZAGaBU3IeQ
+https://youtu.be/ftJQdMJa6BI?si=kXGpR2tTRl2boqz_
 
 # Team Member Contributions
-
-This section be repeated once for each team member. Each team member should provide their name and GitHub user information.
-
-The general structures is
-
-```
-Team Member 1
-  Main Role
-    Documentation for main role.
-  Sub-Role
-    Documentation for Sub-Role
-  Other contribtions
-    Documentation for contributions to the project outside of the main and sub roles.
-
-Team Member 2
-  Main Role
-    Documentation for main role.
-  Sub-Role
-    Documentation for Sub-Role
-  Other contribtions
-    Documentation for contributions to the project outside of the main and sub roles.
-...
-```
-
-For each team member, you shoudl work of your role and sub-role in terms of the content of the course. Please look at the role sections below for specific instructions for each role.
-
-Below is a template for you to highlight items of your work. These provide the evidence needed for your work to be evaluated. Try to have at least four such descriptions. They will be assessed on the quality of the underlying system and how they are linked to course content.
-
-_Short Description_ - Long description of your work item that includes how it is relevant to topics discussed in class. [link to evidence in your repository](https://github.com/dr-jam/ECS189L/edit/project-description/ProjectDocumentTemplate.md)
-
-Here is an example:  
-_Procedural Terrain_ - The game's background consists of procedurally generated terrain produced with Perlin noise. The game can modify this terrain at run-time via a call to its script methods. The intent is to allow the player to modify the terrain. This system is based on the component design pattern and the procedural content generation portions of the course. [The PCG terrain generation script](https://github.com/dr-jam/CameraControlExercise/blob/513b927e87fc686fe627bf7d4ff6ff841cf34e9f/Obscura/Assets/Scripts/TerrainGenerator.cs#L6).
-
-You should replay any **bold text** with your relevant information. Liberally use the template when necessary and appropriate.
-
-Add addition contributions int he Other Contributions section.
 
 ## Loc Nguyen
 
