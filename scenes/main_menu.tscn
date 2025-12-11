@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bksfpeeyww0i1"]
+[gd_scene load_steps=18 format=3 uid="uid://bksfpeeyww0i1"]
 
 [ext_resource type="Texture2D" uid="uid://dtn6qvnnkmkru" path="res://assets/background/sky.jpeg" id="1_ekxnf"]
 [ext_resource type="Script" uid="uid://c61owka0ukdve" path="res://scripts/main_menu.gd" id="1_jk1qb"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://l3mcixyilavc" path="res://assets/Sounds/Black Jack/buttonPress.mp3" id="11_lgwnu"]
 [ext_resource type="Texture2D" uid="uid://cmubww5848627" path="res://assets/background/shopBackground.png" id="12_flqon"]
 [ext_resource type="Script" uid="uid://ralbuunyqlw2" path="res://scripts/colorblind_btn.gd" id="13_rcqid"]
+[ext_resource type="Script" uid="uid://roqsvrsvqy5r" path="res://scripts/volume_manager.gd" id="14_1ajci"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rcqid"]
 texture = ExtResource("12_flqon")
@@ -255,6 +256,25 @@ popup/item_3/text = "Tritanopia"
 popup/item_3/checkable = 1
 popup/item_3/id = 3
 script = ExtResource("13_rcqid")
+
+[node name="Volume" type="Label" parent="SettingMenu"]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 277.0
+offset_right = 289.0
+offset_bottom = 317.0
+theme_override_colors/font_color = Color(0.0035191667, 0.0035191681, 0.0035191672, 1)
+theme_override_font_sizes/font_size = 24
+text = "Volume"
+horizontal_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="SettingMenu"]
+layout_mode = 0
+offset_left = 319.0
+offset_top = 276.0
+offset_right = 610.0
+offset_bottom = 320.0
+script = ExtResource("14_1ajci")
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

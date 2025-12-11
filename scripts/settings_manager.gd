@@ -17,3 +17,12 @@ func get_colorblind_mode():
 func set_colorblind_mode(mode: int):
 	config.set_value("accessibility", "colorblind_mode", mode)
 	config.save(SETTINGS_FILE)
+	
+
+func get_volume():
+	return config.get_value("audio", "volume", 5)
+	
+	
+func set_volume(volume: float):
+	config.set_value("audio", "volume", volume)
+	config.save(SETTINGS_FILE)
