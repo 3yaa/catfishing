@@ -11,10 +11,8 @@ some money on cosmetics to improve your island! Make sure to spend responsibly t
 
 ## Project Resources
 
-[Web-playable version of your game.](https://itch.io/)  
-[Trailor](https://youtube.com)  
-[Press Kit](https://dopresskit.com/)  
-[Proposal: make your own copy of the linked doc.](https://docs.google.com/document/d/1qwWCpMwKJGOLQ-rRJt8G8zisCa2XHFhv6zSWars0eWM/edit?usp=sharing)
+[Web-playable version.](https://itch.io/)  
+[Proposal](https://docs.google.com/document/d/1TRNl5-x32T2aJ9PQkQaI7YmUFVqYSk3rwORqI4DvXf8/edit?usp=sharing)
 
 ## Gameplay Explanation
 
