@@ -264,7 +264,7 @@ Implement debt payments within one of the NPCs.
 
 **Shop Button System** - Implemented button layouts, positioning, and visual feedback for all three shop interfaces (Sell/Upgrade/Cosmetics shop). Each shop features consistent interaction patterns: hover effects, press animations, and shake animations for invalid actions when player can't afford 'items'. [Fish Sell Shop](https://github.com/3yaa/catfishing/blob/3e9281d17b1eb7fb8c31840b310f675a8fd77d98/scripts/fish_shop_manager.gd#L71) | [Upgrade Shop](https://github.com/3yaa/catfishing/blob/3e9281d17b1eb7fb8c31840b310f675a8fd77d98/scripts/upgrade_shop_manager.gd#L49) | [Cosmetics Shop](https://github.com/3yaa/catfishing/blob/3e9281d17b1eb7fb8c31840b310f675a8fd77d98/scripts/cosmetics_shop_manager.gd#L44)
 
-**Main Menu Interface** - Implemented the main menu with "Play" and "Exit" buttons, scene transition logic and input handling. The Play button loads the main game scene using `get_tree().change_scene_to_file()`. The Exit button calls `get_tree().quit()` to close the application. Integrated background music (composed by Jamie) into the menu. [Main Menu](https://github.com/3yaa/catfishing/blob/main/scripts/main_menu.gd)
+**Main Menu Interface** - Implemented the main menu with "Play" and "Exit" buttons, scene transition logic and input handling. The Play button loads the main game scene using `get_tree().change_scene_to_file()`. The Exit button calls `get_tree().quit()` to close the application. [Main Menu](https://github.com/3yaa/catfishing/blob/main/scripts/main_menu.gd)
 
 **Fish Counter HUD** - Implemented the fish counter display showing total fish count and rarity breakdown (● Common, ● Rare, ★ Super Rare). The counter updates dynamically by pulling data from fish logic system methods (`get_total_fish_count()`, `get_fish_count_by_rarity()`). Updates occur in \_process() during gameplay and responds to fish_caught signal, immediately reflecting "inventory" changes when fish are sold/caught. [Fish Counter](https://github.com/3yaa/catfishing/blob/3e9281d17b1eb7fb8c31840b310f675a8fd77d98/scripts/world_ui.gd#L82-L91)
 
@@ -290,19 +290,28 @@ Implement debt payments within one of the NPCs.
 
 ### Other Contributions
 
-- **Card Asset Integration**: Integrated the custom deck assets into the minigame by preloading the card display scene and instantiating cards dynamically during gameplay (assets created by Kylie). [Card Display](https://github.com/3yaa/catfishing/blob/3e9281d17b1eb7fb8c31840b310f675a8fd77d98/scripts/minigame/card_display.gd)
+- **Card Asset Integration**: Integrated the custom deck assets into the minigame by preloading the card display scene and instantiating cards dynamically during gameplay (card assets sourced by Kylie). [Card Display](https://github.com/3yaa/catfishing/blob/3e9281d17b1eb7fb8c31840b310f675a8fd77d98/scripts/minigame/card_display.gd)
 - **Fish Asset Integration**: Integrated different fish types and their rarities (Clown Fish, Sea Bass, Blue Tang, Angler, Shark) into the minigame by creating fish type mapping system and dynamic texture loading based on rarity (assets created by Kylie | fish creation logic created by Jamie). [Fish Loading](https://github.com/3yaa/catfishing/blob/3e9281d17b1eb7fb8c31840b310f675a8fd77d98/scripts/minigame/minigame_controller.gd)
-- **Project Configuration**: Set up the initial Godot project structure and configuration settings.
-- **Producer Stand-in**: Helped with design decisions and project coordination in absence of dedicated producer, including feature tracking and GitHub setup/support
+- **Project Configuration**: Set up the initial Godot project structure and the current project configuration.
+- **Producer Stand-in**: Propogated certain game design decisions (day/night cycle, npc rescue) and project coordination in absence of dedicated producer; including feature tracking and GitHub setup/support
 
 ## Kylie Lallak
 
-### Main Role 1: Animation and Visuals 
+### Main Role 1: Animation and Visuals
+
 I was fully responsible for all of the visual design and implementation in the game. Every visual element, from the earliest concept art to the final in game assets was created entirely by me (with the exception of the playing cards). I hand drew all characters, environments, props, and UI elements, then digitally cleaned, refined, and exported them as polished PNGs. I imported all assets into Godot as Sprite2D nodes and set up the complete visual pipeline on my own.
 
-I also created and implemented every animation in the game ( except for the fish moving, I did drawings for the framesbut did not make the fish float .)This included the player’s full animation set: the walking cycle, idle animation, sailing animation, idle sailing animation, fishing animation, and the frames for the fish experssions. I animated everything frame by frame and wired it all together using Godot’s AnimationPlayer system. All movement, character expression, and moment to moment visual polish came from the animation work I did.
+I also created and implemented every animation in the game ( except for the fish moving, I did drawings for the framesbut did not make the fish float .)This included the player’s full animation set: the walking cycle, idle animation, sailing animation, idle sailing animation, fishing animation, and the frames for the fish experssions. Each animated charater also has animation sheets. I animated everything frame by frame and wired it all together using Godot’s AnimationPlayer system. All movement, character expression, and moment to moment visual polish came from the animation work I did.
+
+Card assets source: https://natomarcacini.itch.io/card-asset-pack
+
+![Animation Sheet1](Drawings1.png)
+![Animation Sheet2](Animations2.png)
+![Assets 1](assets1.png)
+![Assets 2](assets2.png)
 
 ### Sub Role: Audio
+
 In addition to visuals, I handled all audio implementation for the project. I sourced all sound effects (except for the songs Jamie composed) and brought them into Godot. I implemented background music, menu music, and all in-game sound effects. This included:
 
 Walking and jumping
@@ -319,4 +328,13 @@ Winning the game, losing the game
 
 I set up all audio triggers and made sure the game felt reactive, polished, and alive through its sound design.
 
+All audio sourced from: https://pixabay.com/sound-effects/
 
+### Other Contributions:
+
+Debugged and reset up the parralx background.
+Implemeted the world builds, like the trees, sand, ocean, set up collison barriers so player can not leave set area, debugged world buld so player can not see outside of intented areas.
+
+Helped schdule and faccliate team meetings to ideate concepts for our game.
+
+Set up presentaation slide and QR code and set up inital game on itch.io, helped debug itch.io publication. 
