@@ -298,6 +298,8 @@ I was fully responsible for all of the visual design and implementation in the g
 
 I also created and implemented every animation in the game ( except for the fish moving, I did drawings for the framesbut did not make the fish float .)This included the player’s full animation set: the walking cycle, idle animation, sailing animation, idle sailing animation, fishing animation, and the frames for the fish experssions. Each animated charater also has animation sheets. I animated everything frame by frame and wired it all together using Godot’s AnimationPlayer system. All movement, character expression, and moment to moment visual polish came from the animation work I did.
 
+Card assets source: https://natomarcacini.itch.io/card-asset-pack
+
 ![Animation Sheet1](Drawings1.png)
 ![Animation Sheet2](Animations2.png)
 ![Assets 1](assets1.png)
@@ -320,6 +322,8 @@ Winning a round, losing a round
 Winning the game, losing the game
 
 I set up all audio triggers and made sure the game felt reactive, polished, and alive through its sound design.
+
+All audio sourced from: https://pixabay.com/sound-effects/
 
 ### Other Contributions:
 
